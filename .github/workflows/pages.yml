@@ -23,23 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The preview is plain static files: index.html loads preview/shell.html,
-      # which loads the core CSS from stylesheets/ and a theme from themes/<name>/.
-      #
-      # This repo keeps the themes at the root, because that is the folder you copy
-      # into an install. Staging them under themes/ gives the site the layout it
-      # expects and mirrors a real Redmine tree, so each theme's own
-      # `@import ../../../stylesheets/application.css` resolves to the vendored core
-      # CSS exactly as it would in production. Nothing is built or rewritten.
+      # Nothing is built or rewritten — the site is plain static files. The script
+      # only assembles them, and is the same one used for the downloadable bundle
+      # attached to each release, so the two can never diverge.
       - name: Stage the site
-        run: |
-          mkdir -p _site/themes
-          cp index.html _site/
-          cp -r preview stylesheets _site/
-          for theme in atlas zen umbra dense folio; do
-            test -f "$theme/stylesheets/application.css" || { echo "missing theme: $theme"; exit 1; }
-            cp -r "$theme" _site/themes/
-          done
+        run: script/build-site.sh _site
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

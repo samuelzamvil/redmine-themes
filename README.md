@@ -9,6 +9,8 @@ Five drop-in themes for Redmine 7, built against the stock core stylesheet.
 > actual output, on real data, in a real browser session. Treat every theme as a
 > starting point rather than a finished product, and try one on a staging install
 > before putting it in front of users. Bug reports and fixes are welcome.
+>
+> Releases stay in the `0.x` range while that is the case.
 
 | Theme | Character |
 | --- | --- |
@@ -37,17 +39,31 @@ Every control writes to the URL, so you can link straight to one view:
 | [`?theme=folio&page=issue-edit`](https://samuelzamvil.github.io/redmine-themes/?theme=folio&page=issue-edit) | Folio, the reworked issue editor |
 | [`?compare=1`](https://samuelzamvil.github.io/redmine-themes/?compare=1) | all five side by side |
 
-To run it locally, mirror the themes under the `themes/` path the preview expects,
-then serve the repository root with any static server:
+To run it locally, assemble the site and serve it with anything static:
 
 ```
-mkdir -p themes && for t in atlas zen umbra dense folio; do ln -sfn "../$t" "themes/$t"; done
-python3 -m http.server        # then visit localhost:8000
+script/build-site.sh
+cd _site && python3 -m http.server     # then visit localhost:8000
 ```
 
-`themes/` is git-ignored; the Pages workflow stages it on its own. Opening
-`index.html` over `file://` will not work, because the preview fetches the
-stylesheets.
+`file://` will not work, because the page fetches stylesheets.
+
+## Use the fake Redmine for your own theme
+
+The preview is a self-contained mock Redmine, and it is published on its own as
+**`redmine-mock-site.zip`** on the [latest release](../../releases/latest) — twelve
+screens of Redmine markup over Redmine 7's real core stylesheets, with no Ruby,
+database or Redmine anywhere:
+
+```
+unzip redmine-mock-site.zip
+cd redmine-mock-site && python3 -m http.server
+```
+
+Drop any theme in as `themes/<name>/` and add one line to the `THEMES` array in
+`index.html`, and you get twelve pages of feedback on it at once — it does not have
+to be one of these five. Full instructions ship inside the bundle, and are readable
+here as [`preview/README.md`](preview/README.md).
 
 ## Install
 
@@ -60,10 +76,16 @@ cp -r atlas /path/to/redmine/themes/
 
 ## Download
 
-If you would rather not clone the whole repository, the
-[latest release](../../releases/latest) carries each theme as a standalone zip plus
-`redmine-themes-all.zip` containing all five. Every archive unpacks straight into
-`themes/`:
+The [latest release](../../releases/latest) carries every piece separately, if you
+would rather not clone:
+
+| Asset | What it is |
+| --- | --- |
+| `atlas.zip` … `folio.zip` | one theme, ready to drop into `themes/` |
+| `redmine-themes-all.zip` | all five themes |
+| `redmine-mock-site.zip` | the fake Redmine, for previewing themes offline |
+
+The theme archives unpack straight into an install:
 
 ```
 unzip atlas.zip -d /path/to/redmine/themes/              # one theme
@@ -100,7 +122,9 @@ imports the core stylesheet from there. Earlier releases put themes in
 atlas/ zen/ umbra/ dense/ folio/   the themes — copy one into your install
 index.html                         the preview app (picker, compare, deep links)
 preview/shell.html                 the mocked Redmine screens it renders
+preview/README.md                  how to use the mock on your own theme
 stylesheets/                       unmodified Redmine 7 core CSS, for the preview only
+script/build-site.sh               assembles the site; used by Pages and the bundle
 .github/workflows/pages.yml        publishes the preview to GitHub Pages
 ```
 
