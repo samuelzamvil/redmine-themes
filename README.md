@@ -26,13 +26,18 @@ cp -r atlas /path/to/redmine/themes/
 
 ## Download
 
-Each theme is also published as a standalone zip on the
-[latest release](../../releases/latest), if you would rather not clone the whole
-repository:
+If you would rather not clone the whole repository, the
+[latest release](../../releases/latest) carries each theme as a standalone zip plus
+`redmine-themes-all.zip` containing all five. Every archive unpacks straight into
+`themes/`:
 
 ```
-unzip atlas.zip -d /path/to/redmine/themes/
+unzip atlas.zip -d /path/to/redmine/themes/              # one theme
+unzip redmine-themes-all.zip -d /path/to/redmine/themes/ # all five
 ```
+
+Installing all five is safe — each is a separate entry in the theme picker, and
+only the selected one loads.
 
 ## Shared design
 
