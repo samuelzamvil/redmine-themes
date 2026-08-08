@@ -13,9 +13,7 @@ cp -r umbra /path/to/redmine/themes/
 
 Then pick **Umbra** under *Administration → Settings → Display → Theme*.
 
-For Redmine versions before 6.0, copy into `public/themes/` instead and change the
-first `@import` in `stylesheets/application.css` to point at
-`../../../stylesheets/application.css` relative to that location.
+Requires Redmine 7.0.
 
 ## Layout
 

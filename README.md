@@ -50,8 +50,10 @@ See each theme's README for install and customisation notes.
 
 ## Compatibility
 
-Targets Redmine 7.0 (themes live in `themes/`). For 5.x and earlier, themes live in
-`public/themes/` — see the per-theme README for the one path change required.
+Redmine 7.0 only. Themes live in `themes/` at the application root, and each theme
+imports the core stylesheet from there. Earlier releases put themes in
+`public/themes/` and shipped a different core stylesheet, so these will not work on
+6.x or below without changes.
 
 ## Licence
 
