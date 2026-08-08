@@ -1,0 +1,54 @@
+/**
+ * Redmine jstoolbar.css, adapted for the static preview — MODIFIED, 2026.
+ *
+ * Derived from app/assets/stylesheets/jstoolbar.css in Redmine.
+ * Copyright (C) 2006-  Jean-Philippe Lang
+ * Released under the GNU General Public License, version 2 or later.
+ *
+ * Changes from upstream:
+ *   - The root-absolute /jstoolbar/*.svg icon paths are made relative, so the
+ *     preview works when served from a subpath (a GitHub Pages project site)
+ *     as well as from a domain root.
+ *   - Seven rules the preview does not exercise are dropped: .jstHandle,
+ *     .jstElements .help a, #content .jstTabs.tabs li:before,
+ *     .wiki-preview p.empty-preview, and the three .table-generator rules.
+ *   - Whitespace is collapsed to one rule per line.
+ *
+ * No declaration value is changed other than those icon paths. The icons
+ * themselves are Tabler Icons, MIT licensed — see doc/licenses/tabler-icons.txt.
+ */
+
+.jstBlock .hidden { display: none; }
+.jstEditor { padding-inline-start: 0px; }
+.jstEditor textarea, .jstEditor iframe { margin: 0; }
+#content .jstTabs.tabs { margin-block-end: -1px; }
+#content .jstTabs.tabs ul { border-block-end: 0; }
+#content .jstTabs.tabs li { block-size: 42px; }
+#content .jstTabs.tabs li a { display: inline-block; vertical-align: bottom; line-height: 19px; border-block-end: 1px solid transparent; }
+.jstElements { display: inline-block; vertical-align: bottom; padding-inline-start: 6px; padding-block-end: 2px; block-size: 26px; }
+.wiki-preview { color: var(--oc-gray-9); background-color: var(--oc-white); border: 1px solid var(--oc-gray-4); }
+.jstElements button { margin-inline-end: 2px; inline-size: 24px; block-size: 24px; padding: 4px; border-style: solid; border-width: 1px; border-color: var(--oc-gray-4); background-color: var(--oc-gray-0); background-position: 50% 50%; background-repeat: no-repeat; cursor: pointer; opacity: .7; }
+.jstElements button:hover { border-color: var(--oc-gray-5); background-color: var(--oc-gray-3); opacity: 1; }
+.jstElements button span { display: none; }
+.jstElements span { display: inline; }
+.jstSpacer { inline-size: 0px; font-size: 1px; margin-inline-end: 6px; }
+.jstElements .help { float: inline-end; margin-inline-end: .5em; padding-block-start: 8px; font-size: .9em; }
+.jstb_strong { background-image: url(../jstoolbar/bold.svg); }
+.jstb_em { background-image: url(../jstoolbar/italic.svg); }
+.jstb_ins { background-image: url(../jstoolbar/underline.svg); }
+.jstb_del { background-image: url(../jstoolbar/strikethrough.svg); }
+.jstb_code { background-image: url(../jstoolbar/letter-c.svg); }
+.jstb_h1 { background-image: url(../jstoolbar/h1.svg); }
+.jstb_h2 { background-image: url(../jstoolbar/h2.svg); }
+.jstb_h3 { background-image: url(../jstoolbar/h3.svg); }
+.jstb_ul { background-image: url(../jstoolbar/list.svg); }
+.jstb_ol { background-image: url(../jstoolbar/list-numbers.svg); }
+.jstb_tl { background-image: url(../jstoolbar/list-check.svg); }
+.jstb_bq { background-image: url(../jstoolbar/indent-increase.svg); }
+.jstb_unbq { background-image: url(../jstoolbar/indent-decrease.svg); }
+.jstb_pre::before { content: "pre"; font-size: 10px; color: var(--oc-gray-9); font-weight: 700; }
+.jstb_precode { background-image: url(../jstoolbar/code.svg); }
+.jstb_link { background-image: url(../jstoolbar/wiki_link.svg); }
+.jstb_img { background-image: url(../jstoolbar/image.svg); }
+.jstb_table { background-image: url(../jstoolbar/table.svg); }
+.jstb_help { background-image: url(../jstoolbar/help.svg); }

@@ -76,7 +76,14 @@ Fonts, so an offline or locked-down host falls back to system fonts.
 GPL-2.0-or-later, the same terms as Redmine itself. The full text is in `COPYING`,
 byte-identical to Redmine's own `doc/COPYING`.
 
-`stylesheets/` contains unmodified files from the
-[Redmine](https://github.com/redmine/redmine) source — copyright Jean-Philippe Lang,
-same licence. The mock screens and the preview app are copyright 2026 Samuel Zamvil,
-also GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.
+The mock screens and the preview app are copyright 2026 Samuel Zamvil, also
+GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.
+
+Third-party files, each under its own licence:
+
+- `stylesheets/*.css` — from the [Redmine](https://github.com/redmine/redmine)
+  source, copyright Jean-Philippe Lang, GPL-2.0-or-later. All unmodified except
+  `jstoolbar.css`, whose changes are listed in its own header.
+- `jstoolbar/*.svg` — [Tabler Icons](https://tabler.io/icons), copyright Paweł Kuna,
+  MIT licensed, as shipped by Redmine. The notice is in
+  `doc/licenses/tabler-icons.txt`.

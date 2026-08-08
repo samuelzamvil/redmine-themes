@@ -314,11 +314,13 @@ input[type=text], input[type=password], input[type=email], input[type=number], i
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
   outline: none; border-color: var(--t-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--t-accent) 22%, transparent);
 }
-input[type=submit], input[type=button], button:not(.tab-left):not(.tab-right), a.button {
+input[type=submit], input[type=button], a.button,
+button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]) {
   background: var(--t-accent); color: var(--t-on-accent); border: 0; border-radius: 8px;
   padding: 8px 18px; font-family: inherit; font-weight: 600; font-size: 0.8125rem; cursor: pointer; transition: filter .15s;
 }
-input[type=submit]:hover, button:not(.tab-left):not(.tab-right):hover, a.button:hover { filter: brightness(1.08); text-decoration: none; color: var(--t-on-accent); }
+input[type=submit]:hover, a.button:hover,
+button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]):hover { filter: brightness(1.08); text-decoration: none; color: var(--t-on-accent); }
 input[type=submit].secondary, button.secondary, a.button.secondary { background: var(--t-surface-2); color: var(--t-text); border: 1px solid var(--t-border-strong); }
 label { color: var(--t-dim); font-weight: 600; font-size: 0.8125rem; }
 
@@ -349,7 +351,7 @@ div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); f
 .rm-pill[data-s="rejected"] { background: color-mix(in oklab, var(--oc-red-5) 14%, var(--t-surface)); color: var(--oc-red-9); border-color: transparent; }
 
 /* ===== Global nav rail (built by theme.js) ===== */
-#rm-rail { position: fixed; inset-block: 0; inset-inline-start: 0; inline-size: 230px; background: var(--t-rail); border-inline-end: 1px solid var(--t-border); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; z-index: 40; transition: inline-size .18s ease; }
+#rm-rail { box-sizing: border-box; position: fixed; inset-block: 0; inset-inline-start: 0; inline-size: 230px; background: var(--t-rail); border-inline-end: 1px solid var(--t-border); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; z-index: 40; transition: inline-size .18s ease; }
 #rm-rail .rm-rail-brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; color: var(--t-rail-text); font-weight: 700; font-size: 0.9375rem; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; }
 #rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 50%; background: var(--t-accent); flex: 0 0 auto; }
 #rm-rail a { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 8px; color: var(--t-rail-text); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; }
@@ -416,7 +418,10 @@ div.task_todo.parent, div.task_done.parent, div.task_late.parent { border-radius
 
 /* Zen: air, hairlines, no zebra */
 nav.top-menu, #top-menu { border-block-end: 1px solid var(--t-border); }
-#content { max-inline-size: 1180px; }
+/* #main is flex-direction: row-reverse, so a max-width on #content shrinks the
+   flex item and the leftover space lands on the LEFT — the content floats away
+   from the edge. Cap the blocks inside instead; the column stays flush left. */
+#content > * { max-inline-size: 1180px; }
 table.list { border-radius: 0; border-inline: 0; border-block-start: 0; }
 table.list th { background: transparent; border-block-end: 1px solid var(--t-border-strong); }
 table.list td { border-block-start: 1px solid var(--t-border); }
@@ -490,3 +495,55 @@ table.list:not(.odd-even) tbody tr:nth-child(odd):hover,
 table.list:not(.odd-even) tbody tr:nth-child(even):hover,
 table.list tbody tr:hover { background-color: var(--t-accent-soft); }
 .box table.list:not(.odd-even) tbody tr:nth-child(even), .box .even { background-color: transparent; }
+
+/* -------------------------------------------------------------------
+   Wiki toolbar. Its buttons carry their glyph as a background-image, so
+   the generic button styling above has to skip them — it did not, which
+   turned the whole toolbar into coloured blobs.
+
+   The glyphs are dark-stroked SVGs shipped by Redmine, so dark mode has
+   to invert them. filter applies to the whole element, not just the
+   background image, so in dark mode the button chrome goes transparent
+   and the hover tint is a mid grey, which survives inversion unchanged.
+   ------------------------------------------------------------------- */
+:root { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); }
+@media (prefers-color-scheme: dark) { :root:not([data-rm-mode="light"]) { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); } }
+:root[data-rm-mode="dark"] { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); }
+
+.jstElements button {
+  inline-size: 26px; block-size: 26px; margin: 0; padding: 4px; opacity: 1; cursor: pointer;
+  background-color: var(--t-jst-bg); border: 1px solid var(--t-jst-border); border-radius: var(--t-radius);
+  background-position: 50% 50%; background-repeat: no-repeat; background-size: 15px 15px;
+  filter: invert(var(--t-icon-invert));
+}
+.jstElements button:hover { background-color: var(--t-jst-hover); border-color: var(--t-jst-border); }
+.jstb_pre::before { color: currentColor; font-size: 10px; font-weight: 700; }
+button[class*="jstb_"] { color: var(--t-text); }
+.jstSpacer { inline-size: 1px; block-size: 18px; background: var(--t-border); margin-inline: 5px; padding: 0; border: 0; font-size: 0; }
+
+/* Core's div.tabs is a fixed-height, overflow-hidden block with an absolutely
+   positioned ul; the wiki toolbar shares that class, so the Edit/Preview tabs
+   landed on top of the buttons. Let this one instance flow normally, and let
+   the toolbar take its own row so it grows instead of clipping when it wraps. */
+#content .jstTabs.tabs { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px 12px; block-size: auto; min-block-size: 0; overflow: visible; position: relative; padding: 0; margin-block-end: 0; }
+#content .jstTabs.tabs ul { position: static; display: flex; gap: 2px; inline-size: auto; block-size: auto; overflow: visible; white-space: nowrap; margin: 0; flex: 0 0 auto; }
+#content .jstTabs.tabs li { display: inline-block; float: none; block-size: auto; }
+#content .jstTabs.tabs li a { border-radius: var(--t-radius) var(--t-radius) 0 0; color: var(--t-dim); padding-block: 5px; }
+#content .jstTabs.tabs li a.selected { background: var(--t-surface); color: var(--t-accent); border-color: var(--t-border); }
+#content .jstTabs.tabs .jstElements { flex: 1 1 100%; block-size: auto; align-content: flex-start; display: flex; flex-wrap: wrap; align-items: center; gap: 3px; padding: 4px 0 6px; }
+#content .jstTabs.tabs .jstElements .help { flex: 0 0 auto; float: none; margin-inline-start: auto; align-self: center; white-space: nowrap; padding: 0; }
+#content .jstTabs.tabs .jstElements .help a { color: var(--t-dim); font-size: 0.75rem; }
+
+.jstEditor textarea { border-start-start-radius: 0; border-start-end-radius: 0; }
+.wiki-preview { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 0 0 var(--t-radius) var(--t-radius); padding: 12px 14px; }
+.table-generator td { border-color: var(--t-border-strong); background: var(--t-surface); }
+.table-generator td.selected-cell, .table-generator td:hover { background: var(--t-accent-soft); }
+
+/* Redmine's own small icon buttons keep their sprite rather than a fill. */
+button.icon-only { background: transparent; border: 0; padding: 3px; border-radius: var(--t-radius); cursor: pointer; }
+button.icon-only:hover { background: var(--t-surface-2); }
+
+/* The rail's inline-size must include its own padding and border, otherwise the
+   fixed rail renders wider than the margin reserved on #wrapper and overlaps the
+   left edge of the content. */
+#rm-rail, #rm-rail * { box-sizing: border-box; }

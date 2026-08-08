@@ -22,7 +22,10 @@ mkdir -p "$out/themes"
 cp index.html "$out/"
 cp preview/README.md "$out/README.md"
 cp COPYING "$out/"
-cp -r preview stylesheets "$out/"
+# jstoolbar/ holds the wiki-toolbar glyphs Redmine ships, referenced by
+# stylesheets/jstoolbar.css. They are Tabler Icons under the MIT licence, which
+# requires its notice to travel with them — so doc/licenses/ ships too.
+cp -r preview stylesheets jstoolbar doc "$out/"
 
 for theme in "${THEMES[@]}"; do
   for required in stylesheets/application.css javascripts/theme.js; do

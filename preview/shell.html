@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../stylesheets/context_menu.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/gantt.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/scm.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/jstoolbar.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/responsive.css" media="all" />
 <link id="theme-css" rel="stylesheet" href="" media="all" />
 <style>
@@ -210,7 +211,10 @@
         <div id="all_attributes">
           <p><label for="e_tracker">Tracker <span class="required">*</span></label> <select id="e_tracker"><option selected="selected">Bug</option><option>Feature</option><option>Support</option></select></p>
           <p><label for="e_subject">Subject <span class="required">*</span></label> <input type="text" id="e_subject" value="Downlink buffer overruns during high-rate passes" /></p>
-          <p><label for="e_description">Description</label> <textarea id="e_description" rows="8" class="wiki-edit">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped.</textarea></p>
+          <p><label for="e_description">Description</label> <div class="jstBlock">
+          <div class="jstTabs tabs"><ul><li><a href="#" class="selected">Edit</a></li><li><a href="#">Preview</a></li></ul><div class="jstElements"><button type="button" class="jstb_strong" title="Strong"><span>Strong</span></button><button type="button" class="jstb_em" title="Italic"><span>Italic</span></button><button type="button" class="jstb_ins" title="Underline"><span>Underline</span></button><button type="button" class="jstb_del" title="Deleted"><span>Deleted</span></button><button type="button" class="jstb_code" title="Inline code"><span>Inline code</span></button><span class="jstSpacer"></span><button type="button" class="jstb_h1" title="Heading 1"><span>Heading 1</span></button><button type="button" class="jstb_h2" title="Heading 2"><span>Heading 2</span></button><button type="button" class="jstb_h3" title="Heading 3"><span>Heading 3</span></button><span class="jstSpacer"></span><button type="button" class="jstb_ul" title="Unordered list"><span>Unordered list</span></button><button type="button" class="jstb_ol" title="Ordered list"><span>Ordered list</span></button><button type="button" class="jstb_tl" title="Task list"><span>Task list</span></button><span class="jstSpacer"></span><button type="button" class="jstb_bq" title="Quote"><span>Quote</span></button><button type="button" class="jstb_unbq" title="Unquote"><span>Unquote</span></button><button type="button" class="jstb_pre" title="Preformatted"><span>Preformatted</span></button><button type="button" class="jstb_precode" title="Code block"><span>Code block</span></button><span class="jstSpacer"></span><button type="button" class="jstb_link" title="Link"><span>Link</span></button><button type="button" class="jstb_img" title="Image"><span>Image</span></button><button type="button" class="jstb_table" title="Table"><span>Table</span></button><span class="help"><a href="#">Help</a></span></div></div>
+          <div class="jstEditor"><textarea id="e_description" class="wiki-edit" rows="8">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped.</textarea></div>
+        </div></p>
           <div id="attributes" class="attributes">
             <div class="splitcontent">
               <div class="splitcontentleft">
@@ -237,7 +241,10 @@
         <p><label for="e_tcomment">Comment</label> <input type="text" id="e_tcomment" size="60" /></p>
       </fieldset>
       <fieldset id="add_notes"><legend>Notes</legend>
-        <textarea id="issue_notes" class="wiki-edit" rows="10" placeholder="Add a comment…"></textarea>
+        <div class="jstBlock">
+          <div class="jstTabs tabs"><ul><li><a href="#" class="selected">Edit</a></li><li><a href="#">Preview</a></li></ul><div class="jstElements"><button type="button" class="jstb_strong" title="Strong"><span>Strong</span></button><button type="button" class="jstb_em" title="Italic"><span>Italic</span></button><button type="button" class="jstb_ins" title="Underline"><span>Underline</span></button><button type="button" class="jstb_del" title="Deleted"><span>Deleted</span></button><button type="button" class="jstb_code" title="Inline code"><span>Inline code</span></button><span class="jstSpacer"></span><button type="button" class="jstb_h1" title="Heading 1"><span>Heading 1</span></button><button type="button" class="jstb_h2" title="Heading 2"><span>Heading 2</span></button><button type="button" class="jstb_h3" title="Heading 3"><span>Heading 3</span></button><span class="jstSpacer"></span><button type="button" class="jstb_ul" title="Unordered list"><span>Unordered list</span></button><button type="button" class="jstb_ol" title="Ordered list"><span>Ordered list</span></button><button type="button" class="jstb_tl" title="Task list"><span>Task list</span></button><span class="jstSpacer"></span><button type="button" class="jstb_bq" title="Quote"><span>Quote</span></button><button type="button" class="jstb_unbq" title="Unquote"><span>Unquote</span></button><button type="button" class="jstb_pre" title="Preformatted"><span>Preformatted</span></button><button type="button" class="jstb_precode" title="Code block"><span>Code block</span></button><span class="jstSpacer"></span><button type="button" class="jstb_link" title="Link"><span>Link</span></button><button type="button" class="jstb_img" title="Image"><span>Image</span></button><button type="button" class="jstb_table" title="Table"><span>Table</span></button><span class="help"><a href="#">Help</a></span></div></div>
+          <div class="jstEditor"><textarea id="issue_notes" class="wiki-edit" rows="10" placeholder="Add a comment…"></textarea></div>
+        </div>
         <label><input type="checkbox" id="issue_private_notes" /> Private notes</label>
       </fieldset>
       <fieldset id="add_attachments"><legend>Files</legend>
