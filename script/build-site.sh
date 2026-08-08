@@ -23,8 +23,10 @@ cp index.html "$out/"
 cp preview/README.md "$out/README.md"
 cp COPYING THIRD-PARTY-NOTICES.md "$out/"
 # jstoolbar/ holds the wiki-toolbar glyphs Redmine ships, referenced by
-# stylesheets/jstoolbar.css. They are Tabler Icons under the MIT licence, which
-# requires its notice to travel with them — so doc/licenses/ ships too.
+# stylesheets/jstoolbar.css; icons.svg is Redmine's sprite, referenced by the
+# preview's sprite_icon markup. Both are Tabler artwork under the MIT licence,
+# which requires its notice to travel with them — so doc/licenses/ ships too.
+cp icons.svg "$out/"
 cp -r preview stylesheets jstoolbar doc "$out/"
 
 for theme in "${THEMES[@]}"; do

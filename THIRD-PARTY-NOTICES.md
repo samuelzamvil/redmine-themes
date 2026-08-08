@@ -14,24 +14,43 @@ Two things worth knowing before the tables:
 - **Everything vendored here exists for the preview.** If you only want a theme, none
   of the files below are involved.
 
-Verified against `redmine/redmine` at `2563fa6a55b1` (2026-08-03).
+## Redmine
+
+Everything vendored below was taken from a local **Redmine 7.0** checkout at
+revision `2563fa6a55b1` (2026-08-03), and each file was diffed against that
+checkout — see the notes in the table for the two that are not byte-identical.
+
+Redmine is copyright Jean-Philippe Lang and licensed GPL-2.0-or-later. Its licence
+notice is reproduced verbatim as
+[`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), and the full GPL text it
+refers to is [`COPYING`](COPYING) — the same text this project uses for its own
+licence, so it appears once rather than twice.
+
+> Redmine - project management software
+> Copyright (C) Jean-Philippe Lang
+>
+> This program is free software; you can redistribute it and/or modify it under the
+> terms of the GNU General Public License as published by the Free Software
+> Foundation; either version 2 of the License, or (at your option) any later version.
+
+Redmine is not a dependency of a theme in the packaging sense — you already have
+Redmine, and a theme imports the copy of the core stylesheet in your own install.
+The files below are vendored only so the preview has something real to render
+against.
 
 ## Bundled in this repository
 
 | Path | Component | Copyright | Licence | Notice |
 | --- | --- | --- | --- | --- |
-| `stylesheets/application.css`<br>`stylesheets/context_menu.css`<br>`stylesheets/dropdown.css`<br>`stylesheets/gantt.css`<br>`stylesheets/responsive.css`<br>`stylesheets/scm.css` | [Redmine](https://github.com/redmine/redmine) — **unmodified**, byte-identical to `app/assets/stylesheets/` | Jean-Philippe Lang | GPL-2.0-or-later | [`COPYING`](COPYING) |
-| `stylesheets/jstoolbar.css` | Redmine — **modified**; every change is itemised in the file's own header | Jean-Philippe Lang | GPL-2.0-or-later | [`COPYING`](COPYING) |
-| `stylesheets/open-color.css` | [Open Color](https://github.com/yeun/open-color) v1.9.1, as vendored by Redmine — unmodified | heeyeun | MIT | [`doc/licenses/open-color.txt`](doc/licenses/open-color.txt) |
-| `jstoolbar/*.svg` (19 files) | [Tabler Icons](https://tabler.io/icons), as shipped by Redmine. Reserialized only — whitespace collapsed and self-closing tags expanded; path geometry is identical to upstream | Paweł Kuna | MIT | [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
+| `stylesheets/application.css`<br>`stylesheets/context_menu.css`<br>`stylesheets/dropdown.css`<br>`stylesheets/gantt.css`<br>`stylesheets/responsive.css`<br>`stylesheets/scm.css` | Redmine `app/assets/stylesheets/` — **unmodified**, byte-identical to the checkout | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
+| `stylesheets/jstoolbar.css` | Redmine `app/assets/stylesheets/jstoolbar.css` — **modified**; every change is itemised in the file's own header | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
+| `icons.svg` | Redmine `app/assets/images/icons.svg` — the icon sprite, 117 symbols. Reserialized only: self-closing tags expanded, so all 387 path geometries and every symbol id match the checkout. The sprite file is Redmine's; the glyph artwork in it is Tabler's, so both notices apply | Jean-Philippe Lang (file), Paweł Kuna (artwork) | GPL-2.0-or-later / MIT | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
+| `jstoolbar/*.svg` (19 files) | Redmine `app/assets/images/jstoolbar/` — [Tabler Icons](https://tabler.io/icons) as shipped by Redmine. Reserialized only: whitespace collapsed and self-closing tags expanded, path geometry matches the checkout 19/19 | Paweł Kuna | MIT | [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
+| `stylesheets/open-color.css` | Redmine `app/assets/stylesheets/open-color.css` — [Open Color](https://github.com/yeun/open-color) v1.9.1 as vendored by Redmine, unmodified | heeyeun | MIT | [`doc/licenses/open-color.txt`](doc/licenses/open-color.txt) |
 
-Both MIT licences require their notice to accompany the files, so
-`doc/licenses/` is included in the preview bundle and in every release archive that
-contains the files it covers.
-
-Redmine is the source of the vendored CSS but is **not** a dependency of a theme in
-the packaging sense — you already have Redmine, and a theme imports the copy in your
-own install.
+Both MIT licences require their notice to accompany the files they cover, so
+`doc/licenses/` ships in the preview bundle and in every release archive containing
+those files.
 
 ## Fonts, fetched at runtime, not bundled
 

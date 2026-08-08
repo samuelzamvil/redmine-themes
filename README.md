@@ -160,9 +160,10 @@ travels with a theme that gets copied around on its own.
 
 ### Third-party files
 
-A theme itself bundles nothing that is not ours. The preview vendors Redmine's core
-stylesheets (GPL-2.0-or-later), Open Color and the Tabler toolbar icons (both MIT),
-and every theme asks Google Fonts for one typeface at runtime.
+A theme itself bundles nothing that is not ours. The preview vendors files from a
+Redmine 7.0 checkout — its core stylesheets and icon sprite (GPL-2.0-or-later,
+copyright Jean-Philippe Lang), plus Open Color and the Tabler icons it carries (both
+MIT) — and every theme asks Google Fonts for one typeface at runtime.
 
 Full disclosure — component, origin, copyright, licence, and what was modified — is
 in **[`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)**, with the licence texts

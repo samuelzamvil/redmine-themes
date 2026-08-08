@@ -545,3 +545,101 @@ button.icon-only:hover { background: var(--t-surface-2); }
    fixed rail renders wider than the margin reserved on #wrapper and overlaps the
    left edge of the content. */
 #rm-rail, #rm-rail * { box-sizing: border-box; }
+
+/* -------------------------------------------------------------------
+   Action affordances, matched to what Redmine actually renders.
+
+   The contextual bar, the query form buttons and the per-row menus are
+   all <a class="icon icon-*"> sprite links — not <input type=submit> or
+   a.button, which core barely uses. Core also turns icon strokes red on
+   hover; these themes use the accent instead.
+   ------------------------------------------------------------------- */
+.contextual { display: flex; align-items: center; gap: 6px; }
+.contextual a.icon, p.buttons a.icon {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: var(--t-radius);
+  border: 1px solid var(--t-border-strong); background: var(--t-surface);
+  color: var(--t-text); font-size: 0.8125rem; font-weight: 500; text-decoration: none;
+}
+.contextual a.icon:hover, p.buttons a.icon:hover {
+  background: var(--t-accent-soft); border-color: var(--t-accent); color: var(--t-accent); text-decoration: none;
+}
+.contextual a.icon .icon-svg, p.buttons a.icon .icon-svg { stroke: var(--t-dim); }
+.contextual a.icon:hover .icon-svg, p.buttons a.icon:hover .icon-svg { stroke: var(--t-accent); }
+.contextual a.icon .icon-label, p.buttons a.icon .icon-label { margin-inline-start: 0; }
+
+/* The primary action in each bar reads as filled. */
+.contextual a.icon.new-issue, .contextual a.icon.new-object, p.buttons a.icon-checked {
+  background: var(--t-accent); border-color: var(--t-accent); color: var(--t-on-accent); font-weight: 600;
+}
+.contextual a.icon.new-issue:hover, .contextual a.icon.new-object:hover, p.buttons a.icon-checked:hover {
+  background: var(--t-accent); border-color: var(--t-accent); color: var(--t-on-accent); filter: brightness(1.08);
+}
+.contextual a.icon.new-issue .icon-svg, .contextual a.icon.new-object .icon-svg, p.buttons a.icon-checked .icon-svg,
+.contextual a.icon.new-issue:hover .icon-svg, p.buttons a.icon-checked:hover .icon-svg { stroke: var(--t-on-accent); }
+
+/* Overflow menus: quiet until pointed at. */
+.icon-only.icon-actions, a.icon-only.js-contextmenu {
+  display: inline-flex; align-items: center; justify-content: center;
+  inline-size: 26px; block-size: 26px; border-radius: var(--t-radius); cursor: pointer;
+}
+.icon-only.icon-actions:hover, a.icon-only.js-contextmenu:hover { background: var(--t-surface-2); }
+.icon-only.icon-actions .icon-svg, a.icon-only.js-contextmenu .icon-svg { stroke: var(--t-dim); }
+.icon-only.icon-actions:hover .icon-svg, a.icon-only.js-contextmenu:hover .icon-svg { stroke: var(--t-accent); }
+table.list td.buttons { inline-size: 30px; }
+table.list td.buttons a { opacity: 0; transition: opacity .12s; }
+table.list tbody tr:hover td.buttons a, table.list td.buttons a:focus { opacity: 1; }
+
+/* Query form. */
+#query_form_with_buttons { margin-block-end: 14px; }
+fieldset#filters, fieldset#options { margin-block-end: 8px; }
+fieldset#filters > legend, fieldset#options > legend {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  color: var(--t-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+}
+fieldset#filters > legend .icon-svg, fieldset#options > legend .icon-svg { stroke: var(--t-dim); }
+#filters-table { float: none; }
+#filters-table .filter { display: flex; align-items: center; gap: 10px; margin-block: 6px 0; flex-wrap: wrap; }
+#filters-table .filter .field { inline-size: 210px; display: inline-flex; align-items: center; gap: 6px; }
+#filters-table .filter .field label { font-weight: 500; color: var(--t-text); }
+#filters-table .filter .operator select { inline-size: 130px; }
+.add-filter { float: none; inline-size: auto; text-align: start; margin-block-start: 12px; display: flex; align-items: center; gap: 8px; }
+p.buttons { display: flex; align-items: center; gap: 6px; margin-block: 12px 0; }
+
+/* Lists. */
+.autoscroll { overflow-x: auto; }
+table.list tr.group td { background: var(--t-surface-2); padding: 8px 10px; font-weight: 600; }
+table.list tr.group .badge-count { background: var(--t-accent-soft); color: var(--t-accent); border-radius: 999px; padding: 1px 8px; font-size: 0.6875rem; font-weight: 700; margin-inline-start: 8px; }
+table.list tr.group .toggle-all { float: inline-end; font-size: 0.6875rem; color: var(--t-dim); }
+table.list th a { color: inherit; text-decoration: none; }
+table.list th a:hover { color: var(--t-accent); }
+
+/* Pagination is a <ul class="pages"> in the real markup. */
+span.pagination ul.pages { display: inline-flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+span.pagination ul.pages li { list-style: none; }
+span.pagination ul.pages li a, span.pagination ul.pages li.current {
+  display: inline-block; padding: 3px 9px; border-radius: var(--t-radius); font-size: 0.75rem;
+}
+span.pagination ul.pages li.current { background: var(--t-accent); color: var(--t-on-accent); font-weight: 700; }
+span.pagination ul.pages li a:hover { background: var(--t-surface-2); text-decoration: none; }
+span.pagination .items { color: var(--t-dim); font-size: 0.75rem; margin-inline-end: 10px; }
+p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 14px; }
+
+.add-filter label, #filters-table .filter .field label { white-space: nowrap; }
+#filters-table .filter .field { flex: 0 0 210px; }
+#filters-table .filter .values select, #filters-table .filter .values input { min-inline-size: 160px; }
+
+/* -------------------------------------------------------------------
+   Redmine floats .contextual so it sits beside the page heading. Any
+   sibling that establishes a block formatting context — .splitcontent
+   and .autoscroll both do, via overflow — then shrinks to avoid that
+   float, and these themes render the contextual as buttons rather than
+   bare text links, so it is wide enough to visibly narrow the overview
+   columns and the issue table. Take it out of flow instead; it keeps
+   the same position without stealing width from anything.
+   ------------------------------------------------------------------- */
+:root { --t-pad-b: 26px; --t-pad-i: 30px; }
+#content { position: relative; }
+#content > .contextual { float: none; position: absolute; inset-block-start: var(--t-pad-b); inset-inline-end: var(--t-pad-i); margin: 0; z-index: 3; }
+#content > .contextual + h2, #content > .contextual + h1 { margin-block-start: 0; }
+#content > div.flash + .contextual { inset-block-start: calc(var(--t-pad-b) + 46px); }

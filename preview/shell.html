@@ -75,101 +75,178 @@
 <!-- ============================ page templates ============================ -->
 
 <template data-page="login">
-<h2>Login</h2>
 <div id="login-form">
-  <form>
-    <table>
-      <tr><td style="text-align:left"><label for="username">Login</label><br /><input type="text" id="username" value="jrivas" /></td></tr>
-      <tr><td style="text-align:left"><label for="password">Password</label><br /><input type="password" id="password" value="········" /></td></tr>
-      <tr><td style="text-align:left; padding-top:8px"><label style="font-weight:400"><input type="checkbox" /> Stay logged in</label></td></tr>
-      <tr><td style="padding-top:14px"><input type="submit" value="Sign in" /></td></tr>
-    </table>
-    <p style="text-align:center; margin-bottom:0"><a href="#">Lost password</a> &middot; <a href="#">Register</a></p>
+  <form onsubmit="return false">
+    <label for="username">Login</label>
+    <input type="text" name="username" id="username" tabindex="1" value="jrivas" />
+
+    <label for="password">Password <a href="#" class="lost_password">Lost password</a></label>
+    <input type="password" name="password" id="password" tabindex="2" value="········" />
+
+    <label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="4" /> Stay logged in</label>
+
+    <input type="submit" name="login" value="Login" tabindex="5" id="login-submit" />
   </form>
 </div>
 </template>
 
 <template data-page="overview">
+<div class="contextual">
+  <a href="#" class="icon bookmark icon-bookmark-off"><i data-icon="bookmark-add" data-label="Add bookmark"></i></a>
+  <span class="dropdown"><span class="icon-only icon-actions dropdown-trigger" title="Actions"><i data-icon="3-bullets"></i></span></span>
+</div>
+
 <h2>Overview</h2>
+
 <div class="splitcontent">
-  <div class="splitcontentleft">
-    <div class="wiki">
-      <p>Ground-side console for the Orbital flight programme. Handles telemetry ingest, pass scheduling and anomaly triage for the LEO constellation.</p>
-      <ul>
-        <li><strong>Manager:</strong> <a href="#">Jamie Rivas</a></li>
-        <li><strong>Created:</strong> 12 Feb 2024</li>
-      </ul>
-    </div>
-    <div class="box">
-      <h3>Issue tracking</h3>
-      <ul>
-        <li><a href="?page=issues">Bug</a>: <a href="?page=issues">18 open</a> / 96</li>
-        <li><a href="?page=issues">Feature</a>: <a href="?page=issues">11 open</a> / 42</li>
-        <li><a href="?page=issues">Support</a>: <a href="?page=issues">4 open</a> / 61</li>
-      </ul>
-      <p><a href="?page=issues">View all issues</a> | <a href="#">Summary</a> | <a href="?page=issues">Calendar</a></p>
-    </div>
-    <div class="box">
-      <h3>Time tracking</h3>
-      <table style="width:100%">
-        <tr><td>Estimated time</td><td style="text-align:right"><strong>1 240.00 hours</strong></td></tr>
-        <tr><td>Spent time</td><td style="text-align:right"><strong>982.75 hours</strong></td></tr>
-      </table>
-    </div>
+<div class="splitcontentleft">
+  <div class="wiki">
+    <p>Ground-side console for the Orbital flight programme. Handles telemetry ingest, pass scheduling and anomaly triage for the LEO constellation.</p>
   </div>
-  <div class="splitcontentright">
-    <div class="box">
-      <h3>Members</h3>
-      <p><a href="#">Jamie Rivas</a>, <a href="#">Priya Nandakumar</a>, <a href="#">Tomas Berg</a>, <a href="#">Ada Okonkwo</a>, <a href="#">Wen Li</a></p>
-    </div>
-    <div class="box">
-      <h3>Latest news</h3>
-      <dl>
-        <dt><a href="#">Pass scheduler v3 rolled to staging</a><span class="author"> Priya Nandakumar, 2 days ago</span></dt>
-        <dd>Conflict resolution now runs before the ground-station allocation step.</dd>
-        <dt><a href="#">Telemetry retention shortened to 90 days</a><span class="author"> Tomas Berg, 6 days ago</span></dt>
-      </dl>
-    </div>
+  <ul>
+    <li><span class="label">Homepage:</span> <a href="#">ops.orbital.example</a></li>
+    <li><span class="label">Constellation:</span> LEO-1</li>
+  </ul>
+
+  <div class="issues box">
+    <h3 class="icon icon-issue"><i data-icon="issue" data-label="Issue tracking"></i>&nbsp;<a href="#" class="icon-only icon-zoom-in" title="Details"><i data-icon="zoom-in"></i></a></h3>
+    <table class="list issue-report">
+      <thead><tr><th></th><th>Open</th><th>Closed</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td class="name"><a href="?page=issues">Bug</a></td><td><a href="?page=issues">18</a></td><td><a href="?page=issues">78</a></td><td class="total"><a href="?page=issues">96</a></td></tr>
+        <tr><td class="name"><a href="?page=issues">Feature</a></td><td><a href="?page=issues">11</a></td><td><a href="?page=issues">31</a></td><td class="total"><a href="?page=issues">42</a></td></tr>
+        <tr><td class="name"><a href="?page=issues">Support</a></td><td><a href="?page=issues">4</a></td><td><a href="?page=issues">57</a></td><td class="total"><a href="?page=issues">61</a></td></tr>
+      </tbody>
+    </table>
+    <p><a href="?page=issues">View all issues</a> | <a href="#">Summary</a> | <a href="?page=gantt">Calendar</a> | <a href="?page=gantt">Gantt</a></p>
   </div>
+
+  <div class="spent_time box">
+    <h3 class="icon icon-time"><i data-icon="time" data-label="Time tracking"></i></h3>
+    <ul>
+      <li>Estimated time: <span class="hours"><span class="hours-int">1 240</span><span class="hours-dec">.00</span></span> hours</li>
+      <li>Spent time: <span class="hours"><span class="hours-int">982</span><span class="hours-dec">.75</span></span> hours</li>
+    </ul>
+    <p><a href="#">Log time</a> | <a href="#">Details</a> | <a href="#">Report</a></p>
+  </div>
+</div>
+
+<div class="splitcontentright">
+  <div class="news box">
+    <h3 class="icon icon-news"><i data-icon="news" data-label="Latest news"></i></h3>
+    <p><a href="#">Pass scheduler v3 rolled to staging</a> <span class="comments">(2 comments)</span><br />
+      <span class="summary">Conflict resolution now runs before the ground-station allocation step.</span><br />
+      <span class="author">Added by <a href="#">Priya Nandakumar</a> 2 days ago</span></p>
+    <p><a href="#">Telemetry retention shortened to 90 days</a><br />
+      <span class="author">Added by <a href="#">Tomas Berg</a> 6 days ago</span></p>
+    <p><a href="#">View all news</a></p>
+  </div>
+
+  <div class="members box">
+    <h3 class="icon icon-group"><i data-icon="group" data-label="Members"></i></h3>
+    <p><span class="label">Manager:</span> <a class="user active" href="#">Jamie Rivas</a></p>
+    <p><span class="label">Developer:</span> <a class="user active" href="#">Priya Nandakumar</a>, <a class="user active" href="#">Tomas Berg</a>, <a class="user active" href="#">Wen Li</a></p>
+    <p><span class="label">Reporter:</span> <a class="user active" href="#">Ada Okonkwo</a></p>
+  </div>
+
+  <div class="projects box">
+    <h3 class="icon icon-projects"><i data-icon="projects" data-label="Subprojects"></i></h3>
+    <div><ul class="subprojects"><li><a class="project" href="#">Ground Station Firmware</a></li><li><a class="project" href="#">Telemetry Archive</a></li></ul></div>
+  </div>
+</div>
 </div>
 </template>
 
 <template data-page="issues">
-<div class="contextual"><a href="?page=issue-form" class="button">New issue</a></div>
+<div class="contextual">
+  <a href="?page=issue-form" class="icon icon-add new-issue"><i data-icon="add" data-label="New issue"></i></a>
+  <span class="dropdown"><span class="icon-only icon-actions dropdown-trigger" title="Actions"><i data-icon="3-bullets"></i></span></span>
+</div>
+
 <h2>Issues</h2>
-<fieldset class="box collapsible"><legend>Filters</legend>
-  <table style="width:100%">
-    <tr>
-      <td><label><input type="checkbox" checked /> Status</label></td>
-      <td><select><option>open</option></select></td>
-      <td><label><input type="checkbox" /> Assignee</label></td>
-      <td><select><option>any</option></select></td>
-      <td style="text-align:right"><input type="submit" value="Apply" /> <input type="submit" class="secondary" value="Clear" /></td>
-    </tr>
-  </table>
-</fieldset>
-<table class="list issues">
+
+<form id="query_form" onsubmit="return false">
+  <div id="query_form_with_buttons" class="hide-when-print">
+    <div id="query_form_content">
+      <fieldset id="filters" class="collapsible">
+        <legend class="icon icon-expanded"><i data-icon="angle-down"></i> Filters</legend>
+        <div>
+          <div id="filters-table">
+            <div class="filter">
+              <span class="field"><input type="checkbox" checked="checked" id="cb_status_id" /> <label for="cb_status_id">Status</label></span>
+              <span class="operator"><select><option>open</option><option>closed</option><option>any</option></select></span>
+              <span class="values"></span>
+            </div>
+            <div class="filter">
+              <span class="field"><input type="checkbox" checked="checked" id="cb_assigned_to_id" /> <label for="cb_assigned_to_id">Assignee</label></span>
+              <span class="operator"><select><option>is</option><option>is not</option><option>none</option></select></span>
+              <span class="values"><select><option>Priya Nandakumar</option><option>Tomas Berg</option></select></span>
+            </div>
+            <div class="filter">
+              <span class="field"><input type="checkbox" id="cb_fixed_version_id" /> <label for="cb_fixed_version_id">Target version</label></span>
+              <span class="operator"><select><option>is</option></select></span>
+              <span class="values"><select><option>2.4.0</option></select></span>
+            </div>
+          </div>
+          <div class="add-filter">
+            <label for="add_filter_select">Add filter</label>
+            <select id="add_filter_select"><option></option><option>Tracker</option><option>Priority</option><option>Author</option></select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset id="options" class="collapsible collapsed">
+        <legend class="icon icon-collapsed"><i data-icon="angle-right"></i> Options</legend>
+        <div class="hidden"></div>
+      </fieldset>
+    </div>
+
+    <p class="buttons">
+      <a href="#" class="icon icon-checked"><i data-icon="checked" data-label="Apply"></i></a>
+      <a href="#" class="icon icon-reload"><i data-icon="reload" data-label="Clear"></i></a>
+      <a href="#" class="icon icon-save"><i data-icon="save" data-label="Save"></i></a>
+    </p>
+  </div>
+</form>
+
+<div class="autoscroll">
+<table class="list issues odd-even">
   <thead><tr>
-    <th class="checkbox"></th><th class="id">#</th><th class="tracker">Tracker</th><th class="status">Status</th>
-    <th class="priority">Priority</th><th class="subject">Subject</th><th class="assigned_to">Assignee</th>
-    <th class="fixed_version">Target version</th><th class="updated_on">Updated</th>
+    <th class="checkbox hide-when-print"><input type="checkbox" class="toggle-selection" /></th>
+    <th class="id"><a href="#">#</a></th>
+    <th class="tracker"><a href="#">Tracker</a></th>
+    <th class="status"><a href="#">Status</a></th>
+    <th class="priority"><a href="#">Priority</a></th>
+    <th class="subject"><a href="#">Subject</a></th>
+    <th class="assigned_to"><a href="#">Assignee</a></th>
+    <th class="fixed_version"><a href="#">Target version</a></th>
+    <th class="updated_on"><a href="#">Updated</a></th>
+    <th class="buttons hide-when-print"></th>
   </tr></thead>
   <tbody>
-    <tr class="issue odd priority-high"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4821</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">High</td><td class="subject"><a href="?page=issue">Downlink buffer overruns during high-rate passes</a></td><td class="assigned_to"><a href="#">Priya Nandakumar</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">2 hours ago</td></tr>
-    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4818</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Allow operators to pin a ground station to a pass</a></td><td class="assigned_to"><a href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">5 hours ago</td></tr>
-    <tr class="issue odd"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4810</a></td><td class="tracker">Bug</td><td class="status">Feedback</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Timezone drift in the pass timeline header</a></td><td class="assigned_to"><a href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">Yesterday</td></tr>
-    <tr class="issue even priority-high"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4804</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">Urgent</td><td class="subject"><a href="?page=issue">Anomaly digest email sends duplicate rows after retry</a></td><td class="assigned_to"><a href="#">Wen Li</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">Yesterday</td></tr>
-    <tr class="issue odd"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4799</a></td><td class="tracker">Support</td><td class="status">Resolved</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Export schedule as iCal for the ops rota</a></td><td class="assigned_to"><a href="#">Jamie Rivas</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">2 days ago</td></tr>
-    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4790</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Bulk acknowledge anomalies from the list view</a></td><td class="assigned_to"></td><td class="fixed_version"></td><td class="updated_on">3 days ago</td></tr>
-    <tr class="issue odd closed"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4771</a></td><td class="tracker">Bug</td><td class="status">Closed</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Station map tooltip clipped at the viewport edge</a></td><td class="assigned_to"><a href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.5</a></td><td class="updated_on">6 days ago</td></tr>
-    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4762</a></td><td class="tracker">Bug</td><td class="status">Rejected</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Legacy CSV import drops the orbit column</a></td><td class="assigned_to"><a href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">8 days ago</td></tr>
+    <tr id="issue-4821" class="hascontextmenu odd issue tracker-1 status-2 priority-4 priority-high"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4821</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">High</td><td class="subject"><a href="?page=issue">Downlink buffer overruns during high-rate passes</a></td><td class="assigned_to"><a class="user active" href="#">Priya Nandakumar</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">2 hours ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4818" class="hascontextmenu even issue tracker-2 status-1 priority-2"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4818</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Allow operators to pin a ground station to a pass</a></td><td class="assigned_to"><a class="user active" href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">5 hours ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4810" class="hascontextmenu odd issue tracker-1 status-4 priority-2"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4810</a></td><td class="tracker">Bug</td><td class="status">Feedback</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Timezone drift in the pass timeline header</a></td><td class="assigned_to"><a class="user active" href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">Yesterday</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4804" class="hascontextmenu even issue tracker-1 status-2 priority-5 priority-highest"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4804</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">Urgent</td><td class="subject"><a href="?page=issue">Anomaly digest email sends duplicate rows after retry</a></td><td class="assigned_to"><a class="user active" href="#">Wen Li</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">Yesterday</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4799" class="hascontextmenu odd issue tracker-3 status-3 priority-1 priority-lowest"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4799</a></td><td class="tracker">Support</td><td class="status">Resolved</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Export schedule as iCal for the ops rota</a></td><td class="assigned_to"><a class="user active" href="#">Jamie Rivas</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">2 days ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4790" class="hascontextmenu even issue tracker-2 status-1 priority-2"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4790</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Bulk acknowledge anomalies from the list view</a></td><td class="assigned_to"></td><td class="fixed_version"></td><td class="updated_on">3 days ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4771" class="hascontextmenu odd issue tracker-1 status-5 priority-2 closed"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4771</a></td><td class="tracker">Bug</td><td class="status">Closed</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Station map tooltip clipped at the viewport edge</a></td><td class="assigned_to"><a class="user active" href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.5</a></td><td class="updated_on">6 days ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    <tr id="issue-4762" class="hascontextmenu even issue tracker-1 status-6 priority-1 closed"><td class="checkbox hide-when-print"><input type="checkbox" /></td><td class="id"><a href="?page=issue">4762</a></td><td class="tracker">Bug</td><td class="status">Rejected</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Legacy CSV import drops the orbit column</a></td><td class="assigned_to"><a class="user active" href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">8 days ago</td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
   </tbody>
 </table>
-<p class="pagination"><span class="items">1-8/33</span> <span class="pages"><span class="current">1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">Next</a></span></p>
+</div>
+<span class="pagination"><span class="items">1-8/33</span> <ul class="pages"><li class="current">1</li><li class="page"><a href="#">2</a></li><li class="page"><a href="#">3</a></li><li class="next page"><a href="#">Next &#187;</a></li></ul></span>
+<p class="other-formats">Also available in: <span class="csv"><a href="#">CSV</a></span> <span class="pdf"><a href="#">PDF</a></span> <span class="atom"><a href="#">Atom</a></span></p>
 </template>
 
 <template data-page="issue">
-<div class="contextual"><a href="?page=issue-edit" class="button icon icon-edit">Edit</a> <a href="#" class="button secondary">Watch</a></div>
+<div class="contextual">
+  <a href="?page=issue-edit" class="icon icon-edit"><i data-icon="edit" data-label="Edit"></i></a>
+  <a href="#" class="icon icon-time-add"><i data-icon="time-add" data-label="Log time"></i></a>
+  <a href="#" class="issue-4821-watcher icon icon-fav-off"><i data-icon="watch" data-label="Watch"></i></a>
+  <a href="#" class="icon icon-copy"><i data-icon="copy" data-label="Copy"></i></a>
+  <span class="dropdown"><span class="icon-only icon-actions dropdown-trigger" title="Actions"><i data-icon="3-bullets"></i></span></span>
+</div>
 <h2>Bug #4821</h2>
 <div class="issue tracker-1 status-2 priority-3 details">
   <div class="subject"><h3>Downlink buffer overruns during high-rate passes</h3></div>
@@ -282,49 +359,94 @@
 </template>
 
 <template data-page="roadmap">
+<div class="contextual">
+  <a href="#" class="icon icon-add"><i data-icon="add" data-label="New version"></i></a>
+  <span class="dropdown"><span class="icon-only icon-actions dropdown-trigger" title="Actions"><i data-icon="3-bullets"></i></span></span>
+</div>
+
 <h2>Roadmap</h2>
-<h3 class="icon icon-package"><a href="#">2.4.0</a></h3>
-<p class="progress-info"><span class="date">Due in 3 weeks (14 Aug 2026)</span></p>
-<table class="progress" style="width:40%"><tr><td class="closed" style="width:38%"></td><td class="done" style="width:22%"></td><td class="todo" style="width:40%"></td></tr></table>
-<p class="percent">38% closed &nbsp;&middot;&nbsp; 22% done</p>
-<p class="issue-status"><a href="?page=issues">21 issues</a> (8 closed — 13 open)</p>
-<table class="list related-issues">
-  <tbody>
-    <tr class="issue odd"><td class="id"><a href="?page=issue">#4821</a></td><td class="status">In Progress</td><td class="subject"><a href="?page=issue">Downlink buffer overruns during high-rate passes</a></td></tr>
-    <tr class="issue even"><td class="id"><a href="?page=issue">#4818</a></td><td class="status">New</td><td class="subject"><a href="?page=issue">Allow operators to pin a ground station to a pass</a></td></tr>
-    <tr class="issue odd closed"><td class="id"><a href="?page=issue">#4771</a></td><td class="status">Closed</td><td class="subject"><a href="?page=issue">Station map tooltip clipped at the viewport edge</a></td></tr>
-  </tbody>
-</table>
-<h3 class="icon icon-package" style="margin-top:28px"><a href="#">2.5.0</a></h3>
-<p class="progress-info"><span class="date">Due in 3 months (30 Nov 2026)</span></p>
-<table class="progress" style="width:40%"><tr><td class="todo" style="width:100%"></td></tr></table>
-<p class="issue-status"><a href="?page=issues">14 issues</a> (0 closed — 14 open)</p>
+
+<div id="roadmap">
+  <article class="version-article version">
+    <header id="version-14">
+      <div class="contextual"><a href="#" class="icon-only icon-edit" title="Edit"><i data-icon="edit"></i></a></div>
+      <h3 class="icon icon-package version inline-flex"><i data-icon="package"></i> <a href="#">2.4.0</a></h3>
+      <span class="badge badge-status-open">open</span>
+    </header>
+    <div class="version-overview">
+      <p><strong>Due in 3 weeks</strong> (14 Aug 2026)</p>
+      <p>Adaptive downlink handling and operator control over pass allocation.</p>
+      <table class="progress"><tr><td class="closed" style="width:38%"></td><td class="done" style="width:22%"></td><td class="todo" style="width:40%"></td></tr></table>
+      <p class="percent">38%</p>
+      <p class="progress-info">
+        <a href="?page=issues">21 issues</a>&nbsp; (<a href="?page=issues">8 closed</a> &#8212; <a href="?page=issues">13 open</a>)
+      </p>
+    </div>
+    <table class="list related-issues">
+      <caption>Related issues</caption>
+      <tr class="hascontextmenu issue tracker-1 status-2 priority-4 priority-high"><td class="checkbox"><input type="checkbox" /></td><td class="assigned_to"><span class="gravatar"></span></td><td class="subject"><a class="issue tracker-1 status-2" href="?page=issue">Bug #4821: Downlink buffer overruns during high-rate passes</a></td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+      <tr class="hascontextmenu issue tracker-2 status-1 priority-2"><td class="checkbox"><input type="checkbox" /></td><td class="assigned_to"><span class="gravatar"></span></td><td class="subject"><a class="issue tracker-2 status-1" href="?page=issue">Feature #4818: Allow operators to pin a ground station to a pass</a></td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+      <tr class="hascontextmenu issue tracker-1 status-5 closed"><td class="checkbox"><input type="checkbox" /></td><td class="assigned_to"><span class="gravatar"></span></td><td class="subject"><a class="issue tracker-1 status-5 closed" href="?page=issue">Bug #4771: Station map tooltip clipped at the viewport edge</a></td><td class="buttons hide-when-print"><a href="#" class="icon-only icon-actions js-contextmenu" title="Actions"><i data-icon="3-bullets"></i></a></td></tr>
+    </table>
+  </article>
+
+  <article class="version-article version">
+    <header id="version-15">
+      <div class="contextual"><a href="#" class="icon-only icon-edit" title="Edit"><i data-icon="edit"></i></a></div>
+      <h3 class="icon icon-package version inline-flex"><i data-icon="package"></i> <a href="#">2.5.0</a></h3>
+      <span class="badge badge-status-open">open</span>
+    </header>
+    <div class="version-overview">
+      <p><strong>Due in 3 months</strong> (30 Nov 2026)</p>
+      <p>Multi-constellation scheduling.</p>
+      <table class="progress"><tr><td class="todo" style="width:100%"></td></tr></table>
+      <p class="percent">0%</p>
+      <p class="progress-info"><a href="?page=issues">14 issues</a>&nbsp; (0 closed &#8212; <a href="?page=issues">14 open</a>)</p>
+    </div>
+  </article>
+</div>
 </template>
 
 <template data-page="activity">
 <h2>Activity</h2>
+<p class="subtitle">From 09/07/2026 to 08/08/2026</p>
+
 <div id="activity">
-  <h3>08/08/2026</h3>
-  <dl>
-    <dt class="issue-edit"><span class="time">14:12</span> <a href="?page=issue">Bug #4821: Downlink buffer overruns during high-rate passes</a><span class="author"> <a href="#">Priya Nandakumar</a></span></dt>
-    <dd><span class="description">Adaptive flush landed behind a feature flag.</span></dd>
-    <dt class="changeset"><span class="time">11:48</span> <a href="?page=repository">Revision 9f2a41c</a><span class="author"> <a href="#">Wen Li</a></span></dt>
-    <dd><span class="description">Scale ingest flush interval with observed throughput</span></dd>
-    <dt class="wiki-page"><span class="time">09:30</span> <a href="?page=wiki">Wiki: Pass scheduling</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
-    <dd><span class="description">Documented the new station-pinning behaviour.</span></dd>
-  </dl>
-  <h3>07/08/2026</h3>
-  <dl>
-    <dt class="issue"><span class="time">17:02</span> <a href="?page=issue">Feature #4818: Allow operators to pin a ground station to a pass</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
-    <dd><span class="description">Filed after the Tuesday ops review.</span></dd>
-    <dt class="news"><span class="time">08:15</span> <a href="#">News: Telemetry retention shortened to 90 days</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
-  </dl>
+<h3>08/08/2026</h3>
+<dl>
+  <dt class="issue-edit icon icon-issue-edit"><i data-icon="issue-edit"></i><span class="gravatar"></span><span class="time">14:12</span> <a href="?page=issue">Bug #4821 (In Progress): Downlink buffer overruns during high-rate passes</a></dt>
+  <dd><span class="description">Adaptive flush landed behind a feature flag. Needs a full-rate pass before we drop the flag.</span><span class="author"><a href="#">Priya Nandakumar</a></span></dd>
+
+  <dt class="changeset icon icon-changeset me"><i data-icon="changeset"></i><span class="gravatar"></span><span class="time">11:48</span> <a href="?page=repository">Revision 9f2a41c</a></dt>
+  <dd><span class="description">Scale ingest flush interval with observed throughput</span><span class="author"><a href="#">Wen Li</a></span></dd>
+
+  <dt class="wiki-page icon icon-wiki-page"><i data-icon="wiki-page"></i><span class="gravatar"></span><span class="time">09:30</span> <a href="?page=wiki">Wiki: Pass scheduling</a></dt>
+  <dd><span class="description">Documented the new station-pinning behaviour.</span><span class="author"><a href="#">Tomas Berg</a></span></dd>
+</dl>
+
+<h3>07/08/2026</h3>
+<dl>
+  <dt class="issue icon icon-issue"><i data-icon="issue"></i><span class="gravatar"></span><span class="time">17:02</span> <a href="?page=issue">Feature #4818 (New): Allow operators to pin a ground station to a pass</a></dt>
+  <dd><span class="description">Filed after the Tuesday ops review.</span><span class="author"><a href="#">Tomas Berg</a></span></dd>
+
+  <dt class="news icon icon-news"><i data-icon="news"></i><span class="gravatar"></span><span class="time">08:15</span> <a href="#">Telemetry retention shortened to 90 days</a></dt>
+  <dd><span class="description">Storage pressure on the archive tier.</span><span class="author"><a href="#">Tomas Berg</a></span></dd>
+</dl>
 </div>
+
+<span class="pagination"><ul class="pages"><li class="previous page"><a href="#">&#171; Previous</a></li><li class="next page"><a href="#">Next &#187;</a></li></ul></span>
+<p class="other-formats">Also available in: <span class="atom"><a href="#">Atom</a></span></p>
 </template>
 
 <template data-page="wiki">
-<div class="contextual"><a href="#" class="button">Edit</a> <a href="#" class="button secondary">History</a></div>
-<h2>Pass scheduling</h2>
+<div class="contextual">
+  <a href="#" class="icon icon-edit"><i data-icon="edit" data-label="Edit"></i></a>
+  <a href="#" class="wiki-page-3-watcher icon icon-fav-off"><i data-icon="watch" data-label="Watch"></i></a>
+  <span class="dropdown"><span class="icon-only icon-actions dropdown-trigger" title="Actions"><i data-icon="3-bullets"></i></span></span>
+</div>
+
+<h1 class="breadcrumb"><a href="#">Wiki</a> &#187; Pass scheduling</h1>
+
 <div class="wiki wiki-page">
   <p>The scheduler allocates satellite passes to ground stations. It runs every fifteen minutes and on demand when an operator edits a window.</p>
   <h2>Allocation order</h2>
@@ -341,8 +463,16 @@
   horizon_hours: 48
   min_elevation_deg: 10
   pin_respects_conflicts: false</pre>
-  <p>See also <a href="?page=issue">#4818</a> for the pinning work in progress.</p>
+  <p>See also <a class="issue tracker-2 status-1" href="?page=issue">#4818</a> for the pinning work in progress.</p>
 </div>
+
+<fieldset class="collapsible collapsed hide-when-print">
+  <legend class="icon icon-collapsed"><i data-icon="angle-right"></i> Attachments (2)</legend>
+  <div style="display: none;"></div>
+</fieldset>
+
+<p class="wiki-update-info">Updated by <a href="#">Tomas Berg</a> 6 hours ago &middot; <a href="#">9 revisions</a></p>
+<p class="other-formats">Also available in: <span class="pdf"><a href="#">PDF</a></span> <span class="html"><a href="#">HTML</a></span> <span class="txt"><a href="#">TXT</a></span></p>
 </template>
 
 <template data-page="gantt">
@@ -359,45 +489,81 @@
 </template>
 
 <template data-page="repository">
-<h2>Repository</h2>
-<p class="breadcrumb"><a href="#">app</a> / <a href="#">ingest</a> / writer.rb @ <a href="#">9f2a41c</a></p>
-<div class="changeset-changes box">
-  <h3>Revision 9f2a41c</h3>
-  <p class="author"><a href="#">Wen Li</a>, 08/08/2026 11:48</p>
-  <p>Scale ingest flush interval with observed throughput</p>
+<div class="contextual">
+  &#171; <a href="#">Previous</a> | <a href="#">Next</a> &#187;&nbsp;
+  <form onsubmit="return false"><input type="text" name="rev" size="8" value="9f2a41c" /> <input type="submit" value="View" /></form>
 </div>
-<table class="filecontent syntaxhl" style="width:100%">
+
+<h2>Revision 9f2a41c</h2>
+
+<div class="changeset-changes">
+  <p><span class="author">Added by <a href="#">Wen Li</a> 6 hours ago</span></p>
+  <div class="wiki"><p>Scale ingest flush interval with observed throughput</p></div>
+  <ul class="changes">
+    <li class="change change-M"><i data-icon="circle-dot-filled"></i> <a href="#">/app/ingest/writer.rb</a> (<a href="#">diff</a>)</li>
+    <li class="change change-A"><i data-icon="add"></i> <a href="#">/test/ingest/writer_test.rb</a></li>
+  </ul>
+</div>
+
+<form onsubmit="return false">
+  <p>View differences:
+    <label><input type="radio" name="type" checked="checked" /> inline</label>
+    <label><input type="radio" name="type" /> side by side</label>
+  </p>
+</form>
+
+<div class="autoscroll">
+<table class="filecontent diffcontent">
+  <thead><tr><th colspan="3" class="filename">app/ingest/writer.rb</th></tr></thead>
   <tbody>
-    <tr><th class="line-num">41</th><td class="line-code"><pre>  def flush_interval</pre></td></tr>
-    <tr><th class="line-num">42</th><td class="line-code del"><pre>-   250</pre></td></tr>
-    <tr><th class="line-num">43</th><td class="line-code add"><pre>+   rate = observed_throughput_mbps</pre></td></tr>
-    <tr><th class="line-num">44</th><td class="line-code add"><pre>+   return 250 if rate &lt; 20</pre></td></tr>
-    <tr><th class="line-num">45</th><td class="line-code add"><pre>+   [(5_000 / rate).round, 40].max</pre></td></tr>
-    <tr><th class="line-num">46</th><td class="line-code"><pre>  end</pre></td></tr>
-    <tr><th class="line-num">47</th><td class="line-code"><pre></pre></td></tr>
-    <tr><th class="line-num">48</th><td class="line-code"><pre>  def high_water_mark</pre></td></tr>
-    <tr><th class="line-num">49</th><td class="line-code"><pre>    buffer.size.to_f / buffer.capacity</pre></td></tr>
-    <tr><th class="line-num">50</th><td class="line-code"><pre>  end</pre></td></tr>
+    <tr><th class="line-num" data-txt="41"></th><th class="line-num" data-txt="41"></th><td class="line-code"><div>  def flush_interval</div></td></tr>
+    <tr><th class="line-num" data-txt="42"></th><th class="line-num"></th><td class="line-code diff_out"><div>    250</div></td></tr>
+    <tr><th class="line-num"></th><th class="line-num" data-txt="42"></th><td class="line-code diff_in"><div>    rate = observed_throughput_mbps</div></td></tr>
+    <tr><th class="line-num"></th><th class="line-num" data-txt="43"></th><td class="line-code diff_in"><div>    return 250 if rate &lt; 20</div></td></tr>
+    <tr><th class="line-num"></th><th class="line-num" data-txt="44"></th><td class="line-code diff_in"><div>    [(5_000 / rate).round, 40].max</div></td></tr>
+    <tr><th class="line-num" data-txt="43"></th><th class="line-num" data-txt="45"></th><td class="line-code"><div>  end</div></td></tr>
+    <tr class="spacing"><th class="line-num">...</th><th class="line-num">...</th><td></td></tr>
+    <tr><th class="line-num" data-txt="58"></th><th class="line-num" data-txt="60"></th><td class="line-code"><div>  def high_water_mark</div></td></tr>
+    <tr><th class="line-num" data-txt="59"></th><th class="line-num" data-txt="61"></th><td class="line-code"><div>    buffer.size.to_f / buffer.capacity</div></td></tr>
+    <tr><th class="line-num" data-txt="60"></th><th class="line-num" data-txt="62"></th><td class="line-code"><div>  end</div></td></tr>
   </tbody>
 </table>
+</div>
+<p class="other-formats">Also available in: <span class="diff"><a href="#">Unified diff</a></span></p>
 </template>
 
 <template data-page="settings">
-<div class="flash notice">Successful update.</div>
-<h2>Administration &rsaquo; Settings</h2>
-<div class="tabs"><ul>
-  <li><a href="#" class="selected">General</a></li><li><a href="#">Display</a></li><li><a href="#">Authentication</a></li><li><a href="#">Issue tracking</a></li><li><a href="#">Repositories</a></li>
-</ul></div>
-<div class="box tabular">
-  <form>
-    <p><label for="app-title">Application title</label><br /><input type="text" id="app-title" value="Orbital Systems" size="40" /></p>
-    <p><label for="welcome">Welcome text</label><br /><textarea id="welcome" rows="4" style="width:100%; box-sizing:border-box">Ground-side tooling for the Orbital flight programme.</textarea></p>
-    <p><label for="theme">Theme</label><br /><select id="theme"><option>Atlas</option><option>Zen</option><option>Umbra</option><option>Dense</option><option>Folio</option></select></p>
-    <p><label for="perpage">Objects per page</label><br /><input type="text" id="perpage" value="25, 50, 100" size="20" /></p>
-    <p><label><input type="checkbox" checked /> Use Gravatar</label></p>
-    <p style="margin-top:16px"><input type="submit" value="Save" /></p>
-  </form>
+<div class="flash notice" id="flash_notice"><i data-icon="checked"></i>Successful update.</div>
+
+<h2>Settings</h2>
+
+<div class="tabs">
+  <ul>
+    <li><a href="#" class="selected">General</a></li>
+    <li><a href="#">Display</a></li>
+    <li><a href="#">Authentication</a></li>
+    <li><a href="#">API</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Issue tracking</a></li>
+    <li><a href="#">Repositories</a></li>
+  </ul>
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left icon-only"><i data-icon="angle-left"></i></button>
+    <button class="tab-right icon-only"><i data-icon="angle-right"></i></button>
+  </div>
 </div>
+
+<form onsubmit="return false">
+  <div class="box tabular settings">
+    <p><label for="settings_app_title">Application title</label> <input type="text" id="settings_app_title" size="30" value="Orbital Systems" /></p>
+    <p><label for="settings_welcome_text">Welcome text</label> <textarea id="settings_welcome_text" rows="5" class="wiki-edit">Ground-side tooling for the Orbital flight programme.</textarea></p>
+    <p><label for="settings_per_page_options">Objects per page options</label> <input type="text" id="settings_per_page_options" size="20" value="25, 50, 100" /></p>
+    <p><label for="settings_ui_theme">Theme</label> <select id="settings_ui_theme"><option>Default</option><option selected="selected">Atlas</option><option>Zen</option><option>Umbra</option><option>Dense</option><option>Folio</option></select></p>
+    <p><label for="settings_gravatar_enabled">Use Gravatar user icons</label> <input type="checkbox" id="settings_gravatar_enabled" checked="checked" /></p>
+    <p><label for="settings_default_language">Default language</label> <select id="settings_default_language"><option>English</option><option>Deutsch</option></select></p>
+  </div>
+  <input type="submit" value="Save" />
+</form>
 </template>
 
 <template data-sidebar="issues">
@@ -450,6 +616,28 @@
 
   function tpl(sel) { var t = document.querySelector(sel); return t ? t.innerHTML : ''; }
 
+  /* <i data-icon> placeholders in the templates above expand into exactly what
+     Redmine's sprite_icon helper emits, using the sprite from the real source. */
+  function expandIcons(root) {
+    root.querySelectorAll('i[data-icon]').forEach(function (el) {
+      var frag = document.createDocumentFragment();
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 's16 icon-svg');
+      svg.setAttribute('aria-hidden', 'true');
+      var use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttribute('href', '../icons.svg#icon--' + el.dataset.icon);
+      svg.appendChild(use);
+      frag.appendChild(svg);
+      if (el.dataset.label) {
+        var span = document.createElement('span');
+        span.className = 'icon-label';
+        span.textContent = el.dataset.label;
+        frag.appendChild(span);
+      }
+      el.replaceWith(frag);
+    });
+  }
+
   document.getElementById('content').innerHTML =
     tpl('template[data-page="' + (page === 'issue-edit' ? 'issue' : page) + '"]') || tpl('template[data-page="issues"]');
 
@@ -475,6 +663,8 @@
     }, true);
   }
   if (page === 'gantt') buildGantt();
+
+  expandIcons(document.getElementById('content'));
 
   var sb = tpl('template[data-sidebar="' + page + '"]');
   if (!sb && (page === 'issue' || page === 'issue-edit' || page === 'issue-form' || page === 'roadmap')) sb = tpl('template[data-sidebar="issues"]');
