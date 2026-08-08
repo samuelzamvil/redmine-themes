@@ -158,17 +158,12 @@ The full text is in [`COPYING`](COPYING), byte-identical to Redmine's own
 and each release archive ships `COPYING` inside the theme folder, so the licence
 travels with a theme that gets copied around on its own.
 
-### Third-party files in the preview
+### Third-party files
 
-None of these are part of a theme; they exist so the preview renders against the
-real base, and each keeps its own licence.
+A theme itself bundles nothing that is not ours. The preview vendors Redmine's core
+stylesheets (GPL-2.0-or-later), Open Color and the Tabler toolbar icons (both MIT),
+and every theme asks Google Fonts for one typeface at runtime.
 
-| Path | Origin | Licence |
-| --- | --- | --- |
-| `stylesheets/*.css` (except `jstoolbar.css`) | [Redmine](https://github.com/redmine/redmine), unmodified | GPL-2.0-or-later |
-| `stylesheets/jstoolbar.css` | Redmine, **modified** — changes listed in its header | GPL-2.0-or-later |
-| `jstoolbar/*.svg` | [Tabler Icons](https://tabler.io/icons), as shipped by Redmine | MIT — [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
-
-Redmine's files are copyright Jean-Philippe Lang; the icons are copyright Paweł
-Kuna. Both notices are reproduced verbatim from the Redmine source, and the MIT
-notice is bundled anywhere the icons are.
+Full disclosure — component, origin, copyright, licence, and what was modified — is
+in **[`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)**, with the licence texts
+themselves in [`doc/licenses/`](doc/licenses/).

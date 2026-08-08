@@ -24,6 +24,18 @@ folio/
 └── favicon/                      drop a favicon.ico here to override Redmine's
 ```
 
+## Fonts and third-party notices
+
+Nothing in this folder belongs to anyone but the author, and the only third-party
+dependency is a web font: the first `@import` in `stylesheets/application.css`
+asks Google Fonts for **Source Sans 3 and Source Serif 4**, so a page load contacts
+`fonts.googleapis.com` and `fonts.gstatic.com`. The font is not redistributed
+here; it is [OFL-1.1](https://openfontlicense.org) licensed.
+
+Delete that one `@import` and the theme falls back to the system font stack, or
+point it at a self-hosted copy. Full disclosures for the wider project are in
+`THIRD-PARTY-NOTICES.md`, and this theme's own licence is in `COPYING`.
+
 ## Recolouring
 
 Everything is derived from the token block at the top of `stylesheets/application.css`.

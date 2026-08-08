@@ -79,11 +79,9 @@ byte-identical to Redmine's own `doc/COPYING`.
 The mock screens and the preview app are copyright 2026 Samuel Zamvil, also
 GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.
 
-Third-party files, each under its own licence:
+This harness vendors third-party files, each under its own licence — Redmine's core
+stylesheets (GPL-2.0-or-later), Open Color and the Tabler toolbar icons (both MIT) —
+and it requests two web fonts from Google Fonts at runtime.
 
-- `stylesheets/*.css` — from the [Redmine](https://github.com/redmine/redmine)
-  source, copyright Jean-Philippe Lang, GPL-2.0-or-later. All unmodified except
-  `jstoolbar.css`, whose changes are listed in its own header.
-- `jstoolbar/*.svg` — [Tabler Icons](https://tabler.io/icons), copyright Paweł Kuna,
-  MIT licensed, as shipped by Redmine. The notice is in
-  `doc/licenses/tabler-icons.txt`.
+All of it is disclosed in `THIRD-PARTY-NOTICES.md`, with the licence texts in
+`doc/licenses/`. Both are in this bundle.
