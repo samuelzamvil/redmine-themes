@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<title>Redmine theme preview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../stylesheets/open-color.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/application.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/dropdown.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/context_menu.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/gantt.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/scm.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/responsive.css" media="all" />
+<link id="theme-css" rel="stylesheet" href="" media="all" />
+<style>
+  /* preview-only: stand-ins for Redmine's SVG sprite + gravatars */
+  .gravatar { display:inline-block; width:22px; height:22px; border-radius:50%; background:var(--oc-gray-4); vertical-align:middle; }
+  .gravatar.g40 { width:40px; height:40px; }
+  #wrapper { min-height: 100vh; display:flex; flex-direction:column; }
+</style>
+</head>
+<body class="has-main-menu">
+<div id="wrapper">
+
+<nav class="top-menu" id="top-menu">
+  <div class="general-menu">
+    <div class="top-menu__links">
+      <ul>
+        <li><a class="home" href="#">Home</a></li>
+        <li><a class="my-page" href="#">My page</a></li>
+        <li><a class="projects" href="#">Projects</a></li>
+        <li><a class="help" href="#">Help</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="profile-menu">
+    <div id="account" class="dropdown">
+      <a href="#" class="dropdown-trigger"><span class="gravatar"></span></a>
+    </div>
+  </div>
+</nav>
+
+<div id="header">
+  <div id="quick-search">
+    <form><label for="q"><a href="#">Search</a>:</label> <input type="text" id="q" name="q" class="small" size="20" /></form>
+  </div>
+  <h1>
+    <span class="breadcrumbs"><a href="#">Orbital Systems</a></span>
+    <span class="current-project">Flight Console</span>
+  </h1>
+  <div id="main-menu" class="tabs">
+    <ul>
+      <li><a href="?page=overview" class="overview">Overview</a></li>
+      <li><a href="?page=activity" class="activity">Activity</a></li>
+      <li><a href="?page=roadmap" class="roadmap">Roadmap</a></li>
+      <li><a href="?page=issues" class="issues selected">Issues</a></li>
+      <li><a href="?page=gantt" class="gantt">Gantt</a></li>
+      <li><a href="?page=wiki" class="wiki">Wiki</a></li>
+      <li><a href="?page=repository" class="repository">Repository</a></li>
+      <li><a href="?page=settings" class="settings">Settings</a></li>
+      <li><a href="?page=issue-form" class="new-object" id="new-object">New issue</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="main" class="collapsiblesidebar">
+  <div id="sidebar"><div id="sidebar-wrapper"></div></div>
+  <div id="content"></div>
+</div>
+
+<div id="footer">Powered by <a href="#">Redmine</a> &copy; 2006-2026 Jean-Philippe Lang</div>
+</div>
+
+<!-- ============================ page templates ============================ -->
+
+<template data-page="login">
+<h2>Login</h2>
+<div id="login-form">
+  <form>
+    <table>
+      <tr><td style="text-align:left"><label for="username">Login</label><br /><input type="text" id="username" value="jrivas" /></td></tr>
+      <tr><td style="text-align:left"><label for="password">Password</label><br /><input type="password" id="password" value="········" /></td></tr>
+      <tr><td style="text-align:left; padding-top:8px"><label style="font-weight:400"><input type="checkbox" /> Stay logged in</label></td></tr>
+      <tr><td style="padding-top:14px"><input type="submit" value="Sign in" /></td></tr>
+    </table>
+    <p style="text-align:center; margin-bottom:0"><a href="#">Lost password</a> &middot; <a href="#">Register</a></p>
+  </form>
+</div>
+</template>
+
+<template data-page="overview">
+<h2>Overview</h2>
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <div class="wiki">
+      <p>Ground-side console for the Orbital flight programme. Handles telemetry ingest, pass scheduling and anomaly triage for the LEO constellation.</p>
+      <ul>
+        <li><strong>Manager:</strong> <a href="#">Jamie Rivas</a></li>
+        <li><strong>Created:</strong> 12 Feb 2024</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Issue tracking</h3>
+      <ul>
+        <li><a href="?page=issues">Bug</a>: <a href="?page=issues">18 open</a> / 96</li>
+        <li><a href="?page=issues">Feature</a>: <a href="?page=issues">11 open</a> / 42</li>
+        <li><a href="?page=issues">Support</a>: <a href="?page=issues">4 open</a> / 61</li>
+      </ul>
+      <p><a href="?page=issues">View all issues</a> | <a href="#">Summary</a> | <a href="?page=issues">Calendar</a></p>
+    </div>
+    <div class="box">
+      <h3>Time tracking</h3>
+      <table style="width:100%">
+        <tr><td>Estimated time</td><td style="text-align:right"><strong>1 240.00 hours</strong></td></tr>
+        <tr><td>Spent time</td><td style="text-align:right"><strong>982.75 hours</strong></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="splitcontentright">
+    <div class="box">
+      <h3>Members</h3>
+      <p><a href="#">Jamie Rivas</a>, <a href="#">Priya Nandakumar</a>, <a href="#">Tomas Berg</a>, <a href="#">Ada Okonkwo</a>, <a href="#">Wen Li</a></p>
+    </div>
+    <div class="box">
+      <h3>Latest news</h3>
+      <dl>
+        <dt><a href="#">Pass scheduler v3 rolled to staging</a><span class="author"> Priya Nandakumar, 2 days ago</span></dt>
+        <dd>Conflict resolution now runs before the ground-station allocation step.</dd>
+        <dt><a href="#">Telemetry retention shortened to 90 days</a><span class="author"> Tomas Berg, 6 days ago</span></dt>
+      </dl>
+    </div>
+  </div>
+</div>
+</template>
+
+<template data-page="issues">
+<div class="contextual"><a href="?page=issue-form" class="button">New issue</a></div>
+<h2>Issues</h2>
+<fieldset class="box collapsible"><legend>Filters</legend>
+  <table style="width:100%">
+    <tr>
+      <td><label><input type="checkbox" checked /> Status</label></td>
+      <td><select><option>open</option></select></td>
+      <td><label><input type="checkbox" /> Assignee</label></td>
+      <td><select><option>any</option></select></td>
+      <td style="text-align:right"><input type="submit" value="Apply" /> <input type="submit" class="secondary" value="Clear" /></td>
+    </tr>
+  </table>
+</fieldset>
+<table class="list issues">
+  <thead><tr>
+    <th class="checkbox"></th><th class="id">#</th><th class="tracker">Tracker</th><th class="status">Status</th>
+    <th class="priority">Priority</th><th class="subject">Subject</th><th class="assigned_to">Assignee</th>
+    <th class="fixed_version">Target version</th><th class="updated_on">Updated</th>
+  </tr></thead>
+  <tbody>
+    <tr class="issue odd priority-high"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4821</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">High</td><td class="subject"><a href="?page=issue">Downlink buffer overruns during high-rate passes</a></td><td class="assigned_to"><a href="#">Priya Nandakumar</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">2 hours ago</td></tr>
+    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4818</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Allow operators to pin a ground station to a pass</a></td><td class="assigned_to"><a href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.4.0</a></td><td class="updated_on">5 hours ago</td></tr>
+    <tr class="issue odd"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4810</a></td><td class="tracker">Bug</td><td class="status">Feedback</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Timezone drift in the pass timeline header</a></td><td class="assigned_to"><a href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">Yesterday</td></tr>
+    <tr class="issue even priority-high"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4804</a></td><td class="tracker">Bug</td><td class="status">In Progress</td><td class="priority">Urgent</td><td class="subject"><a href="?page=issue">Anomaly digest email sends duplicate rows after retry</a></td><td class="assigned_to"><a href="#">Wen Li</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">Yesterday</td></tr>
+    <tr class="issue odd"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4799</a></td><td class="tracker">Support</td><td class="status">Resolved</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Export schedule as iCal for the ops rota</a></td><td class="assigned_to"><a href="#">Jamie Rivas</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.6</a></td><td class="updated_on">2 days ago</td></tr>
+    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4790</a></td><td class="tracker">Feature</td><td class="status">New</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Bulk acknowledge anomalies from the list view</a></td><td class="assigned_to"></td><td class="fixed_version"></td><td class="updated_on">3 days ago</td></tr>
+    <tr class="issue odd closed"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4771</a></td><td class="tracker">Bug</td><td class="status">Closed</td><td class="priority">Normal</td><td class="subject"><a href="?page=issue">Station map tooltip clipped at the viewport edge</a></td><td class="assigned_to"><a href="#">Tomas Berg</a></td><td class="fixed_version"><a href="?page=roadmap">2.3.5</a></td><td class="updated_on">6 days ago</td></tr>
+    <tr class="issue even"><td class="checkbox"><input type="checkbox" /></td><td class="id"><a href="?page=issue">#4762</a></td><td class="tracker">Bug</td><td class="status">Rejected</td><td class="priority">Low</td><td class="subject"><a href="?page=issue">Legacy CSV import drops the orbit column</a></td><td class="assigned_to"><a href="#">Ada Okonkwo</a></td><td class="fixed_version"></td><td class="updated_on">8 days ago</td></tr>
+  </tbody>
+</table>
+<p class="pagination"><span class="items">1-8/33</span> <span class="pages"><span class="current">1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">Next</a></span></p>
+</template>
+
+<template data-page="issue">
+<div class="contextual"><a href="?page=issue-edit" class="button icon icon-edit">Edit</a> <a href="#" class="button secondary">Watch</a></div>
+<h2>Bug #4821</h2>
+<div class="issue tracker-1 status-2 priority-3 details">
+  <div class="subject"><h3>Downlink buffer overruns during high-rate passes</h3></div>
+  <p class="author">Added by <a href="#">Priya Nandakumar</a> 4 days ago. Updated 2 hours ago.</p>
+  <table class="attributes">
+    <tr><th class="status">Status:</th><td class="status">In Progress</td><th class="start-date">Start date:</th><td class="start-date">03 Aug 2026</td></tr>
+    <tr><th class="priority">Priority:</th><td class="priority">High</td><th class="due-date">Due date:</th><td class="due-date">14 Aug 2026</td></tr>
+    <tr><th class="assigned-to">Assignee:</th><td class="assigned-to"><span class="gravatar"></span> <a href="#">Priya Nandakumar</a></td><th class="progress">% Done:</th><td class="progress"><table class="progress"><tr><td class="closed" style="width:60%"></td><td class="todo" style="width:40%"></td></tr></table><p class="percent">60%</p></td></tr>
+    <tr><th class="fixed-version">Target version:</th><td class="fixed-version"><a href="?page=roadmap">2.4.0</a></td><th class="spent-time">Spent time:</th><td class="spent-time"><a href="#">11.25 hours</a></td></tr>
+  </table>
+  <hr />
+  <div class="description">
+    <h3>Description</h3>
+    <div class="wiki">
+      <p>On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped. Reproduced twice on GS-04 and once on GS-11.</p>
+      <pre>[ingest] warn buffer_high_water=0.98 dropped_frames=1421 pass=GS-04/2026-08-05T22:14Z</pre>
+      <p>Likely the writer flush interval is fixed at 250 ms regardless of rate. Suggested fix: scale the interval with observed throughput, and expose the high-water mark as a metric.</p>
+    </div>
+  </div>
+</div>
+<div id="history">
+  <h3>History</h3>
+  <div class="journal">
+    <h4><span class="gravatar"></span> Updated by <a href="#">Tomas Berg</a> 2 days ago</h4>
+    <ul class="details"><li>Status changed from <i>New</i> to <i>In Progress</i></li><li>Assignee set to <i>Priya Nandakumar</i></li></ul>
+    <div class="wiki"><p>Confirmed on GS-11 with the 45 Mbit/s profile. Taking it.</p></div>
+  </div>
+  <div class="journal">
+    <h4><span class="gravatar"></span> Updated by <a href="#">Priya Nandakumar</a> 2 hours ago</h4>
+    <ul class="details"><li>% Done changed from <i>20</i> to <i>60</i></li></ul>
+    <div class="wiki"><p>Adaptive flush landed behind a feature flag. Needs a full-rate pass before we drop the flag.</p></div>
+  </div>
+</div>
+<div id="update" style="display:none">
+  <h3>Edit</h3>
+  <form id="issue-form">
+    <div class="box">
+      <fieldset class="tabular"><legend>Change properties</legend>
+        <div id="all_attributes">
+          <p><label for="e_tracker">Tracker <span class="required">*</span></label> <select id="e_tracker"><option selected="selected">Bug</option><option>Feature</option><option>Support</option></select></p>
+          <p><label for="e_subject">Subject <span class="required">*</span></label> <input type="text" id="e_subject" value="Downlink buffer overruns during high-rate passes" /></p>
+          <p><label for="e_description">Description</label> <textarea id="e_description" rows="8" class="wiki-edit">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped.</textarea></p>
+          <div id="attributes" class="attributes">
+            <div class="splitcontent">
+              <div class="splitcontentleft">
+                <p><label for="e_status">Status <span class="required">*</span></label> <select id="e_status"><option>New</option><option selected="selected">In Progress</option><option>Resolved</option><option>Closed</option></select></p>
+                <p><label for="e_priority">Priority <span class="required">*</span></label> <select id="e_priority"><option>Normal</option><option selected="selected">High</option><option>Urgent</option></select></p>
+                <p><label for="e_assignee">Assignee</label> <select id="e_assignee"><option selected="selected">Priya Nandakumar</option><option>Tomas Berg</option></select></p>
+                <p><label for="e_category">Category</label> <select id="e_category"><option>Ingest</option></select></p>
+              </div>
+              <div class="splitcontentright">
+                <p><label for="e_version">Target version</label> <select id="e_version"><option selected="selected">2.4.0</option><option>2.5.0</option></select></p>
+                <p><label for="e_start">Start date</label> <input type="date" id="e_start" value="2026-08-03" /></p>
+                <p><label for="e_due">Due date</label> <input type="date" id="e_due" value="2026-08-14" /></p>
+                <p><label for="e_done">% Done</label> <select id="e_done"><option>50%</option><option selected="selected">60%</option></select></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="tabular" id="log_time"><legend>Log time</legend>
+        <div class="splitcontent">
+          <div class="splitcontentleft"><p><label for="e_hours">Spent time</label> <input type="text" id="e_hours" size="6" /> hours</p></div>
+          <div class="splitcontentright"><p><label for="e_activity">Activity</label> <select id="e_activity"><option>Development</option><option>Design</option></select></p></div>
+        </div>
+        <p><label for="e_tcomment">Comment</label> <input type="text" id="e_tcomment" size="60" /></p>
+      </fieldset>
+      <fieldset id="add_notes"><legend>Notes</legend>
+        <textarea id="issue_notes" class="wiki-edit" rows="10" placeholder="Add a comment…"></textarea>
+        <label><input type="checkbox" id="issue_private_notes" /> Private notes</label>
+      </fieldset>
+      <fieldset id="add_attachments"><legend>Files</legend>
+        <p><input type="file" /> <span style="color:var(--oc-gray-6)">Maximum size: 5 MB</span></p>
+      </fieldset>
+    </div>
+    <input type="submit" value="Submit" />
+    <a href="?page=issue">Cancel</a>
+  </form>
+</div>
+</template>
+
+<template data-page="issue-form">
+<h2>New issue</h2>
+<div class="box">
+  <form>
+    <p><label for="tracker">Tracker <span class="required">*</span></label><br /><select id="tracker"><option>Bug</option><option>Feature</option><option>Support</option></select></p>
+    <p><label for="subject">Subject <span class="required">*</span></label><br /><input type="text" id="subject" style="width:100%; box-sizing:border-box" value="Downlink buffer overruns during high-rate passes" /></p>
+    <p><label for="description">Description</label><br /><textarea id="description" rows="8" style="width:100%; box-sizing:border-box">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it.</textarea></p>
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <p><label for="status">Status</label><br /><select id="status"><option>New</option><option>In Progress</option></select></p>
+        <p><label for="priority">Priority</label><br /><select id="priority"><option>Normal</option><option selected>High</option></select></p>
+        <p><label for="assignee">Assignee</label><br /><select id="assignee"><option>Priya Nandakumar</option></select></p>
+      </div>
+      <div class="splitcontentright">
+        <p><label for="version">Target version</label><br /><select id="version"><option>2.4.0</option></select></p>
+        <p><label for="start">Start date</label><br /><input type="date" id="start" value="2026-08-03" /></p>
+        <p><label for="est">Estimated time</label><br /><input type="text" id="est" size="6" value="8" /> hours</p>
+      </div>
+    </div>
+    <p style="margin-top:16px"><input type="submit" value="Create" /> <input type="submit" class="secondary" value="Create and continue" /> <a href="?page=issues">Cancel</a></p>
+  </form>
+</div>
+</template>
+
+<template data-page="roadmap">
+<h2>Roadmap</h2>
+<h3 class="icon icon-package"><a href="#">2.4.0</a></h3>
+<p class="progress-info"><span class="date">Due in 3 weeks (14 Aug 2026)</span></p>
+<table class="progress" style="width:40%"><tr><td class="closed" style="width:38%"></td><td class="done" style="width:22%"></td><td class="todo" style="width:40%"></td></tr></table>
+<p class="percent">38% closed &nbsp;&middot;&nbsp; 22% done</p>
+<p class="issue-status"><a href="?page=issues">21 issues</a> (8 closed — 13 open)</p>
+<table class="list related-issues">
+  <tbody>
+    <tr class="issue odd"><td class="id"><a href="?page=issue">#4821</a></td><td class="status">In Progress</td><td class="subject"><a href="?page=issue">Downlink buffer overruns during high-rate passes</a></td></tr>
+    <tr class="issue even"><td class="id"><a href="?page=issue">#4818</a></td><td class="status">New</td><td class="subject"><a href="?page=issue">Allow operators to pin a ground station to a pass</a></td></tr>
+    <tr class="issue odd closed"><td class="id"><a href="?page=issue">#4771</a></td><td class="status">Closed</td><td class="subject"><a href="?page=issue">Station map tooltip clipped at the viewport edge</a></td></tr>
+  </tbody>
+</table>
+<h3 class="icon icon-package" style="margin-top:28px"><a href="#">2.5.0</a></h3>
+<p class="progress-info"><span class="date">Due in 3 months (30 Nov 2026)</span></p>
+<table class="progress" style="width:40%"><tr><td class="todo" style="width:100%"></td></tr></table>
+<p class="issue-status"><a href="?page=issues">14 issues</a> (0 closed — 14 open)</p>
+</template>
+
+<template data-page="activity">
+<h2>Activity</h2>
+<div id="activity">
+  <h3>08/08/2026</h3>
+  <dl>
+    <dt class="issue-edit"><span class="time">14:12</span> <a href="?page=issue">Bug #4821: Downlink buffer overruns during high-rate passes</a><span class="author"> <a href="#">Priya Nandakumar</a></span></dt>
+    <dd><span class="description">Adaptive flush landed behind a feature flag.</span></dd>
+    <dt class="changeset"><span class="time">11:48</span> <a href="?page=repository">Revision 9f2a41c</a><span class="author"> <a href="#">Wen Li</a></span></dt>
+    <dd><span class="description">Scale ingest flush interval with observed throughput</span></dd>
+    <dt class="wiki-page"><span class="time">09:30</span> <a href="?page=wiki">Wiki: Pass scheduling</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
+    <dd><span class="description">Documented the new station-pinning behaviour.</span></dd>
+  </dl>
+  <h3>07/08/2026</h3>
+  <dl>
+    <dt class="issue"><span class="time">17:02</span> <a href="?page=issue">Feature #4818: Allow operators to pin a ground station to a pass</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
+    <dd><span class="description">Filed after the Tuesday ops review.</span></dd>
+    <dt class="news"><span class="time">08:15</span> <a href="#">News: Telemetry retention shortened to 90 days</a><span class="author"> <a href="#">Tomas Berg</a></span></dt>
+  </dl>
+</div>
+</template>
+
+<template data-page="wiki">
+<div class="contextual"><a href="#" class="button">Edit</a> <a href="#" class="button secondary">History</a></div>
+<h2>Pass scheduling</h2>
+<div class="wiki wiki-page">
+  <p>The scheduler allocates satellite passes to ground stations. It runs every fifteen minutes and on demand when an operator edits a window.</p>
+  <h2>Allocation order</h2>
+  <p>Passes are sorted by priority, then by elevation. Conflicts are resolved before allocation rather than during it, which keeps the result stable across runs.</p>
+  <ol>
+    <li>Collect candidate windows for the next 48 hours.</li>
+    <li>Drop windows below the minimum elevation for the station.</li>
+    <li>Resolve conflicts by priority, then by earliest acquisition of signal.</li>
+    <li>Emit the allocation and notify the ops channel.</li>
+  </ol>
+  <h2>Pinning a station</h2>
+  <p>An operator may pin a pass to a specific station. Pinned passes are allocated first and never displaced by the conflict resolver.</p>
+  <pre>schedule:
+  horizon_hours: 48
+  min_elevation_deg: 10
+  pin_respects_conflicts: false</pre>
+  <p>See also <a href="?page=issue">#4818</a> for the pinning work in progress.</p>
+</div>
+</template>
+
+<template data-page="gantt">
+<h2>Gantt</h2>
+<div id="gantt-mount"></div>
+<h2 style="margin-top:32px">Calendar</h2>
+<table class="cal" style="width:100%; border-collapse:collapse">
+  <thead><tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
+  <tbody>
+    <tr style="height:76px"><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">3</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">4</p><span class="icon">&nbsp;<a href="?page=issue">Bug #4821</a></span></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">5</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">6</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">7</p><span class="icon"><a href="?page=issue">Feature #4818</a></span></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">8</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">9</p></td></tr>
+    <tr style="height:76px"><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">10</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">11</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">12</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">13</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">14</p><span class="icon"><a href="?page=roadmap">2.4.0</a></span></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">15</p></td><td style="border:1px solid var(--oc-gray-4); vertical-align:top; padding:4px"><p class="day-num">16</p></td></tr>
+  </tbody>
+</table>
+</template>
+
+<template data-page="repository">
+<h2>Repository</h2>
+<p class="breadcrumb"><a href="#">app</a> / <a href="#">ingest</a> / writer.rb @ <a href="#">9f2a41c</a></p>
+<div class="changeset-changes box">
+  <h3>Revision 9f2a41c</h3>
+  <p class="author"><a href="#">Wen Li</a>, 08/08/2026 11:48</p>
+  <p>Scale ingest flush interval with observed throughput</p>
+</div>
+<table class="filecontent syntaxhl" style="width:100%">
+  <tbody>
+    <tr><th class="line-num">41</th><td class="line-code"><pre>  def flush_interval</pre></td></tr>
+    <tr><th class="line-num">42</th><td class="line-code del"><pre>-   250</pre></td></tr>
+    <tr><th class="line-num">43</th><td class="line-code add"><pre>+   rate = observed_throughput_mbps</pre></td></tr>
+    <tr><th class="line-num">44</th><td class="line-code add"><pre>+   return 250 if rate &lt; 20</pre></td></tr>
+    <tr><th class="line-num">45</th><td class="line-code add"><pre>+   [(5_000 / rate).round, 40].max</pre></td></tr>
+    <tr><th class="line-num">46</th><td class="line-code"><pre>  end</pre></td></tr>
+    <tr><th class="line-num">47</th><td class="line-code"><pre></pre></td></tr>
+    <tr><th class="line-num">48</th><td class="line-code"><pre>  def high_water_mark</pre></td></tr>
+    <tr><th class="line-num">49</th><td class="line-code"><pre>    buffer.size.to_f / buffer.capacity</pre></td></tr>
+    <tr><th class="line-num">50</th><td class="line-code"><pre>  end</pre></td></tr>
+  </tbody>
+</table>
+</template>
+
+<template data-page="settings">
+<div class="flash notice">Successful update.</div>
+<h2>Administration &rsaquo; Settings</h2>
+<div class="tabs"><ul>
+  <li><a href="#" class="selected">General</a></li><li><a href="#">Display</a></li><li><a href="#">Authentication</a></li><li><a href="#">Issue tracking</a></li><li><a href="#">Repositories</a></li>
+</ul></div>
+<div class="box tabular">
+  <form>
+    <p><label for="app-title">Application title</label><br /><input type="text" id="app-title" value="Orbital Systems" size="40" /></p>
+    <p><label for="welcome">Welcome text</label><br /><textarea id="welcome" rows="4" style="width:100%; box-sizing:border-box">Ground-side tooling for the Orbital flight programme.</textarea></p>
+    <p><label for="theme">Theme</label><br /><select id="theme"><option>Atlas</option><option>Zen</option><option>Umbra</option><option>Dense</option><option>Folio</option></select></p>
+    <p><label for="perpage">Objects per page</label><br /><input type="text" id="perpage" value="25, 50, 100" size="20" /></p>
+    <p><label><input type="checkbox" checked /> Use Gravatar</label></p>
+    <p style="margin-top:16px"><input type="submit" value="Save" /></p>
+  </form>
+</div>
+</template>
+
+<template data-sidebar="issues">
+<h3>Issues</h3>
+<ul>
+  <li><a href="#" class="selected">All open</a></li>
+  <li><a href="#">Assigned to me</a></li>
+  <li><a href="#">Reported by me</a></li>
+  <li><a href="#">Updated in the last 7 days</a></li>
+</ul>
+<h3>Custom queries</h3>
+<ul>
+  <li><a href="#" class="query default">Ops triage</a></li>
+  <li><a href="#" class="query">Blocked on hardware</a></li>
+  <li><a href="#" class="query">Awaiting a full-rate pass</a></li>
+</ul>
+<h3>Summary</h3>
+<ul><li><a href="#">By tracker</a></li><li><a href="#">By assignee</a></li><li><a href="#">By version</a></li></ul>
+</template>
+
+<template data-sidebar="wiki">
+<h3>Wiki</h3>
+<ul><li><a href="#">Start page</a></li><li><a href="#">Index by title</a></li><li><a href="#" class="selected">Pass scheduling</a></li><li><a href="#">Anomaly runbook</a></li><li><a href="#">Ground station inventory</a></li></ul>
+</template>
+
+<template data-sidebar="settings">
+<h3>Administration</h3>
+<ul id="admin-menu">
+  <li><a href="#">Projects</a></li><li><a href="#">Users</a></li><li><a href="#">Groups</a></li><li><a href="#">Roles and permissions</a></li>
+  <li><a href="#">Trackers</a></li><li><a href="#">Custom fields</a></li><li><a href="#" class="selected">Settings</a></li><li><a href="#">Plugins</a></li>
+</ul>
+</template>
+
+<template data-sidebar="default">
+<h3>Project</h3>
+<ul><li><a href="?page=issues">Issues</a></li><li><a href="?page=roadmap">Roadmap</a></li><li><a href="?page=wiki">Wiki</a></li><li><a href="?page=activity">Activity</a></li></ul>
+<h3>Spent time</h3>
+<ul><li><a href="#">Today: 6.5 hours</a></li><li><a href="#">This week: 41.0 hours</a></li></ul>
+</template>
+
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  var theme = p.get('theme') || 'atlas';
+  var page = p.get('page') || 'issues';
+  var mode = p.get('mode');
+
+  document.getElementById('theme-css').href = '../' + theme + '/stylesheets/application.css';
+  if (mode === 'light' || mode === 'dark') document.documentElement.setAttribute('data-rm-mode', mode);
+
+  function tpl(sel) { var t = document.querySelector(sel); return t ? t.innerHTML : ''; }
+
+  document.getElementById('content').innerHTML =
+    tpl('template[data-page="' + (page === 'issue-edit' ? 'issue' : page) + '"]') || tpl('template[data-page="issues"]');
+
+  if (page === 'issue-edit') {
+    var up = document.getElementById('update');
+    if (up) up.style.display = '';
+  }
+
+  /* Redmine reveals the edit form in place rather than navigating; do the same
+     so the Edit button gives a true feel for the reworked editor. */
+  var editLink = document.querySelector('#content .contextual a[href="?page=issue-edit"]');
+  if (editLink) {
+    editLink.addEventListener('click', function (e) {
+      var up = document.getElementById('update');
+      if (!up) return;
+      e.preventDefault();
+      e.stopPropagation();
+      up.style.display = '';
+      var box = up.querySelector('.box');
+      window.scrollTo({ top: up.offsetTop - 24, behavior: 'smooth' });
+      var ta = up.querySelector('#issue_notes');
+      if (ta) ta.focus({ preventScroll: true });
+    }, true);
+  }
+  if (page === 'gantt') buildGantt();
+
+  var sb = tpl('template[data-sidebar="' + page + '"]');
+  if (!sb && (page === 'issue' || page === 'issue-edit' || page === 'issue-form' || page === 'roadmap')) sb = tpl('template[data-sidebar="issues"]');
+  if (!sb) sb = tpl('template[data-sidebar="default"]');
+  document.getElementById('sidebar-wrapper').innerHTML = sb;
+
+  // login has no project chrome
+  if (page === 'login') {
+    document.getElementById('header').style.display = 'none';
+    document.getElementById('main').className = 'nosidebar';
+    document.body.classList.remove('has-main-menu');
+  }
+
+  // reflect the current page in the project menu
+  var sel = document.querySelector('#main-menu a.' + (page === 'issue' || page === 'issue-edit' ? 'issues' : page));
+  if (sel) {
+    var cur = document.querySelector('#main-menu a.selected');
+    if (cur) cur.classList.remove('selected');
+    sel.classList.add('selected');
+  }
+
+  // keep ?theme= across in-preview navigation
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="?page="]');
+    if (!a) return;
+    e.preventDefault();
+    var u = new URL(a.getAttribute('href'), location.href);
+    u.searchParams.set('theme', theme);
+    if (mode) u.searchParams.set('mode', mode);
+    location.href = u.toString();
+  });
+
+  var s = document.createElement('script');
+  s.src = '../' + theme + '/javascripts/theme.js';
+  document.body.appendChild(s);
+
+  /* Faithful Redmine gantt DOM: absolutely positioned headers, 16px subject
+     rows and .task bars, matching app/views/gantts + gantt.css. */
+  function buildGantt() {
+    var mount = document.getElementById('gantt-mount');
+    if (!mount) return;
+
+    var DAY = 34, ROW = 20, HDR = 48, SUBJ = 300;
+    var start = new Date(2026, 7, 3), days = 21;
+    var names = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
+    var rows = [
+      { kind: 'version', label: '2.3.6', from: 1, len: 6, done: 100 },
+      { kind: 'issue', label: '#4804 Anomaly digest sends duplicate rows', from: 1, len: 5, done: 80 },
+      { kind: 'version', label: '2.4.0', from: 8, len: 12, done: 38 },
+      { kind: 'issue', label: '#4821 Downlink buffer overruns', from: 8, len: 7, done: 60 },
+      { kind: 'issue', label: '#4818 Pin a ground station to a pass', from: 12, len: 5, done: 0 },
+      { kind: 'issue', label: '#4790 Bulk acknowledge anomalies', from: 15, len: 4, done: 0 },
+      { kind: 'issue', label: '#4762 Legacy CSV import drops orbit', from: 5, len: 4, done: 0, late: true }
+    ];
+
+    var areaW = days * DAY, h = HDR + rows.length * ROW + 8;
+    var subj = '', area = '';
+
+    subj += '<div class="gantt_hdr" style="left:0;top:0;width:' + (SUBJ - 1) + 'px;height:' + (HDR - 1) + 'px;line-height:' + (HDR - 1) + 'px">Subject</div>';
+    subj += '<div class="gantt_subjects" style="position:absolute;top:' + HDR + 'px;left:0;width:' + SUBJ + 'px">';
+    rows.forEach(function (r, i) {
+      subj += '<div class="' + (r.kind === 'version' ? 'version-name' : 'issue-subject') +
+        '" style="position:absolute;top:' + (i * ROW + 2) + 'px;left:8px;width:' + (SUBJ - 16) + 'px">' +
+        '<a href="' + (r.kind === 'version' ? '?page=roadmap' : '?page=issue') + '">' + r.label + '</a></div>';
+    });
+    subj += '</div>';
+
+    area += '<div class="gantt_hdr" style="left:0;top:0;width:' + (areaW - 1) + 'px">August 2026</div>';
+    for (var w = 0; w < 3; w++) {
+      area += '<div class="gantt_hdr" style="left:' + (w * 7 * DAY) + 'px;top:16px;width:' + (7 * DAY - 1) + 'px">week ' + (32 + w) + '</div>';
+    }
+    for (var d = 0; d < days; d++) {
+      var date = new Date(start.getTime() + d * 86400000);
+      var dow = (date.getDay() + 6) % 7;
+      area += '<div class="gantt_hdr' + (dow > 4 ? ' nwday' : '') + '" style="left:' + (d * DAY) + 'px;top:32px;width:' + (DAY - 1) + 'px">' +
+        date.getDate() + '</div>';
+    }
+    area += '<div id="gantt-today-line" style="left:' + (5 * DAY) + 'px;top:' + HDR + 'px;height:' + (rows.length * ROW) + 'px"></div>';
+
+    rows.forEach(function (r, i) {
+      var top = HDR + i * ROW + 4, left = r.from * DAY, w = r.len * DAY;
+      var parent = r.kind === 'version' ? ' parent' : '';
+      var cls = r.late ? 'task_late' : 'task_todo';
+      area += '<div class="task ' + cls + parent + '" style="top:' + top + 'px;left:' + left + 'px;width:' + w + 'px"></div>';
+      if (r.done > 0) {
+        area += '<div class="task task_done' + parent + '" style="top:' + top + 'px;left:' + left + 'px;width:' + Math.round(w * r.done / 100) + 'px"></div>';
+      }
+      area += '<div class="task label" style="top:' + top + 'px;left:' + (left + w + 6) + 'px">' + r.done + '%</div>';
+    });
+
+    mount.innerHTML =
+      '<div style="overflow:auto hidden"><table class="gantt-table"><tbody><tr>' +
+        '<td class="gantt_subjects_column" style="width:' + SUBJ + 'px">' +
+          '<div class="gantt_subjects_container" style="position:relative;width:' + SUBJ + 'px;height:' + h + 'px">' + subj + '</div>' +
+        '</td>' +
+        '<td><div id="gantt_area" style="position:relative;width:' + areaW + 'px;height:' + h + 'px;overflow:hidden">' + area + '</div></td>' +
+      '</tr></tbody></table></div>';
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Redmine 7 theme set — preview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Live preview of five drop-in themes for Redmine 7." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --bg:#0e1014; --line:#23262d; --line2:#2b2f37; --fg:#e6e8ec; --dim:#8a909c; --dim2:#6d7380; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+  a { color:#8ab4f8; }
+  code, .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .bar { display:flex; align-items:center; gap:28px; padding:14px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .title { display:flex; flex-direction:column; gap:2px; min-width:180px; }
+  .title b { font-size:15px; font-weight:700; letter-spacing:-.01em; }
+  .title span { font-size:10.5px; color:var(--dim2); letter-spacing:.02em; }
+  .grp { display:flex; align-items:center; gap:8px; }
+  .lbl { font-size:10px; text-transform:uppercase; letter-spacing:.09em; color:var(--dim2); font-weight:700; }
+  .chips { display:flex; gap:4px; flex-wrap:wrap; }
+  button.chip { background:transparent; color:#a2a8b4; border:1px solid var(--line2); border-radius:6px; padding:4px 11px; font-size:12px; font-weight:500; font-family:inherit; cursor:pointer; white-space:nowrap; }
+  button.chip:hover { border-color:#3a3f49; color:var(--fg); }
+  button.chip[aria-pressed="true"] { background:var(--fg); color:var(--bg); border-color:var(--fg); font-weight:700; }
+  .screens { display:flex; gap:4px; padding:10px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap; align-items:center; }
+  main { flex:1; padding:18px 22px 22px; min-height:0; }
+  .stage { height:100%; min-height:760px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; }
+  .stage iframe { width:100%; height:100%; min-height:760px; border:0; display:block; }
+  .compare { display:grid; grid-template-columns:repeat(5,minmax(200px,1fr)); gap:12px; align-items:start; }
+  .tile { display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .tile .cap { display:flex; align-items:baseline; gap:8px; }
+  .tile .cap b { font-size:12.5px; }
+  .tile .cap span { font-size:10px; color:var(--dim2); }
+  .tile .win { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+  .tile iframe { width:1440px; height:1560px; border:0; display:block; transform-origin:top left; }
+  footer { padding:14px 22px 26px; border-top:1px solid var(--line); color:var(--dim); font-size:12.5px; line-height:1.65; max-width:900px; }
+  footer p { margin:0 0 8px; }
+  footer .mono { font-size:11.5px; color:#c3c8d1; }
+  @media (max-width:900px) { .compare { grid-template-columns:repeat(2,minmax(160px,1fr)); } }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="title"><b>Redmine 7 theme set</b><span class="mono" id="path">themes/atlas/</span></div>
+  <div class="grp"><span class="lbl">Theme</span><div class="chips" id="themes"></div></div>
+  <div class="grp"><span class="lbl">Mode</span><div class="chips" id="modes"></div></div>
+  <div class="grp" style="margin-left:auto"><span class="lbl">Compare</span>
+    <button type="button" class="chip" id="cmp" aria-pressed="false">All five side by side</button></div>
+</div>
+
+<div class="screens"><span class="lbl" style="margin-right:8px">Screen</span><div class="chips" id="pages"></div></div>
+
+<main id="main"></main>
+
+<footer>
+  <p>Each theme is a drop-in Redmine 7 folder: <span class="mono">themes/&lt;name&gt;/stylesheets/application.css</span> and <span class="mono">themes/&lt;name&gt;/javascripts/theme.js</span>. Copy the folder into your install's <span class="mono">themes/</span> directory and pick it under Administration &rsaquo; Settings &rsaquo; Display.</p>
+  <p>This preview loads the unmodified Redmine 7 core stylesheet from <span class="mono">stylesheets/</span>, exactly as a real install does, so what you see is what the theme does on top of stock Redmine. <a href="https://github.com/redmine/redmine">Redmine</a> is GPL-2.0; so are these themes.</p>
+</footer>
+
+<script>
+(function () {
+  var THEMES = [
+    { key:'atlas', name:'Atlas', note:'SaaS board' },
+    { key:'zen', name:'Zen', note:'calm minimal' },
+    { key:'umbra', name:'Umbra', note:'low-light' },
+    { key:'dense', name:'Dense', note:'max density' },
+    { key:'folio', name:'Folio', note:'editorial' }
+  ];
+  var PAGES = [
+    ['issues','Issue list'], ['issue','Issue detail'], ['issue-edit','Issue editor'], ['issue-form','New issue'],
+    ['overview','Project overview'], ['activity','Activity'], ['roadmap','Roadmap'], ['wiki','Wiki'],
+    ['gantt','Gantt & calendar'], ['repository','Repository diff'], ['settings','Admin settings'], ['login','Login']
+  ];
+  var FRAME_W = 1440, FRAME_H = 1560;
+
+  var q = new URLSearchParams(location.search);
+  var state = {
+    theme: q.get('theme') || 'atlas',
+    page: q.get('page') || 'issues',
+    mode: q.get('mode') || 'auto',
+    compare: q.get('compare') === '1'
+  };
+
+  function url(theme) {
+    return 'preview/shell.html?theme=' + theme + '&page=' + state.page +
+           (state.mode === 'auto' ? '' : '&mode=' + state.mode);
+  }
+
+  function syncLocation() {
+    var p = new URLSearchParams();
+    p.set('theme', state.theme);
+    p.set('page', state.page);
+    if (state.mode !== 'auto') p.set('mode', state.mode);
+    if (state.compare) p.set('compare', '1');
+    history.replaceState(null, '', location.pathname + '?' + p.toString());
+  }
+
+  function chips(host, items, current, onPick) {
+    host.innerHTML = '';
+    items.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.textContent = it.name;
+      b.setAttribute('aria-pressed', String(it.key === current));
+      b.addEventListener('click', function () { onPick(it.key); });
+      host.appendChild(b);
+    });
+  }
+
+  var ro = null;
+  function render() {
+    document.getElementById('path').textContent = 'themes/' + state.theme + '/';
+    chips(document.getElementById('themes'), THEMES, state.theme, function (k) { state.theme = k; render(); });
+    chips(document.getElementById('modes'), ['auto','light','dark'].map(function (m) { return { key:m, name:m }; }),
+          state.mode, function (m) { state.mode = m; render(); });
+    chips(document.getElementById('pages'), PAGES.map(function (p) { return { key:p[0], name:p[1] }; }),
+          state.page, function (p) { state.page = p; render(); });
+    document.getElementById('cmp').setAttribute('aria-pressed', String(state.compare));
+
+    var main = document.getElementById('main');
+    if (ro) { ro.disconnect(); ro = null; }
+    main.innerHTML = '';
+
+    if (!state.compare) {
+      var stage = document.createElement('div');
+      stage.className = 'stage';
+      stage.innerHTML = '<iframe src="' + url(state.theme) + '" title="Redmine preview"></iframe>';
+      main.appendChild(stage);
+    } else {
+      var grid = document.createElement('div');
+      grid.className = 'compare';
+      THEMES.forEach(function (t) {
+        var tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.innerHTML =
+          '<div class="cap"><b>' + t.name + '</b><span class="mono">' + t.note + '</span></div>' +
+          '<div class="win"><iframe src="' + url(t.key) + '" title="' + t.name + '"></iframe></div>';
+        grid.appendChild(tile);
+      });
+      main.appendChild(grid);
+
+      /* Scale each frame to whatever width its column actually got, and set the
+         window height to match, so nothing is clipped and no dead space is left. */
+      var fit = function () {
+        var w = grid.firstElementChild.getBoundingClientRect().width;
+        if (!w) return;
+        var s = w / FRAME_W;
+        grid.querySelectorAll('.tile').forEach(function (tile) {
+          tile.querySelector('iframe').style.transform = 'scale(' + s.toFixed(4) + ')';
+          tile.querySelector('.win').style.height = Math.round(FRAME_H * s) + 'px';
+        });
+      };
+      ro = new ResizeObserver(fit);
+      ro.observe(grid);
+      fit();
+    }
+    syncLocation();
+  }
+
+  document.getElementById('cmp').addEventListener('click', function () {
+    state.compare = !state.compare;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

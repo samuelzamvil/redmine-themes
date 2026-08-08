@@ -4,10 +4,11 @@ Five drop-in themes for Redmine 7, built against the stock core stylesheet.
 
 > **Untested — use at your own risk.** These themes were designed entirely by
 > [Claude](https://claude.com/claude-code) and have **not** been installed or
-> tested against a running Redmine instance. Nothing here has been verified in a
-> browser. Treat every theme as a starting point rather than a finished product,
-> and try one on a staging install before putting it in front of users. Bug
-> reports and fixes are welcome.
+> tested against a running Redmine instance. The preview below renders them against
+> the real core stylesheet, but against mocked-up markup — not against Redmine's
+> actual output, on real data, in a real browser session. Treat every theme as a
+> starting point rather than a finished product, and try one on a staging install
+> before putting it in front of users. Bug reports and fixes are welcome.
 
 | Theme | Character |
 | --- | --- |
@@ -16,6 +17,31 @@ Five drop-in themes for Redmine 7, built against the stock core stylesheet.
 | [Umbra](umbra/) | Low-light — dark by default with an automatic light variant, periwinkle accent. |
 | [Dense](dense/) | Maximum information density — small type, tight rows, rust accent. |
 | [Folio](folio/) | Warm editorial — serif headings on a warm paper ground, amber accent. |
+
+## Live preview
+
+**[Click around all five themes →](https://samuelzamvil.github.io/redmine-themes/)**
+
+Twelve mocked Redmine screens — issue list, issue detail, the reworked editor, new
+issue, project overview, activity, roadmap, wiki, gantt, repository diff, admin
+settings, login — rendered against the unmodified Redmine 7 core stylesheet with a
+theme layered on top, exactly as a real install loads it. Switch theme, switch
+light/dark, or put all five side by side.
+
+Every control writes to the URL, so you can link straight to one view:
+
+| Link | Shows |
+| --- | --- |
+| [`?theme=zen`](https://samuelzamvil.github.io/redmine-themes/?theme=zen) | Zen, issue list |
+| [`?theme=umbra&mode=dark`](https://samuelzamvil.github.io/redmine-themes/?theme=umbra&mode=dark) | Umbra in dark mode |
+| [`?theme=folio&page=issue-edit`](https://samuelzamvil.github.io/redmine-themes/?theme=folio&page=issue-edit) | Folio, the reworked issue editor |
+| [`?compare=1`](https://samuelzamvil.github.io/redmine-themes/?compare=1) | all five side by side |
+
+To run it locally, serve the repository root with any static server —
+`python3 -m http.server`, then visit `localhost:8000`. Opening `index.html` over
+`file://` will not work, because the preview fetches the stylesheets.
+
+## Install
 
 Each folder is a complete theme. Copy the one you want into your install's
 `themes/` directory and select it under *Administration → Settings → Display*.
@@ -60,6 +86,22 @@ imports the core stylesheet from there. Earlier releases put themes in
 `public/themes/` and shipped a different core stylesheet, so these will not work on
 6.x or below without changes.
 
+## Repo layout
+
+```
+atlas/ zen/ umbra/ dense/ folio/   the themes — copy one into your install
+index.html                         the preview app (picker, compare, deep links)
+preview/shell.html                 the mocked Redmine screens it renders
+stylesheets/                       unmodified Redmine 7 core CSS, for the preview only
+.github/workflows/pages.yml        publishes the preview to GitHub Pages
+```
+
+Only the five theme folders are needed to use a theme; everything else exists to
+preview them. The preview loads each theme from its real folder, so what you see is
+the same file you would install.
+
 ## Licence
 
-GPL-2.0, matching Redmine.
+GPL-2.0, matching Redmine. `stylesheets/` contains unmodified files from the
+[Redmine](https://github.com/redmine/redmine) source, included so the preview renders
+against the real base.
