@@ -78,5 +78,5 @@ byte-identical to Redmine's own `doc/COPYING`.
 
 `stylesheets/` contains unmodified files from the
 [Redmine](https://github.com/redmine/redmine) source — copyright Jean-Philippe Lang,
-same licence. The mock screens and the preview app are copyright 2026 samuelzamvil,
+same licence. The mock screens and the preview app are copyright 2026 Samuel Zamvil,
 also GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.
