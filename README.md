@@ -138,6 +138,26 @@ does inside a real Redmine tree.
 
 ## Licence
 
-GPL-2.0, matching Redmine. `stylesheets/` contains unmodified files from the
-[Redmine](https://github.com/redmine/redmine) source, included so the preview renders
-against the real base.
+GPL-2.0-or-later — deliberately the same terms as Redmine itself, which nothing here
+requires. A theme is stylesheets and a little additive JavaScript; it links nothing
+and derives from nothing that would force the choice. Matching Redmine simply means
+anyone who can use Redmine can use, fork and redistribute these on terms they
+already know.
+
+> This program is free software; you can redistribute it and/or modify it under the
+> terms of the GNU General Public License as published by the Free Software
+> Foundation; either version 2 of the License, or (at your option) any later
+> version.
+>
+> This program is distributed in the hope that it will be useful, but WITHOUT ANY
+> WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+> PARTICULAR PURPOSE.
+
+The full text is in [`COPYING`](COPYING), byte-identical to Redmine's own
+`doc/COPYING`. Every theme stylesheet and script carries the notice in its header,
+and each release archive ships `COPYING` inside the theme folder, so the licence
+travels with a theme that gets copied around on its own.
+
+`stylesheets/` contains unmodified files from the
+[Redmine](https://github.com/redmine/redmine) source — copyright Jean-Philippe Lang,
+same licence — included so the preview renders against the real base.

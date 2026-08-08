@@ -73,5 +73,10 @@ Fonts, so an offline or locked-down host falls back to system fonts.
 
 ## Licence
 
-GPL-2.0, matching Redmine. `stylesheets/` contains unmodified files from the
-[Redmine](https://github.com/redmine/redmine) source.
+GPL-2.0-or-later, the same terms as Redmine itself. The full text is in `COPYING`,
+byte-identical to Redmine's own `doc/COPYING`.
+
+`stylesheets/` contains unmodified files from the
+[Redmine](https://github.com/redmine/redmine) source — copyright Jean-Philippe Lang,
+same licence. The mock screens and the preview app are copyright 2026 samuelzamvil,
+also GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.

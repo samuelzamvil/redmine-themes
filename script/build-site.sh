@@ -21,6 +21,7 @@ mkdir -p "$out/themes"
 
 cp index.html "$out/"
 cp preview/README.md "$out/README.md"
+cp COPYING "$out/"
 cp -r preview stylesheets "$out/"
 
 for theme in "${THEMES[@]}"; do

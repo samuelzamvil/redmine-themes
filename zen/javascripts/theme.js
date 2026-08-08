@@ -1,3 +1,18 @@
+/**
+ * Zen - a theme for Redmine
+ * Copyright (C) 2026 samuelzamvil
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the COPYING file for the full text of the
+ * licence, or https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+ */
+
 /* Redmine theme runtime — global nav rail, status pills, board view, issue editor.
    Pure additive: no server templates are touched. Safe to delete. */
 (function () {

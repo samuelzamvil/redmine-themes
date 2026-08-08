@@ -1,6 +1,7 @@
 .DS_Store
 *.log
 
-# Assembled by script/build-site.sh; never committed.
+# Assembled by script/build-site.sh and script/build-release.sh; never committed.
 /_site/
+/_release/
 /themes/
