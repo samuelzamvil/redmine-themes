@@ -37,9 +37,17 @@ Every control writes to the URL, so you can link straight to one view:
 | [`?theme=folio&page=issue-edit`](https://samuelzamvil.github.io/redmine-themes/?theme=folio&page=issue-edit) | Folio, the reworked issue editor |
 | [`?compare=1`](https://samuelzamvil.github.io/redmine-themes/?compare=1) | all five side by side |
 
-To run it locally, serve the repository root with any static server —
-`python3 -m http.server`, then visit `localhost:8000`. Opening `index.html` over
-`file://` will not work, because the preview fetches the stylesheets.
+To run it locally, mirror the themes under the `themes/` path the preview expects,
+then serve the repository root with any static server:
+
+```
+mkdir -p themes && for t in atlas zen umbra dense folio; do ln -sfn "../$t" "themes/$t"; done
+python3 -m http.server        # then visit localhost:8000
+```
+
+`themes/` is git-ignored; the Pages workflow stages it on its own. Opening
+`index.html` over `file://` will not work, because the preview fetches the
+stylesheets.
 
 ## Install
 
@@ -97,8 +105,12 @@ stylesheets/                       unmodified Redmine 7 core CSS, for the previe
 ```
 
 Only the five theme folders are needed to use a theme; everything else exists to
-preview them. The preview loads each theme from its real folder, so what you see is
-the same file you would install.
+preview them.
+
+The preview reads a theme from `themes/<name>/`, which the deploy assembles from
+those same root folders — so the CSS you click through is the identical file you
+install, and the theme's own `@import` of the core stylesheet resolves just as it
+does inside a real Redmine tree.
 
 ## Licence
 

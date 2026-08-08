@@ -438,7 +438,7 @@
   var page = p.get('page') || 'issues';
   var mode = p.get('mode');
 
-  document.getElementById('theme-css').href = '../' + theme + '/stylesheets/application.css';
+  document.getElementById('theme-css').href = '../themes/' + theme + '/stylesheets/application.css';
   if (mode === 'light' || mode === 'dark') document.documentElement.setAttribute('data-rm-mode', mode);
 
   function tpl(sel) { var t = document.querySelector(sel); return t ? t.innerHTML : ''; }
@@ -501,7 +501,7 @@
   });
 
   var s = document.createElement('script');
-  s.src = '../' + theme + '/javascripts/theme.js';
+  s.src = '../themes/' + theme + '/javascripts/theme.js';
   document.body.appendChild(s);
 
   /* Faithful Redmine gantt DOM: absolutely positioned headers, 16px subject

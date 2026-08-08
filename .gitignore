@@ -1,2 +1,6 @@
 .DS_Store
 *.log
+
+# Local preview only: mirrors the themes under the themes/ path the site
+# expects. The Pages workflow stages this itself; see README.
+/themes/
