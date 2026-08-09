@@ -26,7 +26,13 @@
   button.chip[aria-pressed="true"] { background:var(--fg); color:var(--bg); border-color:var(--fg); font-weight:700; }
   .screens { display:flex; gap:4px; padding:10px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap; align-items:center; }
   main { flex:1; padding:18px 22px 22px; min-height:0; }
-  .stage { height:100%; min-height:760px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; }
+  /* A chosen device width has to be honoured exactly, so the stage scrolls
+     rather than shrinking the frame. Clamping to the pane silently renders a
+     desktop layout when you asked for a phone, which hides responsive bugs. */
+  .stagewrap { display:flex; justify-content:center; overflow-x:auto; height:100%; }
+  .stage { height:100%; min-height:760px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; flex:0 0 auto; }
+  .stage.fill { flex:1 1 auto; width:100%; }
+  .stage.phone { border-radius:18px; }
   .stage iframe { width:100%; height:100%; min-height:760px; border:0; display:block; }
   .compare { display:grid; grid-template-columns:repeat(5,minmax(200px,1fr)); gap:12px; align-items:start; }
   .tile { display:flex; flex-direction:column; gap:8px; min-width:0; }
@@ -48,6 +54,7 @@
   <div class="grp"><span class="lbl">Theme</span><div class="chips" id="themes"></div></div>
   <div class="grp"><span class="lbl">Nav</span><div class="chips" id="navs"></div></div>
   <div class="grp"><span class="lbl">Mode</span><div class="chips" id="modes"></div></div>
+  <div class="grp"><span class="lbl">Width</span><div class="chips" id="widths"></div></div>
   <div class="grp" style="margin-left:auto"><span class="lbl">Compare</span>
     <button type="button" class="chip" id="cmp" aria-pressed="false">All five side by side</button></div>
 </div>
@@ -79,6 +86,15 @@
     { key:'rail', name:'Rail' },
     { key:'classic', name:'Classic' }
   ];
+  /* Straddle the theme breakpoints: 1280 is above the rail's auto-collapse
+     range, 1000 inside it, 834 and 390 inside core's flyout range. */
+  var WIDTHS = [
+    { key:'fill', name:'Fill', px:null },
+    { key:'desktop', name:'Desktop 1280', px:1280 },
+    { key:'laptop', name:'Laptop 1000', px:1000 },
+    { key:'tablet', name:'Tablet 834', px:834 },
+    { key:'phone', name:'Phone 390', px:390 }
+  ];
   var PAGES = [
     ['issues','Issue list'], ['issue','Issue detail'], ['issue-edit','Issue editor'], ['issue-form','New issue'],
     ['overview','Project overview'], ['activity','Activity'], ['roadmap','Roadmap'], ['wiki','Wiki'],
@@ -92,6 +108,7 @@
     nav: q.get('nav') === 'classic' ? 'classic' : 'rail',
     page: q.get('page') || 'issues',
     mode: q.get('mode') || 'auto',
+    width: q.get('width') || 'fill',
     compare: q.get('compare') === '1'
   };
 
@@ -116,6 +133,7 @@
     if (state.nav !== 'rail') p.set('nav', state.nav);
     p.set('page', state.page);
     if (state.mode !== 'auto') p.set('mode', state.mode);
+    if (state.width !== 'fill') p.set('width', state.width);
     if (state.compare) p.set('compare', '1');
     history.replaceState(null, '', location.pathname + '?' + p.toString());
   }
@@ -140,6 +158,7 @@
     chips(document.getElementById('navs'), NAVS, state.nav, function (n) { state.nav = n; render(); });
     chips(document.getElementById('modes'), ['auto','light','dark'].map(function (m) { return { key:m, name:m }; }),
           state.mode, function (m) { state.mode = m; render(); });
+    chips(document.getElementById('widths'), WIDTHS, state.width, function (w) { state.width = w; render(); });
     chips(document.getElementById('pages'), PAGES.map(function (p) { return { key:p[0], name:p[1] }; }),
           state.page, function (p) { state.page = p; render(); });
     document.getElementById('cmp').setAttribute('aria-pressed', String(state.compare));
@@ -149,10 +168,15 @@
     main.innerHTML = '';
 
     if (!state.compare) {
+      var chosen = WIDTHS.filter(function (w) { return w.key === state.width; })[0] || WIDTHS[0];
+      var wrap = document.createElement('div');
+      wrap.className = 'stagewrap';
       var stage = document.createElement('div');
-      stage.className = 'stage';
+      stage.className = 'stage' + (chosen.px ? (state.width === 'phone' ? ' phone' : '') : ' fill');
+      if (chosen.px) stage.style.width = chosen.px + 'px';
       stage.innerHTML = '<iframe src="' + url(state.theme) + '" title="Redmine preview"></iframe>';
-      main.appendChild(stage);
+      wrap.appendChild(stage);
+      main.appendChild(wrap);
     } else {
       var grid = document.createElement('div');
       grid.className = 'compare';

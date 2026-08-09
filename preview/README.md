@@ -34,8 +34,13 @@ Screens: issue list, issue detail, the reworked issue editor, new issue, project
 overview, activity, roadmap, wiki, gantt & calendar, repository diff, admin
 settings, login.
 
+The **Width** control renders the frame at a fixed device width (Desktop 1280,
+Laptop 1000, Tablet 834, Phone 390) with the stage scrolling rather than shrinking
+the frame, so responsive behaviour is testable from a desktop browser.
+
 Every control writes to the URL, so any view is linkable: `?theme=zen`,
-`?theme=umbra&mode=dark`, `?theme=folio&page=issue-edit`, `?compare=1`.
+`?theme=umbra&mode=dark`, `?theme=folio&page=issue-edit`, `?width=phone`,
+`?compare=1`.
 
 ## Preview your own theme
 

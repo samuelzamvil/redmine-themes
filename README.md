@@ -48,6 +48,12 @@ settings, login — rendered against the unmodified Redmine 7 core stylesheet wi
 theme layered on top, exactly as a real install loads it. Switch design, switch
 navigation variant, switch light/dark, or put all five side by side.
 
+A **Width** control renders the frame at a fixed device width — Desktop 1280,
+Laptop 1000, Tablet 834, Phone 390 — so the responsive behaviour is reachable from
+a desktop browser. The stage scrolls rather than shrinking the frame, because
+clamping it to the pane silently renders a desktop layout when you asked for a
+phone, which is exactly how a responsive bug hides.
+
 Every control writes to the URL, so you can link straight to one view:
 
 | Link | Shows |

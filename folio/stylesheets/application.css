@@ -1253,3 +1253,103 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
   border-block-start: 1px solid var(--t-border);
 }
 #rm-rail .rm-rail-toggle { margin-block-start: 0; }
+
+/* ===================================================================
+   REAL-INSTALL CORRECTIONS
+
+   Reported from a live Redmine 7 install in dark mode. Three of the four
+   share one cause: jstoolbar.css is page-specific, so Redmine adds it
+   through yield :header_tags — AFTER the theme, which sits in the
+   'application' slot. Every theme rule therefore loses a specificity
+   tie with it, exactly as it does with responsive.css. The toolbar
+   rules earlier in this file are plain .jstElements selectors, so core
+   won them back: buttons kept core's --oc-gray-0 chrome, and with the
+   dark-mode invert on top that turned all twenty into identical grey
+   slabs; core's inline-block, fixed-26px strip also won over the flex
+   row, so the buttons overflowed the editor and overlapped each other.
+
+   The rules below are the same intent at body-level specificity.
+   =================================================================== */
+
+/* --- Wiki toolbar: chrome, layout and glyph colour --- */
+body .jstElements {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 3px;
+  block-size: auto; padding: 4px 0 6px; vertical-align: baseline;
+}
+body .jstElements button {
+  inline-size: 26px; block-size: 26px; margin: 0; padding: 4px; opacity: 1;
+  /* transparent chrome matters: the invert below applies to the whole
+     element, so any fill would inflate into a light slab */
+  background-color: var(--t-jst-bg);
+  border: 1px solid var(--t-jst-border);
+  border-radius: var(--t-radius);
+  background-position: 50% 50%; background-repeat: no-repeat; background-size: 15px 15px;
+  filter: invert(var(--t-icon-invert));
+}
+body .jstElements button:hover { background-color: var(--t-jst-hover); border-color: var(--t-jst-border); }
+body .jstSpacer { inline-size: 1px; block-size: 18px; background: var(--t-border); margin-inline: 5px; padding: 0; border: 0; font-size: 0; }
+body .jstElements .help { float: none; margin-inline-start: auto; padding: 0; align-self: center; }
+body .jstElements .help a { color: var(--t-dim); font-size: 0.75rem; }
+body #content .jstTabs.tabs { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px 12px; block-size: auto; min-block-size: 0; overflow: visible; position: relative; padding: 0; }
+body #content .jstTabs.tabs ul { position: static; display: flex; gap: 2px; inline-size: auto; min-inline-size: 0; block-size: auto; overflow: visible; margin: 0; flex: 0 0 auto; }
+body #content .jstTabs.tabs li { display: inline-block; float: none; block-size: auto; }
+body #content .jstTabs.tabs .jstElements { flex: 1 1 100%; }
+body .jstEditor textarea { border-start-start-radius: 0; border-start-end-radius: 0; }
+
+/* --- Sticky issue header and the tab scroll arrows ---
+   Both are painted from --oc-white. Rather than depend on that remap
+   surviving every load order, name the surface directly. --- */
+body #sticky-issue-header {
+  background: var(--t-surface); color: var(--t-text);
+  border-block-end: 1px solid var(--t-border); box-shadow: var(--t-shadow);
+}
+body #sticky-issue-header a { color: var(--t-accent-text); }
+body .tabs-buttons { background: transparent; }
+body .tabs-buttons button, body button.tab-left, body button.tab-right {
+  background: var(--t-surface); color: var(--t-text);
+  border: 1px solid var(--t-border); border-radius: var(--t-radius); padding: 0 4px;
+}
+body .tabs-buttons button:hover, body button.tab-left:hover, body button.tab-right:hover { background: var(--t-surface-2); }
+body .tabs-buttons svg, body button.tab-left svg, body button.tab-right svg { stroke: var(--t-text); fill: none; }
+
+/* --- Flyout: overlay, not a push ---
+   Core slides the whole page sideways with inset-inline-end, which moves
+   the header and content out from under the user's thumb and cannot be
+   animated smoothly because it reflows every frame. Draw the panel over
+   the page instead, on its own layer, with a scrim behind it. --- */
+@media screen and (max-width: 899px) {
+  /* Core sets overflow:hidden on <html> while the flyout is open, to stop the
+     page behind it scrolling. That also removes the scrollbar, so the viewport
+     widens by its width and everything anchored to the right edge — the header,
+     and the toggle the user just tapped — jumps sideways under their finger.
+     Reserving the gutter keeps the layout width identical either way. */
+  html { scrollbar-gutter: stable; }
+
+  #wrapper .flyout-menu {
+    position: fixed; inset-block: 0; inset-inline-end: 0; inset-inline-start: auto;
+    inline-size: 288px; max-inline-size: 86vw; block-size: 100%;
+    transform: translateX(100%);
+    transition: transform .22s cubic-bezier(.4, 0, .2, 1);
+    z-index: 60; overflow-y: auto; overscroll-behavior: contain;
+    box-shadow: -8px 0 24px oklch(0 0 0 / .35);
+  }
+  html.flyout-is-active #wrapper .flyout-menu { transform: translateX(0); }
+
+  /* cancel core's page shift — the panel is over the page now */
+  html.flyout-is-active #wrapper,
+  html.flyout-is-active #header { inset-inline-end: 0; }
+
+  /* scrim */
+  html.flyout-is-active body::after {
+    content: ""; position: fixed; inset: 0;
+    background: oklch(0 0 0 / .45); z-index: 55;
+  }
+
+  /* the toggle becomes the close control, so it has to sit above both */
+  body #header a.mobile-toggle-button { position: relative; z-index: 70; }
+  html.flyout-is-active #header a.mobile-toggle-button { color: var(--t-chrome-text); }
+
+  /* core's own close glyph is a bare × at the panel edge; give it the same
+     44px target as every other row and align it to the panel, not the page */
+  #wrapper .flyout-menu .flyout-menu__search { padding-block-start: 10px; }
+}
