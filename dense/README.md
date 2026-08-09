@@ -1,9 +1,9 @@
 # Dense
 
-A Redmine 7 theme.
+A Redmine 7 theme — maximum information density — small type, tight rows, a rust accent. This is the **rail** variant: navigation lives in a collapsible left rail.
 
-> **Untested.** Designed entirely by Claude and never run against a live
-> Redmine instance. See the [repository README](../README.md) for details.
+> **Untested.** Designed entirely by Claude and not systematically tested on a live
+> Redmine install. See the [repository README](../README.md) for details.
 
 ## Install
 
@@ -14,6 +14,20 @@ cp -r dense /path/to/redmine/themes/
 Then pick **Dense** under *Administration → Settings → Display → Theme*.
 
 Requires Redmine 7.0.
+
+## Navigation variants
+
+Dense ships in two variants. They are the same design — same palette, same type,
+same components — and differ only in where navigation lives:
+
+| Folder | Navigation |
+| --- | --- |
+| [`dense/`](../dense/) | **Rail.** A collapsible left rail carries navigation. Redmine's top and project bars are hidden above 900px, because the rail already holds exactly those links and showing both repeats every item and costs two rows of vertical space. |
+| [`dense-classic/`](../dense-classic/) | **Classic.** No rail. Redmine's global bar and project tabs stay where they are. |
+
+Install whichever you prefer — they are separate folders and both can sit in
+`themes/` at once. Below 900px the two are identical: the rail withdraws and
+Redmine's own flyout menu takes over.
 
 ## Layout
 
@@ -62,6 +76,10 @@ returns you to stock Redmine behaviour with the styling intact.
 - **Global nav rail** on the left, assembled from the existing top and project
   menus. Collapsible, state persisted. Icons are cloned from the sprite each menu
   link already carries, so it uses your Redmine's real icon set.
+- **Sign out** in its own block at the foot of the rail, above the collapse toggle
+  and separated by a rule. Hiding `#top-menu` also hides the account dropdown, so
+  the rail lifts the sign-out link out of it. Found via `a.logout`; on an
+  anonymous session, where no such link exists, the block is not created.
 - **Status pills** in place of plain status text in issue tables and details.
 - **Board view** toggle on issue lists, grouping rows into columns by status.
 - **Issue editor**: stock Redmine renders the edit form below the history, so

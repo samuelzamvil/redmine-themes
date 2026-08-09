@@ -1,6 +1,7 @@
 # Redmine 7 themes
 
-Five drop-in themes for Redmine 7, built against the stock core stylesheet.
+Ten drop-in themes for Redmine 7, built against the stock core stylesheet: five
+designs, each in two navigation variants.
 
 > **Untested — use at your own risk.** These themes were designed entirely by
 > [Claude](https://claude.com/claude-code) and have **not** been installed or
@@ -12,23 +13,40 @@ Five drop-in themes for Redmine 7, built against the stock core stylesheet.
 >
 > Releases stay in the `0.x` range while that is the case.
 
-| Theme | Character |
-| --- | --- |
-| [Atlas](atlas/) | Modern SaaS board — cool blue-grey neutrals, roomy rows, card-like issue list. |
-| [Zen](zen/) | Calm minimal — generous whitespace, hairline rules, muted teal accent, no zebra striping. |
-| [Umbra](umbra/) | Low-light — dark by default with an automatic light variant, periwinkle accent. |
-| [Dense](dense/) | Maximum information density — small type, tight rows, rust accent. |
-| [Folio](folio/) | Warm editorial — serif headings on a warm paper ground, amber accent. |
+| Design | Character | Rail | Classic |
+| --- | --- | --- | --- |
+| Atlas | Modern SaaS board — cool blue-grey neutrals, roomy rows, card-like issue list. | [`atlas/`](atlas/) | [`atlas-classic/`](atlas-classic/) |
+| Zen | Calm minimal — generous whitespace, hairline rules, muted teal accent, no zebra striping. | [`zen/`](zen/) | [`zen-classic/`](zen-classic/) |
+| Umbra | Low-light — dark by default with an automatic light variant, periwinkle accent. | [`umbra/`](umbra/) | [`umbra-classic/`](umbra-classic/) |
+| Dense | Maximum information density — small type, tight rows, rust accent. | [`dense/`](dense/) | [`dense-classic/`](dense-classic/) |
+| Folio | Warm editorial — serif headings on a warm paper ground, amber accent. | [`folio/`](folio/) | [`folio-classic/`](folio-classic/) |
+
+### The two navigation variants
+
+Same palette, same type, same components — only where navigation lives differs.
+
+**Rail** puts navigation in a collapsible left sidebar and hides Redmine's top and
+project bars above 900px, because the rail already carries exactly those links:
+showing both repeats every item and costs two rows of vertical space on every page.
+Sign-out moves to its own block at the foot of the rail, since hiding `#top-menu`
+also hides the account dropdown it normally lives in.
+
+**Classic** builds no rail at all and leaves Redmine's global bar and project tabs
+exactly where they are.
+
+Below 900px the two are identical — the rail withdraws and Redmine's own flyout menu
+owns navigation either way. Both variants are separate folders, so you can install
+one or both.
 
 ## Live preview
 
-**[Click around all five themes →](https://samuelzamvil.github.io/redmine-themes/)**
+**[Click around all ten themes →](https://samuelzamvil.github.io/redmine-themes/)**
 
 Twelve mocked Redmine screens — issue list, issue detail, the reworked editor, new
 issue, project overview, activity, roadmap, wiki, gantt, repository diff, admin
 settings, login — rendered against the unmodified Redmine 7 core stylesheet with a
-theme layered on top, exactly as a real install loads it. Switch theme, switch
-light/dark, or put all five side by side.
+theme layered on top, exactly as a real install loads it. Switch design, switch
+navigation variant, switch light/dark, or put all five side by side.
 
 Every control writes to the URL, so you can link straight to one view:
 
@@ -38,6 +56,7 @@ Every control writes to the URL, so you can link straight to one view:
 | [`?theme=umbra&mode=dark`](https://samuelzamvil.github.io/redmine-themes/?theme=umbra&mode=dark) | Umbra in dark mode |
 | [`?theme=folio&page=issue-edit`](https://samuelzamvil.github.io/redmine-themes/?theme=folio&page=issue-edit) | Folio, the reworked issue editor |
 | [`?compare=1`](https://samuelzamvil.github.io/redmine-themes/?compare=1) | all five side by side |
+| [`?theme=atlas&nav=classic`](https://samuelzamvil.github.io/redmine-themes/?theme=atlas&nav=classic) | Atlas with Redmine's own navigation |
 
 To run it locally, assemble the site and serve it with anything static:
 
@@ -62,7 +81,7 @@ cd redmine-mock-site && python3 -m http.server
 
 Drop any theme in as `themes/<name>/` and add one line to the `THEMES` array in
 `index.html`, and you get twelve pages of feedback on it at once — it does not have
-to be one of these five. Full instructions ship inside the bundle, and are readable
+to be one of these ten. Full instructions ship inside the bundle, and are readable
 here as [`preview/README.md`](preview/README.md).
 
 ## Install
@@ -81,31 +100,32 @@ would rather not clone:
 
 | Asset | What it is |
 | --- | --- |
-| `atlas.zip` … `folio.zip` | one theme, ready to drop into `themes/` |
-| `redmine-themes-all.zip` | all five themes |
+| `atlas.zip` … `folio-classic.zip` | one theme, ready to drop into `themes/` |
+| `redmine-themes-all.zip` | all ten themes |
 | `redmine-mock-site.zip` | the fake Redmine, for previewing themes offline |
 
 The theme archives unpack straight into an install:
 
 ```
 unzip atlas.zip -d /path/to/redmine/themes/              # one theme
-unzip redmine-themes-all.zip -d /path/to/redmine/themes/ # all five
+unzip redmine-themes-all.zip -d /path/to/redmine/themes/ # all ten
 ```
 
-Installing all five is safe — each is a separate entry in the theme picker, and
+Installing all ten is safe — each is a separate entry in the theme picker, and
 only the selected one loads.
 
 ## Shared design
 
-All five are built the same way. Rather than overriding Redmine's rules one by one,
+All ten are built the same way. Rather than overriding Redmine's rules one by one,
 each theme remaps the Open Color custom properties that core already uses, so a
 single token block at the top of `stylesheets/application.css` drives every
 surface, border and accent — and dark mode falls out of inverting the same ramp.
 
 Every theme ships light and dark, following `prefers-color-scheme` with a manual
-override. Each also carries an optional `javascripts/theme.js` adding a collapsible
-left nav rail, status pills, a board view for issue lists, and a reworked issue
-editor. That file is purely additive; delete it and the styling still stands.
+override. Each also carries an optional `javascripts/theme.js` adding status pills, a
+board view for issue lists, and a reworked issue editor — plus, in the rail variants
+only, the nav rail itself. That file is purely additive; delete it and the styling
+still stands.
 
 See each theme's README for install and customisation notes.
 
@@ -120,15 +140,17 @@ imports the core stylesheet from there. Earlier releases put themes in
 
 ```
 atlas/ zen/ umbra/ dense/ folio/   the themes — copy one into your install
+<design>-classic/                  the same five, without the nav rail
 index.html                         the preview app (picker, compare, deep links)
 preview/shell.html                 the mocked Redmine screens it renders
 preview/README.md                  how to use the mock on your own theme
 stylesheets/                       unmodified Redmine 7 core CSS, for the preview only
 script/build-site.sh               assembles the site; used by Pages and the bundle
+script/build-release.sh            builds the release archives
 .github/workflows/pages.yml        publishes the preview to GitHub Pages
 ```
 
-Only the five theme folders are needed to use a theme; everything else exists to
+Only the theme folders are needed to use a theme; everything else exists to
 preview them.
 
 The preview reads a theme from `themes/<name>/`, which the deploy assembles from

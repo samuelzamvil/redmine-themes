@@ -5,7 +5,7 @@ Redmine markup rendered against Redmine 7's **unmodified core stylesheets**, wit
 theme layered on top exactly as a real install loads it — no Ruby, no database, no
 Redmine.
 
-Built with [Claude](https://claude.com/claude-code) to develop the five themes in
+Built with [Claude](https://claude.com/claude-code) to develop the ten themes in
 [redmine-themes](https://github.com/samuelzamvil/redmine-themes), and bundled
 separately because it is useful on its own: point it at a theme you are writing and
 you get instant feedback on twelve pages at once.
@@ -52,9 +52,14 @@ The harness has no knowledge of a theme beyond its folder name. To add yours:
    { key:'mytheme', name:'My Theme', note:'work in progress' },
    ```
 
-3. If that takes you past five themes, widen the compare grid in `index.html` —
+3. If that takes you past five entries, widen the compare grid in `index.html` —
    `.compare { grid-template-columns:repeat(5,…) }` — or make it self-adjusting
    with `repeat(auto-fit,minmax(200px,1fr))`.
+
+The **Nav** control switches between a `themes/<name>/` and a
+`themes/<name>-classic/` folder, which is how the bundled designs ship two
+navigation variants. If your theme has no `-classic` sibling, leave Nav on Rail —
+switching it would point the frame at a folder that does not exist.
 
 Your theme's own `@import` of the core stylesheet resolves correctly from
 `themes/<name>/stylesheets/`, the same as in a real Redmine 7 tree, so a theme that

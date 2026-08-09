@@ -1,5 +1,5 @@
 /**
- * Umbra - a theme for Redmine
+ * Atlas Classic - a theme for Redmine
  * Copyright (C) 2026 Samuel Zamvil
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -13,74 +13,145 @@
  * licence, or https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
  */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap");
 @import url(../../../stylesheets/application.css);
 
 /* =============================================================
-   Umbra — Redmine 7 theme
+   Atlas Classic — Redmine 7 theme
    Structure per redmine.org/wiki/HowTo_create_a_custom_Redmine_theme
-   themes/umbra/stylesheets/application.css
-   themes/umbra/javascripts/theme.js
-   Ships dark-first with an automatic light variant.
+   themes/atlas-classic/stylesheets/application.css
+   themes/atlas-classic/javascripts/theme.js
+   Ships light with an automatic dark variant.
    Every colour below is derived from the token block; retint the whole
    theme by editing --oc-gray-* (neutrals) and --oc-blue-* (accent).
    ============================================================= */
 
 :root {
-  --oc-gray-0: oklch(0.205 0.018 265);
-  --oc-gray-1: oklch(0.245 0.018 265);
-  --oc-gray-2: oklch(0.285 0.018 265);
-  --oc-gray-3: oklch(0.335 0.018 265);
-  --oc-gray-4: oklch(0.39 0.018 265);
-  --oc-gray-5: oklch(0.5 0.018 265);
-  --oc-gray-6: oklch(0.63 0.018 265);
-  --oc-gray-7: oklch(0.78 0.018 265);
-  --oc-gray-8: oklch(0.87 0.018 265);
-  --oc-gray-9: oklch(0.93 0.018 265);
-  --oc-blue-0: oklch(0.28 0.021 280);
-  --oc-blue-1: oklch(0.34 0.042 280);
-  --oc-blue-2: oklch(0.41 0.074 280);
-  --oc-blue-3: oklch(0.48 0.105 280);
-  --oc-blue-4: oklch(0.56 0.137 280);
-  --oc-blue-5: oklch(0.63 0.158 280);
-  --oc-blue-6: oklch(0.7 0.168 280);
-  --oc-blue-7: oklch(0.76 0.168 280);
-  --oc-blue-8: oklch(0.82 0.158 280);
-  --oc-blue-9: oklch(0.88 0.147 280);
-  --oc-indigo-0: oklch(0.28 0.021 280);
-  --oc-indigo-1: oklch(0.34 0.042 280);
-  --oc-indigo-2: oklch(0.41 0.074 280);
-  --oc-indigo-3: oklch(0.48 0.105 280);
-  --oc-indigo-4: oklch(0.56 0.137 280);
-  --oc-indigo-5: oklch(0.63 0.158 280);
-  --oc-indigo-6: oklch(0.7 0.168 280);
-  --oc-indigo-7: oklch(0.76 0.168 280);
-  --oc-indigo-8: oklch(0.82 0.158 280);
-  --oc-indigo-9: oklch(0.88 0.147 280);
-  --oc-violet-0: oklch(0.28 0.021 280);
-  --oc-violet-1: oklch(0.34 0.042 280);
-  --oc-violet-2: oklch(0.41 0.074 280);
-  --oc-violet-3: oklch(0.48 0.105 280);
-  --oc-violet-4: oklch(0.56 0.137 280);
-  --oc-violet-5: oklch(0.63 0.158 280);
-  --oc-violet-6: oklch(0.7 0.168 280);
-  --oc-violet-7: oklch(0.76 0.168 280);
-  --oc-violet-8: oklch(0.82 0.158 280);
-  --oc-violet-9: oklch(0.88 0.147 280);
-  --oc-cyan-0: oklch(0.28 0.021 280);
-  --oc-cyan-1: oklch(0.34 0.042 280);
-  --oc-cyan-2: oklch(0.41 0.074 280);
-  --oc-cyan-3: oklch(0.48 0.105 280);
-  --oc-cyan-4: oklch(0.56 0.137 280);
-  --oc-cyan-5: oklch(0.63 0.158 280);
-  --oc-cyan-6: oklch(0.7 0.168 280);
-  --oc-cyan-7: oklch(0.76 0.168 280);
-  --oc-cyan-8: oklch(0.82 0.158 280);
-  --oc-cyan-9: oklch(0.88 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --oc-gray-0: oklch(0.985 0.012 255);
+  --oc-gray-1: oklch(0.968 0.012 255);
+  --oc-gray-2: oklch(0.945 0.012 255);
+  --oc-gray-3: oklch(0.912 0.012 255);
+  --oc-gray-4: oklch(0.868 0.012 255);
+  --oc-gray-5: oklch(0.775 0.012 255);
+  --oc-gray-6: oklch(0.54 0.012 255);
+  --oc-gray-7: oklch(0.475 0.012 255);
+  --oc-gray-8: oklch(0.34 0.012 255);
+  --oc-gray-9: oklch(0.24 0.012 255);
+  --oc-blue-0: oklch(0.965 0.020 258);
+  --oc-blue-1: oklch(0.93 0.040 258);
+  --oc-blue-2: oklch(0.88 0.070 258);
+  --oc-blue-3: oklch(0.82 0.100 258);
+  --oc-blue-4: oklch(0.75 0.130 258);
+  --oc-blue-5: oklch(0.68 0.150 258);
+  --oc-blue-6: oklch(0.62 0.160 258);
+  --oc-blue-7: oklch(0.56 0.160 258);
+  --oc-blue-8: oklch(0.5 0.150 258);
+  --oc-blue-9: oklch(0.44 0.140 258);
+  --oc-indigo-0: oklch(0.965 0.020 258);
+  --oc-indigo-1: oklch(0.93 0.040 258);
+  --oc-indigo-2: oklch(0.88 0.070 258);
+  --oc-indigo-3: oklch(0.82 0.100 258);
+  --oc-indigo-4: oklch(0.75 0.130 258);
+  --oc-indigo-5: oklch(0.68 0.150 258);
+  --oc-indigo-6: oklch(0.62 0.160 258);
+  --oc-indigo-7: oklch(0.56 0.160 258);
+  --oc-indigo-8: oklch(0.5 0.150 258);
+  --oc-indigo-9: oklch(0.44 0.140 258);
+  --oc-violet-0: oklch(0.965 0.020 258);
+  --oc-violet-1: oklch(0.93 0.040 258);
+  --oc-violet-2: oklch(0.88 0.070 258);
+  --oc-violet-3: oklch(0.82 0.100 258);
+  --oc-violet-4: oklch(0.75 0.130 258);
+  --oc-violet-5: oklch(0.68 0.150 258);
+  --oc-violet-6: oklch(0.62 0.160 258);
+  --oc-violet-7: oklch(0.56 0.160 258);
+  --oc-violet-8: oklch(0.5 0.150 258);
+  --oc-violet-9: oklch(0.44 0.140 258);
+  --oc-cyan-0: oklch(0.965 0.020 258);
+  --oc-cyan-1: oklch(0.93 0.040 258);
+  --oc-cyan-2: oklch(0.88 0.070 258);
+  --oc-cyan-3: oklch(0.82 0.100 258);
+  --oc-cyan-4: oklch(0.75 0.130 258);
+  --oc-cyan-5: oklch(0.68 0.150 258);
+  --oc-cyan-6: oklch(0.62 0.160 258);
+  --oc-cyan-7: oklch(0.56 0.160 258);
+  --oc-cyan-8: oklch(0.5 0.150 258);
+  --oc-cyan-9: oklch(0.44 0.140 258);
+  --fonts-main: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-current-marker: var(--oc-blue-6);
+  --t-bg: var(--oc-gray-1);
+  --t-surface: #fff;
+  --t-surface-2: var(--oc-gray-0);
+  --t-border: var(--oc-gray-3);
+  --t-border-strong: var(--oc-gray-4);
+  --t-text: var(--oc-gray-9);
+  --t-dim: var(--oc-gray-6);
+  --t-accent: var(--oc-blue-7);
+  --t-accent-soft: var(--oc-blue-0);
+  --t-on-accent: #fff;
+  --t-chrome: oklch(0.30 0.045 258);
+  --t-chrome-text: oklch(0.93 0.012 258);
+  --t-rail: #fff;
+  --t-rail-text: oklch(0.42 0.02 258);
+  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-rm-mode="light"]) {
+  --oc-gray-0: oklch(0.205 0.016 255);
+  --oc-gray-1: oklch(0.245 0.016 255);
+  --oc-gray-2: oklch(0.285 0.016 255);
+  --oc-gray-3: oklch(0.335 0.016 255);
+  --oc-gray-4: oklch(0.39 0.016 255);
+  --oc-gray-5: oklch(0.5 0.016 255);
+  --oc-gray-6: oklch(0.63 0.016 255);
+  --oc-gray-7: oklch(0.78 0.016 255);
+  --oc-gray-8: oklch(0.87 0.016 255);
+  --oc-gray-9: oklch(0.93 0.016 255);
+  --oc-blue-0: oklch(0.28 0.020 258);
+  --oc-blue-1: oklch(0.34 0.040 258);
+  --oc-blue-2: oklch(0.41 0.070 258);
+  --oc-blue-3: oklch(0.48 0.100 258);
+  --oc-blue-4: oklch(0.56 0.130 258);
+  --oc-blue-5: oklch(0.63 0.150 258);
+  --oc-blue-6: oklch(0.7 0.160 258);
+  --oc-blue-7: oklch(0.76 0.160 258);
+  --oc-blue-8: oklch(0.82 0.150 258);
+  --oc-blue-9: oklch(0.88 0.140 258);
+  --oc-indigo-0: oklch(0.28 0.020 258);
+  --oc-indigo-1: oklch(0.34 0.040 258);
+  --oc-indigo-2: oklch(0.41 0.070 258);
+  --oc-indigo-3: oklch(0.48 0.100 258);
+  --oc-indigo-4: oklch(0.56 0.130 258);
+  --oc-indigo-5: oklch(0.63 0.150 258);
+  --oc-indigo-6: oklch(0.7 0.160 258);
+  --oc-indigo-7: oklch(0.76 0.160 258);
+  --oc-indigo-8: oklch(0.82 0.150 258);
+  --oc-indigo-9: oklch(0.88 0.140 258);
+  --oc-violet-0: oklch(0.28 0.020 258);
+  --oc-violet-1: oklch(0.34 0.040 258);
+  --oc-violet-2: oklch(0.41 0.070 258);
+  --oc-violet-3: oklch(0.48 0.100 258);
+  --oc-violet-4: oklch(0.56 0.130 258);
+  --oc-violet-5: oklch(0.63 0.150 258);
+  --oc-violet-6: oklch(0.7 0.160 258);
+  --oc-violet-7: oklch(0.76 0.160 258);
+  --oc-violet-8: oklch(0.82 0.150 258);
+  --oc-violet-9: oklch(0.88 0.140 258);
+  --oc-cyan-0: oklch(0.28 0.020 258);
+  --oc-cyan-1: oklch(0.34 0.040 258);
+  --oc-cyan-2: oklch(0.41 0.070 258);
+  --oc-cyan-3: oklch(0.48 0.100 258);
+  --oc-cyan-4: oklch(0.56 0.130 258);
+  --oc-cyan-5: oklch(0.63 0.150 258);
+  --oc-cyan-6: oklch(0.7 0.160 258);
+  --oc-cyan-7: oklch(0.76 0.160 258);
+  --oc-cyan-8: oklch(0.82 0.150 258);
+  --oc-cyan-9: oklch(0.88 0.140 258);
+  --fonts-main: "Public Sans", ui-sans-serif, system-ui, sans-serif;
   --color-current-marker: var(--oc-blue-6);
   --t-bg: var(--oc-gray-0);
-  --t-surface: oklch(0.235 0.018 265);
+  --t-surface: oklch(0.235 0.016 255);
   --t-surface-2: var(--oc-gray-1);
   --t-border: var(--oc-gray-2);
   --t-border-strong: var(--oc-gray-4);
@@ -88,154 +159,83 @@
   --t-dim: var(--oc-gray-6);
   --t-accent: var(--oc-blue-5);
   --t-accent-soft: var(--oc-blue-1);
-  --t-on-accent: oklch(0.16 0.01 265);
-  --t-chrome: oklch(0.160 0.018 265);
+  --t-on-accent: oklch(0.16 0.01 255);
+  --t-chrome: oklch(0.160 0.016 255);
   --t-chrome-text: var(--oc-gray-8);
-  --t-rail: oklch(0.160 0.018 265);
+  --t-rail: oklch(0.160 0.016 255);
   --t-rail-text: var(--oc-gray-7);
   --t-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.4);
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-rm-mode="dark"]) {
-  --oc-gray-0: oklch(0.985 0.014 265);
-  --oc-gray-1: oklch(0.968 0.014 265);
-  --oc-gray-2: oklch(0.945 0.014 265);
-  --oc-gray-3: oklch(0.912 0.014 265);
-  --oc-gray-4: oklch(0.868 0.014 265);
-  --oc-gray-5: oklch(0.775 0.014 265);
-  --oc-gray-6: oklch(0.54 0.014 265);
-  --oc-gray-7: oklch(0.475 0.014 265);
-  --oc-gray-8: oklch(0.34 0.014 265);
-  --oc-gray-9: oklch(0.24 0.014 265);
-  --oc-blue-0: oklch(0.965 0.021 280);
-  --oc-blue-1: oklch(0.93 0.042 280);
-  --oc-blue-2: oklch(0.88 0.074 280);
-  --oc-blue-3: oklch(0.82 0.105 280);
-  --oc-blue-4: oklch(0.75 0.137 280);
-  --oc-blue-5: oklch(0.68 0.158 280);
-  --oc-blue-6: oklch(0.62 0.168 280);
-  --oc-blue-7: oklch(0.56 0.168 280);
-  --oc-blue-8: oklch(0.5 0.158 280);
-  --oc-blue-9: oklch(0.44 0.147 280);
-  --oc-indigo-0: oklch(0.965 0.021 280);
-  --oc-indigo-1: oklch(0.93 0.042 280);
-  --oc-indigo-2: oklch(0.88 0.074 280);
-  --oc-indigo-3: oklch(0.82 0.105 280);
-  --oc-indigo-4: oklch(0.75 0.137 280);
-  --oc-indigo-5: oklch(0.68 0.158 280);
-  --oc-indigo-6: oklch(0.62 0.168 280);
-  --oc-indigo-7: oklch(0.56 0.168 280);
-  --oc-indigo-8: oklch(0.5 0.158 280);
-  --oc-indigo-9: oklch(0.44 0.147 280);
-  --oc-violet-0: oklch(0.965 0.021 280);
-  --oc-violet-1: oklch(0.93 0.042 280);
-  --oc-violet-2: oklch(0.88 0.074 280);
-  --oc-violet-3: oklch(0.82 0.105 280);
-  --oc-violet-4: oklch(0.75 0.137 280);
-  --oc-violet-5: oklch(0.68 0.158 280);
-  --oc-violet-6: oklch(0.62 0.168 280);
-  --oc-violet-7: oklch(0.56 0.168 280);
-  --oc-violet-8: oklch(0.5 0.158 280);
-  --oc-violet-9: oklch(0.44 0.147 280);
-  --oc-cyan-0: oklch(0.965 0.021 280);
-  --oc-cyan-1: oklch(0.93 0.042 280);
-  --oc-cyan-2: oklch(0.88 0.074 280);
-  --oc-cyan-3: oklch(0.82 0.105 280);
-  --oc-cyan-4: oklch(0.75 0.137 280);
-  --oc-cyan-5: oklch(0.68 0.158 280);
-  --oc-cyan-6: oklch(0.62 0.168 280);
-  --oc-cyan-7: oklch(0.56 0.168 280);
-  --oc-cyan-8: oklch(0.5 0.158 280);
-  --oc-cyan-9: oklch(0.44 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-current-marker: var(--oc-blue-6);
-  --t-bg: var(--oc-gray-1);
-  --t-surface: #fff;
-  --t-surface-2: var(--oc-gray-0);
-  --t-border: var(--oc-gray-3);
-  --t-border-strong: var(--oc-gray-4);
-  --t-text: var(--oc-gray-9);
-  --t-dim: var(--oc-gray-6);
-  --t-accent: var(--oc-blue-7);
-  --t-accent-soft: var(--oc-blue-0);
-  --t-on-accent: #fff;
-  --t-chrome: oklch(0.30 0.03 265);
-  --t-chrome-text: oklch(0.92 0.01 265);
-  --t-rail: oklch(0.985 0.008 265);
-  --t-rail-text: oklch(0.44 0.02 265);
-  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
   }
 }
 
-:root[data-rm-mode="light"] {
-  --oc-gray-0: oklch(0.985 0.014 265);
-  --oc-gray-1: oklch(0.968 0.014 265);
-  --oc-gray-2: oklch(0.945 0.014 265);
-  --oc-gray-3: oklch(0.912 0.014 265);
-  --oc-gray-4: oklch(0.868 0.014 265);
-  --oc-gray-5: oklch(0.775 0.014 265);
-  --oc-gray-6: oklch(0.54 0.014 265);
-  --oc-gray-7: oklch(0.475 0.014 265);
-  --oc-gray-8: oklch(0.34 0.014 265);
-  --oc-gray-9: oklch(0.24 0.014 265);
-  --oc-blue-0: oklch(0.965 0.021 280);
-  --oc-blue-1: oklch(0.93 0.042 280);
-  --oc-blue-2: oklch(0.88 0.074 280);
-  --oc-blue-3: oklch(0.82 0.105 280);
-  --oc-blue-4: oklch(0.75 0.137 280);
-  --oc-blue-5: oklch(0.68 0.158 280);
-  --oc-blue-6: oklch(0.62 0.168 280);
-  --oc-blue-7: oklch(0.56 0.168 280);
-  --oc-blue-8: oklch(0.5 0.158 280);
-  --oc-blue-9: oklch(0.44 0.147 280);
-  --oc-indigo-0: oklch(0.965 0.021 280);
-  --oc-indigo-1: oklch(0.93 0.042 280);
-  --oc-indigo-2: oklch(0.88 0.074 280);
-  --oc-indigo-3: oklch(0.82 0.105 280);
-  --oc-indigo-4: oklch(0.75 0.137 280);
-  --oc-indigo-5: oklch(0.68 0.158 280);
-  --oc-indigo-6: oklch(0.62 0.168 280);
-  --oc-indigo-7: oklch(0.56 0.168 280);
-  --oc-indigo-8: oklch(0.5 0.158 280);
-  --oc-indigo-9: oklch(0.44 0.147 280);
-  --oc-violet-0: oklch(0.965 0.021 280);
-  --oc-violet-1: oklch(0.93 0.042 280);
-  --oc-violet-2: oklch(0.88 0.074 280);
-  --oc-violet-3: oklch(0.82 0.105 280);
-  --oc-violet-4: oklch(0.75 0.137 280);
-  --oc-violet-5: oklch(0.68 0.158 280);
-  --oc-violet-6: oklch(0.62 0.168 280);
-  --oc-violet-7: oklch(0.56 0.168 280);
-  --oc-violet-8: oklch(0.5 0.158 280);
-  --oc-violet-9: oklch(0.44 0.147 280);
-  --oc-cyan-0: oklch(0.965 0.021 280);
-  --oc-cyan-1: oklch(0.93 0.042 280);
-  --oc-cyan-2: oklch(0.88 0.074 280);
-  --oc-cyan-3: oklch(0.82 0.105 280);
-  --oc-cyan-4: oklch(0.75 0.137 280);
-  --oc-cyan-5: oklch(0.68 0.158 280);
-  --oc-cyan-6: oklch(0.62 0.168 280);
-  --oc-cyan-7: oklch(0.56 0.168 280);
-  --oc-cyan-8: oklch(0.5 0.158 280);
-  --oc-cyan-9: oklch(0.44 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+:root[data-rm-mode="dark"] {
+  --oc-gray-0: oklch(0.205 0.016 255);
+  --oc-gray-1: oklch(0.245 0.016 255);
+  --oc-gray-2: oklch(0.285 0.016 255);
+  --oc-gray-3: oklch(0.335 0.016 255);
+  --oc-gray-4: oklch(0.39 0.016 255);
+  --oc-gray-5: oklch(0.5 0.016 255);
+  --oc-gray-6: oklch(0.63 0.016 255);
+  --oc-gray-7: oklch(0.78 0.016 255);
+  --oc-gray-8: oklch(0.87 0.016 255);
+  --oc-gray-9: oklch(0.93 0.016 255);
+  --oc-blue-0: oklch(0.28 0.020 258);
+  --oc-blue-1: oklch(0.34 0.040 258);
+  --oc-blue-2: oklch(0.41 0.070 258);
+  --oc-blue-3: oklch(0.48 0.100 258);
+  --oc-blue-4: oklch(0.56 0.130 258);
+  --oc-blue-5: oklch(0.63 0.150 258);
+  --oc-blue-6: oklch(0.7 0.160 258);
+  --oc-blue-7: oklch(0.76 0.160 258);
+  --oc-blue-8: oklch(0.82 0.150 258);
+  --oc-blue-9: oklch(0.88 0.140 258);
+  --oc-indigo-0: oklch(0.28 0.020 258);
+  --oc-indigo-1: oklch(0.34 0.040 258);
+  --oc-indigo-2: oklch(0.41 0.070 258);
+  --oc-indigo-3: oklch(0.48 0.100 258);
+  --oc-indigo-4: oklch(0.56 0.130 258);
+  --oc-indigo-5: oklch(0.63 0.150 258);
+  --oc-indigo-6: oklch(0.7 0.160 258);
+  --oc-indigo-7: oklch(0.76 0.160 258);
+  --oc-indigo-8: oklch(0.82 0.150 258);
+  --oc-indigo-9: oklch(0.88 0.140 258);
+  --oc-violet-0: oklch(0.28 0.020 258);
+  --oc-violet-1: oklch(0.34 0.040 258);
+  --oc-violet-2: oklch(0.41 0.070 258);
+  --oc-violet-3: oklch(0.48 0.100 258);
+  --oc-violet-4: oklch(0.56 0.130 258);
+  --oc-violet-5: oklch(0.63 0.150 258);
+  --oc-violet-6: oklch(0.7 0.160 258);
+  --oc-violet-7: oklch(0.76 0.160 258);
+  --oc-violet-8: oklch(0.82 0.150 258);
+  --oc-violet-9: oklch(0.88 0.140 258);
+  --oc-cyan-0: oklch(0.28 0.020 258);
+  --oc-cyan-1: oklch(0.34 0.040 258);
+  --oc-cyan-2: oklch(0.41 0.070 258);
+  --oc-cyan-3: oklch(0.48 0.100 258);
+  --oc-cyan-4: oklch(0.56 0.130 258);
+  --oc-cyan-5: oklch(0.63 0.150 258);
+  --oc-cyan-6: oklch(0.7 0.160 258);
+  --oc-cyan-7: oklch(0.76 0.160 258);
+  --oc-cyan-8: oklch(0.82 0.150 258);
+  --oc-cyan-9: oklch(0.88 0.140 258);
+  --fonts-main: "Public Sans", ui-sans-serif, system-ui, sans-serif;
   --color-current-marker: var(--oc-blue-6);
-  --t-bg: var(--oc-gray-1);
-  --t-surface: #fff;
-  --t-surface-2: var(--oc-gray-0);
-  --t-border: var(--oc-gray-3);
+  --t-bg: var(--oc-gray-0);
+  --t-surface: oklch(0.235 0.016 255);
+  --t-surface-2: var(--oc-gray-1);
+  --t-border: var(--oc-gray-2);
   --t-border-strong: var(--oc-gray-4);
   --t-text: var(--oc-gray-9);
   --t-dim: var(--oc-gray-6);
-  --t-accent: var(--oc-blue-7);
-  --t-accent-soft: var(--oc-blue-0);
-  --t-on-accent: #fff;
-  --t-chrome: oklch(0.30 0.03 265);
-  --t-chrome-text: oklch(0.92 0.01 265);
-  --t-rail: oklch(0.985 0.008 265);
-  --t-rail-text: oklch(0.44 0.02 265);
-  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
+  --t-accent: var(--oc-blue-5);
+  --t-accent-soft: var(--oc-blue-1);
+  --t-on-accent: oklch(0.16 0.01 255);
+  --t-chrome: oklch(0.160 0.016 255);
+  --t-chrome-text: var(--oc-gray-8);
+  --t-rail: oklch(0.160 0.016 255);
+  --t-rail-text: var(--oc-gray-7);
+  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.4);
 }
 
 :root { --t-radius: 6px; --t-box-radius: 10px; }
@@ -251,9 +251,9 @@ body { font-family: var(--fonts-main); font-size: 0.875rem; color: var(--t-text)
 #wrapper { background: var(--t-bg); }
 a, a:link, a:visited { color: var(--t-accent-text); text-decoration: none; }
 a:hover, a:active { color: var(--t-accent-text); text-decoration: underline; }
-h1,h2,h3,h4 { font-family: var(--fonts-main); letter-spacing: -0.008em; color: var(--t-text); }
+h1,h2,h3,h4 { font-family: var(--fonts-main); letter-spacing: -0.012em; color: var(--t-text); }
 #content h1, #content h2, #content h3, #content h4 { color: var(--t-text); }
-#content h2 { font-size: 1.125rem; font-weight: 600; margin-block-end: 18px; }
+#content h2 { font-size: 1.125rem; font-weight: 650; margin-block-end: 16px; }
 
 nav.top-menu, #top-menu { background: var(--t-chrome); border-block-end: 1px solid var(--t-border); padding-inline: 22px; min-block-size: 34px; }
 .top-menu__links a, .top-menu__links a:link, .top-menu__links a:visited { color: var(--t-chrome-text); border-radius: 6px; padding-block: 3px; font-size: 0.8125rem; }
@@ -263,7 +263,7 @@ nav.top-menu, #top-menu { background: var(--t-chrome); border-block-end: 1px sol
 #header { background: var(--t-surface); border-block-end: 1px solid var(--t-border); padding: 14px 22px 12px; color: var(--t-text); }
 body.has-main-menu #header { padding-block-end: 2.35rem; }
 #header a, #header a:hover { color: var(--t-text); }
-#header h1 { font-size: 1.375rem; font-weight: 600; color: var(--t-text); letter-spacing: -0.008em; }
+#header h1 { font-size: 1.375rem; font-weight: 650; color: var(--t-text); letter-spacing: -0.012em; }
 #header h1 .breadcrumbs { color: var(--t-dim); font-size: 0.6875rem; letter-spacing: .06em; text-transform: uppercase; }
 #quick-search { color: var(--t-dim); }
 #quick-search label a { color: var(--t-dim); font-size: 0.75rem; }
@@ -278,18 +278,18 @@ body.has-main-menu #header { padding-block-end: 2.35rem; }
 #main-menu li a.new-object:hover { background: var(--t-accent); color: var(--t-on-accent); filter: brightness(1.08); }
 #main-menu .menu-children { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; box-shadow: var(--t-shadow); padding-block: 4px; }
 
-#sidebar { background: var(--t-bg); border-inline-start: 1px solid var(--t-border); padding-inline: 18px 14px; padding-block-start: 18px; }
+#sidebar { background: var(--t-bg); border-inline-start: 1px solid var(--t-border); padding-inline: 18px 14px; padding-block-start: 16px; }
 #sidebar h3 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .08em; color: var(--t-dim); font-weight: 700; }
 #sidebar a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); border-radius: 6px; box-shadow: none; padding-inline: 8px; }
 #sidebar hr { background: var(--t-border); }
 
-#content { background: var(--t-surface); padding: 22px 26px; }
+#content { background: var(--t-surface); padding: 22px 24px; }
 #footer { background: var(--t-bg); border-block-start: 1px solid var(--t-border); color: var(--t-dim); padding-block: 14px; font-size: 0.75rem; }
 
 /* ===== Surfaces ===== */
 div.box, fieldset.box, #activity dl, .splitcontent > div > .box {
   background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px;
-  padding: 18px 20px; box-shadow: 0 1px 2px oklch(0 0 0 / .35);
+  padding: 16px 18px; box-shadow: 0 1px 2px oklch(0 0 0 / .05);
 }
 fieldset.box legend { color: var(--t-dim); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .06em; }
 div.box h3, .box h3 { margin-block-start: 0; font-size: 0.9375rem; }
@@ -297,10 +297,10 @@ div.box h3, .box h3 { margin-block-start: 0; font-size: 0.9375rem; }
 /* ===== Tables ===== */
 table.list, .table-list { border: 1px solid var(--t-border); border-radius: 10px; overflow: hidden; border-collapse: separate; border-spacing: 0; background: var(--t-surface); }
 table.list th, .table-list-header { background: var(--t-surface-2); color: var(--t-dim); border-block-end: 1px solid var(--t-border); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; padding: 8px 10px; position: sticky; inset-block-start: 0; z-index: 5; }
-table.list td { border-block-start: 1px solid var(--t-border); padding-block: 10px; color: var(--t-text); }
+table.list td { border-block-start: 1px solid var(--t-border); padding-block: 9px; color: var(--t-text); }
 table.list tbody tr:hover, table.list tbody tr.odd:hover, table.list tbody tr.even:hover { background: var(--t-accent-soft); }
 table.list tbody tr.odd { background: transparent; }
-table.list tbody tr.even { background: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+table.list tbody tr.even { background: color-mix(in oklab, var(--oc-gray-1) 45%, transparent); }
 table.list td.id a { color: var(--t-dim); font-variant-numeric: tabular-nums; }
 table.list td.subject a, table.list td.name a { color: var(--t-text); font-weight: 500; }
 table.list td.subject a:hover { color: var(--t-accent-text); }
@@ -309,7 +309,7 @@ tr.issue.closed td.subject a, tr.issue.closed a { text-decoration: line-through;
 /* ===== Forms & buttons ===== */
 input[type=text], input[type=password], input[type=email], input[type=number], input[type=date], select, textarea {
   background: var(--t-surface); color: var(--t-text); border: 1px solid var(--t-border-strong); border-radius: 6px;
-  padding: 6px 10px; font-family: inherit; font-size: 0.8125rem; transition: border-color .15s, box-shadow .15s;
+  padding: 6px 9px; font-family: inherit; font-size: 0.8125rem; transition: border-color .15s, box-shadow .15s;
 }
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
   outline: none; border-color: var(--t-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--t-accent) 22%, transparent);
@@ -317,7 +317,7 @@ input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus
 input[type=submit], input[type=button], a.button,
 button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]) {
   background: var(--t-accent); color: var(--t-on-accent); border: 0; border-radius: 6px;
-  padding: 6px 15px; font-family: inherit; font-weight: 600; font-size: 0.8125rem; cursor: pointer; transition: filter .15s;
+  padding: 6px 14px; font-family: inherit; font-weight: 600; font-size: 0.8125rem; cursor: pointer; transition: filter .15s;
 }
 input[type=submit]:hover, a.button:hover,
 button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]):hover { filter: brightness(1.08); text-decoration: none; color: var(--t-on-accent); }
@@ -335,8 +335,8 @@ div.tabs ul { border-block-end: 1px solid var(--t-border); }
 div.tabs ul li a.selected { background: var(--t-surface); border-color: var(--t-border); border-block-end-color: var(--t-surface); color: var(--t-accent-text); }
 
 /* ===== Issue detail ===== */
-div.issue { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px; padding: 18px 20px; }
-div.issue div.subject h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.008em; }
+div.issue { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px; padding: 16px 18px; }
+div.issue div.subject h3 { font-size: 1.25rem; font-weight: 650; letter-spacing: -0.012em; }
 div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); font-weight: 600; }
 #history .journal, div.journal { border-block-start: 1px solid var(--t-border); padding-block: 14px; }
 .badge, .tag-label-color, span.badge { border-radius: 999px; }
@@ -353,7 +353,7 @@ div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); f
 /* ===== Global nav rail (built by theme.js) ===== */
 #rm-rail { box-sizing: border-box; position: fixed; inset-block: 0; inset-inline-start: 0; inline-size: 216px; background: var(--t-rail); border-inline-end: 1px solid var(--t-border); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; z-index: 40; transition: inline-size .18s ease; }
 #rm-rail .rm-rail-brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; color: var(--t-rail-text); font-weight: 700; font-size: 0.9375rem; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; }
-#rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 6px; background: var(--t-accent); flex: 0 0 auto; }
+#rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 7px; background: var(--t-accent); flex: 0 0 auto; }
 #rm-rail a { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 6px; color: var(--t-rail-text); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; }
 #rm-rail a:hover { background: color-mix(in oklab, var(--t-rail-text) 10%, transparent); text-decoration: none; }
 #rm-rail a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); font-weight: 600; }
@@ -368,7 +368,7 @@ body.rm-rail-collapsed #rm-rail .rm-rail-label, body.rm-rail-collapsed #rm-rail 
 .rm-board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 12px; overflow-x: auto; padding-block: 4px; align-items: start; }
 .rm-board-col { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 10px; padding: 10px; min-block-size: 120px; }
 .rm-board-col > h4 { margin: 0 0 10px; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .08em; color: var(--t-dim); display: flex; justify-content: space-between; }
-.rm-card { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; padding: 10px 11px; margin-block-end: 8px; box-shadow: 0 1px 2px oklch(0 0 0 / .35); }
+.rm-card { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; padding: 10px 11px; margin-block-end: 8px; box-shadow: 0 1px 2px oklch(0 0 0 / .05); }
 .rm-card .rm-card-subject { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--t-text); line-height: 1.4; margin-block-end: 8px; }
 .rm-card .rm-card-meta { display: flex; align-items: center; gap: 8px; font-size: 0.6875rem; color: var(--t-dim); }
 .rm-viewswitch { display: inline-flex; gap: 0; border: 1px solid var(--t-border-strong); border-radius: 6px; overflow: hidden; margin-inline-start: 8px; }
@@ -382,9 +382,9 @@ body.rm-rail-collapsed #rm-rail .rm-rail-label, body.rm-rail-collapsed #rm-rail 
 #login-form input[type=submit] { inline-size: 100%; padding-block: 9px; }
 
 /* ===== Wiki / activity ===== */
-div.wiki { line-height: 1.7; }
+div.wiki { line-height: 1.65; }
 div.wiki h1, div.wiki h2 { border-block-end: 1px solid var(--t-border); padding-block-end: 6px; }
-div.wiki pre, pre, code { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 6px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+div.wiki pre, pre, code { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 6px; font-family: "JetBrains Mono", ui-monospace, monospace; }
 /* Core lays the activity feed out with floats, which collide once the
    entries sit inside a card. Re-flow each dt as a single row. */
 #activity dl { padding: 0; }
@@ -416,11 +416,12 @@ div.task_todo.parent, div.task_done.parent, div.task_late.parent { border-radius
 .version.task_done, .project.task_done { background: var(--t-accent) !important; border-color: var(--t-accent) !important; }
 #gantt-today-line { position: absolute; inset-block: 0; inline-size: 0; border-inline-start: 2px dashed color-mix(in oklab, var(--oc-red-6) 70%, transparent); z-index: 8; }
 
-/* Umbra: low-light first, dimmed imagery */
-img, .gravatar { filter: brightness(.92); }
-::selection { background: color-mix(in oklab, var(--t-accent) 45%, transparent); }
-table.list th { letter-spacing: .08em; }
-#rm-rail a.selected { box-shadow: inset 2px 0 0 var(--t-accent); }
+/* Atlas: card-like content column, roomy rows */
+#content { max-inline-size: none; }
+table.list tbody tr { transition: background .12s; }
+table.list td.subject { font-size: 0.875rem; }
+#header h1 .current-project { font-weight: 650; }
+.rm-card { border-inline-start: 3px solid var(--t-accent); }
 
 /* ===== Issue editor (theme.js lifts #update above the history and tabs it) ===== */
 #update.rm-editor { margin-block: 18px 22px; }
@@ -477,17 +478,17 @@ body.rm-rail-collapsed #rm-rail .rm-rail-sec { block-size: 1px; padding: 10px 0 
    leaves white bands behind. The -rgb variants stay literal: they are
    only used for shadows, which should stay black in both modes.
    ------------------------------------------------------------------- */
-:root { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); }
-@media (prefers-color-scheme: light) { :root:not([data-rm-mode="dark"]) { --oc-white: #ffffff; --oc-black: #000000; } }
-:root[data-rm-mode="light"] { --oc-white: #ffffff; --oc-black: #000000; }
+:root { --oc-white: #ffffff; --oc-black: #000000; }
+@media (prefers-color-scheme: dark) { :root:not([data-rm-mode="light"]) { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); } }
+:root[data-rm-mode="dark"] { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); }
 
 /* Core's striping selectors outrank a plain tr.odd, so match their shape. */
 table.list:not(.odd-even) tbody tr:nth-child(odd), table.list tbody tr.odd { background-color: transparent; }
-table.list:not(.odd-even) tbody tr:nth-child(even), table.list tbody tr.even { background-color: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+table.list:not(.odd-even) tbody tr:nth-child(even), table.list tbody tr.even { background-color: color-mix(in oklab, var(--oc-gray-1) 45%, transparent); }
 table.list:not(.odd-even) tbody tr:nth-child(odd):hover,
 table.list:not(.odd-even) tbody tr:nth-child(even):hover,
 table.list tbody tr:hover { background-color: var(--t-accent-soft); }
-.box table.list:not(.odd-even) tbody tr:nth-child(even), .box .even { background-color: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+.box table.list:not(.odd-even) tbody tr:nth-child(even), .box .even { background-color: color-mix(in oklab, var(--oc-gray-1) 45%, transparent); }
 
 /* -------------------------------------------------------------------
    Wiki toolbar. Its buttons carry their glyph as a background-image, so
@@ -499,9 +500,9 @@ table.list tbody tr:hover { background-color: var(--t-accent-soft); }
    background image, so in dark mode the button chrome goes transparent
    and the hover tint is a mid grey, which survives inversion unchanged.
    ------------------------------------------------------------------- */
-:root { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); }
-@media (prefers-color-scheme: light) { :root:not([data-rm-mode="dark"]) { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); } }
-:root[data-rm-mode="light"] { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); }
+:root { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); }
+@media (prefers-color-scheme: dark) { :root:not([data-rm-mode="light"]) { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); } }
+:root[data-rm-mode="dark"] { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); }
 
 .jstElements button {
   inline-size: 26px; block-size: 26px; margin: 0; padding: 4px; opacity: 1; cursor: pointer;
@@ -633,7 +634,7 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
    columns and the issue table. Take it out of flow instead; it keeps
    the same position without stealing width from anything.
    ------------------------------------------------------------------- */
-:root { --t-pad-b: 22px; --t-pad-i: 26px; }
+:root { --t-pad-b: 22px; --t-pad-i: 24px; }
 #content { position: relative; }
 #content > .contextual { float: none; position: absolute; inset-block-start: var(--t-pad-b); inset-inline-end: var(--t-pad-i); margin: 0; z-index: 3; }
 #content > .contextual + h2, #content > .contextual + h1 { margin-block-start: 0; }
@@ -1219,32 +1220,20 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
 }
 
 /* ===================================================================
-   NAV MODE: rail
+   NAV MODE: classic
 
-   Navigation lives entirely in the left rail. Redmine's two nav bars —
-   the global #top-menu and the project #main-menu — are the same links
-   the rail already carries, so showing both duplicates every item and
-   costs two rows of vertical space on every page. They are hidden here.
+   No rail. Redmine's own navigation stays exactly where it is — the
+   global bar across the top, the project tabs beneath it. The runtime
+   in this folder never builds a rail, so the variant is decided when
+   the file is written rather than read from CSS at load time; reading a
+   custom property at DOMContentLoaded races the stylesheet.
 
-   They stay in the DOM: below 900px the rail withdraws and core clones
-   these menus into its flyout, so removing them would break mobile.
-   Hiding is therefore scoped to the widths where the rail exists.
-
-   Hiding #top-menu also hides the account dropdown, so theme.js gives
-   sign-out its own block at the foot of the rail.
+   --t-nav is declarative — it records the variant for anyone reading
+   the file. The #rm-rail reset is insurance for the one case that would
+   otherwise look broken: a rail-variant theme.js paired with this
+   stylesheet, which would leave a rail overlapping the content.
    =================================================================== */
-:root { --t-nav: rail; }
+:root { --t-nav: classic; }
 
-@media screen and (min-width: 900px) {
-  body.rm-has-rail #top-menu,
-  body.rm-has-rail #main-menu { display: none; }
-  /* the header reserves a strip for the project tabs; reclaim it */
-  body.rm-has-rail.has-main-menu #header { padding-block-end: 12px; }
-}
-
-#rm-rail .rm-rail-foot {
-  margin-block-start: auto;
-  padding-block-start: 8px;
-  border-block-start: 1px solid var(--t-border);
-}
-#rm-rail .rm-rail-toggle { margin-block-start: 0; }
+#rm-rail { display: none; }
+body.rm-has-rail #wrapper, body.rm-rail-collapsed #wrapper { margin-inline-start: 0; }

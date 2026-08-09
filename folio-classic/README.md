@@ -1,6 +1,6 @@
-# Folio
+# Folio Classic
 
-A Redmine 7 theme — warm and editorial — serif headings on a warm paper ground, an amber accent. This is the **rail** variant: navigation lives in a collapsible left rail.
+A Redmine 7 theme — warm and editorial — serif headings on a warm paper ground, an amber accent. This is the **classic** variant: it keeps Redmine's own top and project navigation and builds no rail.
 
 > **Untested.** Designed entirely by Claude and not systematically tested on a live
 > Redmine install. See the [repository README](../README.md) for details.
@@ -8,10 +8,10 @@ A Redmine 7 theme — warm and editorial — serif headings on a warm paper grou
 ## Install
 
 ```
-cp -r folio /path/to/redmine/themes/
+cp -r folio-classic /path/to/redmine/themes/
 ```
 
-Then pick **Folio** under *Administration → Settings → Display → Theme*.
+Then pick **Folio Classic** under *Administration → Settings → Display → Theme*.
 
 Requires Redmine 7.0.
 
@@ -32,7 +32,7 @@ Redmine's own flyout menu takes over.
 ## Layout
 
 ```
-folio/
+folio-classic/
 ├── stylesheets/application.css   imports Redmine core, then the theme
 ├── javascripts/theme.js          optional runtime (see below)
 └── favicon/                      drop a favicon.ico here to override Redmine's
@@ -73,13 +73,9 @@ The choice persists in `localStorage`. You can also set `data-rm-mode="dark"` on
 Additive DOM work only — no server templates are modified, and deleting the file
 returns you to stock Redmine behaviour with the styling intact.
 
-- **Global nav rail** on the left, assembled from the existing top and project
-  menus. Collapsible, state persisted. Icons are cloned from the sprite each menu
-  link already carries, so it uses your Redmine's real icon set.
-- **Sign out** in its own block at the foot of the rail, above the collapse toggle
-  and separated by a rule. Hiding `#top-menu` also hides the account dropdown, so
-  the rail lifts the sign-out link out of it. Found via `a.logout`; on an
-  anonymous session, where no such link exists, the block is not created.
+- **No nav rail.** Redmine's own navigation stays exactly where it is, so
+  `#top-menu` and `#main-menu` keep their usual place and the account dropdown
+  keeps sign-out.
 - **Status pills** in place of plain status text in issue tables and details.
 - **Board view** toggle on issue lists, grouping rows into columns by status.
 - **Issue editor**: stock Redmine renders the edit form below the history, so

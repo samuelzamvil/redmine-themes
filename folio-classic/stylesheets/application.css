@@ -1,5 +1,5 @@
 /**
- * Umbra - a theme for Redmine
+ * Folio Classic - a theme for Redmine
  * Copyright (C) 2026 Samuel Zamvil
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -13,74 +13,145 @@
  * licence, or https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
  */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap");
 @import url(../../../stylesheets/application.css);
 
 /* =============================================================
-   Umbra — Redmine 7 theme
+   Folio Classic — Redmine 7 theme
    Structure per redmine.org/wiki/HowTo_create_a_custom_Redmine_theme
-   themes/umbra/stylesheets/application.css
-   themes/umbra/javascripts/theme.js
-   Ships dark-first with an automatic light variant.
+   themes/folio-classic/stylesheets/application.css
+   themes/folio-classic/javascripts/theme.js
+   Ships light with an automatic dark variant.
    Every colour below is derived from the token block; retint the whole
    theme by editing --oc-gray-* (neutrals) and --oc-blue-* (accent).
    ============================================================= */
 
 :root {
-  --oc-gray-0: oklch(0.205 0.018 265);
-  --oc-gray-1: oklch(0.245 0.018 265);
-  --oc-gray-2: oklch(0.285 0.018 265);
-  --oc-gray-3: oklch(0.335 0.018 265);
-  --oc-gray-4: oklch(0.39 0.018 265);
-  --oc-gray-5: oklch(0.5 0.018 265);
-  --oc-gray-6: oklch(0.63 0.018 265);
-  --oc-gray-7: oklch(0.78 0.018 265);
-  --oc-gray-8: oklch(0.87 0.018 265);
-  --oc-gray-9: oklch(0.93 0.018 265);
-  --oc-blue-0: oklch(0.28 0.021 280);
-  --oc-blue-1: oklch(0.34 0.042 280);
-  --oc-blue-2: oklch(0.41 0.074 280);
-  --oc-blue-3: oklch(0.48 0.105 280);
-  --oc-blue-4: oklch(0.56 0.137 280);
-  --oc-blue-5: oklch(0.63 0.158 280);
-  --oc-blue-6: oklch(0.7 0.168 280);
-  --oc-blue-7: oklch(0.76 0.168 280);
-  --oc-blue-8: oklch(0.82 0.158 280);
-  --oc-blue-9: oklch(0.88 0.147 280);
-  --oc-indigo-0: oklch(0.28 0.021 280);
-  --oc-indigo-1: oklch(0.34 0.042 280);
-  --oc-indigo-2: oklch(0.41 0.074 280);
-  --oc-indigo-3: oklch(0.48 0.105 280);
-  --oc-indigo-4: oklch(0.56 0.137 280);
-  --oc-indigo-5: oklch(0.63 0.158 280);
-  --oc-indigo-6: oklch(0.7 0.168 280);
-  --oc-indigo-7: oklch(0.76 0.168 280);
-  --oc-indigo-8: oklch(0.82 0.158 280);
-  --oc-indigo-9: oklch(0.88 0.147 280);
-  --oc-violet-0: oklch(0.28 0.021 280);
-  --oc-violet-1: oklch(0.34 0.042 280);
-  --oc-violet-2: oklch(0.41 0.074 280);
-  --oc-violet-3: oklch(0.48 0.105 280);
-  --oc-violet-4: oklch(0.56 0.137 280);
-  --oc-violet-5: oklch(0.63 0.158 280);
-  --oc-violet-6: oklch(0.7 0.168 280);
-  --oc-violet-7: oklch(0.76 0.168 280);
-  --oc-violet-8: oklch(0.82 0.158 280);
-  --oc-violet-9: oklch(0.88 0.147 280);
-  --oc-cyan-0: oklch(0.28 0.021 280);
-  --oc-cyan-1: oklch(0.34 0.042 280);
-  --oc-cyan-2: oklch(0.41 0.074 280);
-  --oc-cyan-3: oklch(0.48 0.105 280);
-  --oc-cyan-4: oklch(0.56 0.137 280);
-  --oc-cyan-5: oklch(0.63 0.158 280);
-  --oc-cyan-6: oklch(0.7 0.168 280);
-  --oc-cyan-7: oklch(0.76 0.168 280);
-  --oc-cyan-8: oklch(0.82 0.158 280);
-  --oc-cyan-9: oklch(0.88 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --oc-gray-0: oklch(0.985 0.01 70);
+  --oc-gray-1: oklch(0.968 0.01 70);
+  --oc-gray-2: oklch(0.945 0.01 70);
+  --oc-gray-3: oklch(0.912 0.01 70);
+  --oc-gray-4: oklch(0.868 0.01 70);
+  --oc-gray-5: oklch(0.775 0.01 70);
+  --oc-gray-6: oklch(0.54 0.01 70);
+  --oc-gray-7: oklch(0.475 0.01 70);
+  --oc-gray-8: oklch(0.34 0.01 70);
+  --oc-gray-9: oklch(0.24 0.01 70);
+  --oc-blue-0: oklch(0.965 0.019 48);
+  --oc-blue-1: oklch(0.93 0.038 48);
+  --oc-blue-2: oklch(0.88 0.067 48);
+  --oc-blue-3: oklch(0.82 0.095 48);
+  --oc-blue-4: oklch(0.75 0.123 48);
+  --oc-blue-5: oklch(0.68 0.142 48);
+  --oc-blue-6: oklch(0.62 0.152 48);
+  --oc-blue-7: oklch(0.56 0.152 48);
+  --oc-blue-8: oklch(0.5 0.142 48);
+  --oc-blue-9: oklch(0.44 0.133 48);
+  --oc-indigo-0: oklch(0.965 0.019 48);
+  --oc-indigo-1: oklch(0.93 0.038 48);
+  --oc-indigo-2: oklch(0.88 0.067 48);
+  --oc-indigo-3: oklch(0.82 0.095 48);
+  --oc-indigo-4: oklch(0.75 0.123 48);
+  --oc-indigo-5: oklch(0.68 0.142 48);
+  --oc-indigo-6: oklch(0.62 0.152 48);
+  --oc-indigo-7: oklch(0.56 0.152 48);
+  --oc-indigo-8: oklch(0.5 0.142 48);
+  --oc-indigo-9: oklch(0.44 0.133 48);
+  --oc-violet-0: oklch(0.965 0.019 48);
+  --oc-violet-1: oklch(0.93 0.038 48);
+  --oc-violet-2: oklch(0.88 0.067 48);
+  --oc-violet-3: oklch(0.82 0.095 48);
+  --oc-violet-4: oklch(0.75 0.123 48);
+  --oc-violet-5: oklch(0.68 0.142 48);
+  --oc-violet-6: oklch(0.62 0.152 48);
+  --oc-violet-7: oklch(0.56 0.152 48);
+  --oc-violet-8: oklch(0.5 0.142 48);
+  --oc-violet-9: oklch(0.44 0.133 48);
+  --oc-cyan-0: oklch(0.965 0.019 48);
+  --oc-cyan-1: oklch(0.93 0.038 48);
+  --oc-cyan-2: oklch(0.88 0.067 48);
+  --oc-cyan-3: oklch(0.82 0.095 48);
+  --oc-cyan-4: oklch(0.75 0.123 48);
+  --oc-cyan-5: oklch(0.68 0.142 48);
+  --oc-cyan-6: oklch(0.62 0.152 48);
+  --oc-cyan-7: oklch(0.56 0.152 48);
+  --oc-cyan-8: oklch(0.5 0.142 48);
+  --oc-cyan-9: oklch(0.44 0.133 48);
+  --fonts-main: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --color-current-marker: var(--oc-blue-6);
+  --t-bg: var(--oc-gray-1);
+  --t-surface: #fff;
+  --t-surface-2: var(--oc-gray-0);
+  --t-border: var(--oc-gray-3);
+  --t-border-strong: var(--oc-gray-4);
+  --t-text: var(--oc-gray-9);
+  --t-dim: var(--oc-gray-6);
+  --t-accent: var(--oc-blue-7);
+  --t-accent-soft: var(--oc-blue-0);
+  --t-on-accent: #fff;
+  --t-chrome: oklch(0.32 0.028 70);
+  --t-chrome-text: oklch(0.94 0.012 70);
+  --t-rail: oklch(0.975 0.012 70);
+  --t-rail-text: oklch(0.42 0.018 70);
+  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-rm-mode="light"]) {
+  --oc-gray-0: oklch(0.205 0.012 70);
+  --oc-gray-1: oklch(0.245 0.012 70);
+  --oc-gray-2: oklch(0.285 0.012 70);
+  --oc-gray-3: oklch(0.335 0.012 70);
+  --oc-gray-4: oklch(0.39 0.012 70);
+  --oc-gray-5: oklch(0.5 0.012 70);
+  --oc-gray-6: oklch(0.63 0.012 70);
+  --oc-gray-7: oklch(0.78 0.012 70);
+  --oc-gray-8: oklch(0.87 0.012 70);
+  --oc-gray-9: oklch(0.93 0.012 70);
+  --oc-blue-0: oklch(0.28 0.019 48);
+  --oc-blue-1: oklch(0.34 0.038 48);
+  --oc-blue-2: oklch(0.41 0.067 48);
+  --oc-blue-3: oklch(0.48 0.095 48);
+  --oc-blue-4: oklch(0.56 0.123 48);
+  --oc-blue-5: oklch(0.63 0.142 48);
+  --oc-blue-6: oklch(0.7 0.152 48);
+  --oc-blue-7: oklch(0.76 0.152 48);
+  --oc-blue-8: oklch(0.82 0.142 48);
+  --oc-blue-9: oklch(0.88 0.133 48);
+  --oc-indigo-0: oklch(0.28 0.019 48);
+  --oc-indigo-1: oklch(0.34 0.038 48);
+  --oc-indigo-2: oklch(0.41 0.067 48);
+  --oc-indigo-3: oklch(0.48 0.095 48);
+  --oc-indigo-4: oklch(0.56 0.123 48);
+  --oc-indigo-5: oklch(0.63 0.142 48);
+  --oc-indigo-6: oklch(0.7 0.152 48);
+  --oc-indigo-7: oklch(0.76 0.152 48);
+  --oc-indigo-8: oklch(0.82 0.142 48);
+  --oc-indigo-9: oklch(0.88 0.133 48);
+  --oc-violet-0: oklch(0.28 0.019 48);
+  --oc-violet-1: oklch(0.34 0.038 48);
+  --oc-violet-2: oklch(0.41 0.067 48);
+  --oc-violet-3: oklch(0.48 0.095 48);
+  --oc-violet-4: oklch(0.56 0.123 48);
+  --oc-violet-5: oklch(0.63 0.142 48);
+  --oc-violet-6: oklch(0.7 0.152 48);
+  --oc-violet-7: oklch(0.76 0.152 48);
+  --oc-violet-8: oklch(0.82 0.142 48);
+  --oc-violet-9: oklch(0.88 0.133 48);
+  --oc-cyan-0: oklch(0.28 0.019 48);
+  --oc-cyan-1: oklch(0.34 0.038 48);
+  --oc-cyan-2: oklch(0.41 0.067 48);
+  --oc-cyan-3: oklch(0.48 0.095 48);
+  --oc-cyan-4: oklch(0.56 0.123 48);
+  --oc-cyan-5: oklch(0.63 0.142 48);
+  --oc-cyan-6: oklch(0.7 0.152 48);
+  --oc-cyan-7: oklch(0.76 0.152 48);
+  --oc-cyan-8: oklch(0.82 0.142 48);
+  --oc-cyan-9: oklch(0.88 0.133 48);
+  --fonts-main: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --color-current-marker: var(--oc-blue-6);
   --t-bg: var(--oc-gray-0);
-  --t-surface: oklch(0.235 0.018 265);
+  --t-surface: oklch(0.235 0.012 70);
   --t-surface-2: var(--oc-gray-1);
   --t-border: var(--oc-gray-2);
   --t-border-strong: var(--oc-gray-4);
@@ -88,157 +159,86 @@
   --t-dim: var(--oc-gray-6);
   --t-accent: var(--oc-blue-5);
   --t-accent-soft: var(--oc-blue-1);
-  --t-on-accent: oklch(0.16 0.01 265);
-  --t-chrome: oklch(0.160 0.018 265);
+  --t-on-accent: oklch(0.16 0.01 70);
+  --t-chrome: oklch(0.160 0.012 70);
   --t-chrome-text: var(--oc-gray-8);
-  --t-rail: oklch(0.160 0.018 265);
+  --t-rail: oklch(0.160 0.012 70);
+  --t-rail-text: var(--oc-gray-7);
+  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.4);
+  }
+}
+
+:root[data-rm-mode="dark"] {
+  --oc-gray-0: oklch(0.205 0.012 70);
+  --oc-gray-1: oklch(0.245 0.012 70);
+  --oc-gray-2: oklch(0.285 0.012 70);
+  --oc-gray-3: oklch(0.335 0.012 70);
+  --oc-gray-4: oklch(0.39 0.012 70);
+  --oc-gray-5: oklch(0.5 0.012 70);
+  --oc-gray-6: oklch(0.63 0.012 70);
+  --oc-gray-7: oklch(0.78 0.012 70);
+  --oc-gray-8: oklch(0.87 0.012 70);
+  --oc-gray-9: oklch(0.93 0.012 70);
+  --oc-blue-0: oklch(0.28 0.019 48);
+  --oc-blue-1: oklch(0.34 0.038 48);
+  --oc-blue-2: oklch(0.41 0.067 48);
+  --oc-blue-3: oklch(0.48 0.095 48);
+  --oc-blue-4: oklch(0.56 0.123 48);
+  --oc-blue-5: oklch(0.63 0.142 48);
+  --oc-blue-6: oklch(0.7 0.152 48);
+  --oc-blue-7: oklch(0.76 0.152 48);
+  --oc-blue-8: oklch(0.82 0.142 48);
+  --oc-blue-9: oklch(0.88 0.133 48);
+  --oc-indigo-0: oklch(0.28 0.019 48);
+  --oc-indigo-1: oklch(0.34 0.038 48);
+  --oc-indigo-2: oklch(0.41 0.067 48);
+  --oc-indigo-3: oklch(0.48 0.095 48);
+  --oc-indigo-4: oklch(0.56 0.123 48);
+  --oc-indigo-5: oklch(0.63 0.142 48);
+  --oc-indigo-6: oklch(0.7 0.152 48);
+  --oc-indigo-7: oklch(0.76 0.152 48);
+  --oc-indigo-8: oklch(0.82 0.142 48);
+  --oc-indigo-9: oklch(0.88 0.133 48);
+  --oc-violet-0: oklch(0.28 0.019 48);
+  --oc-violet-1: oklch(0.34 0.038 48);
+  --oc-violet-2: oklch(0.41 0.067 48);
+  --oc-violet-3: oklch(0.48 0.095 48);
+  --oc-violet-4: oklch(0.56 0.123 48);
+  --oc-violet-5: oklch(0.63 0.142 48);
+  --oc-violet-6: oklch(0.7 0.152 48);
+  --oc-violet-7: oklch(0.76 0.152 48);
+  --oc-violet-8: oklch(0.82 0.142 48);
+  --oc-violet-9: oklch(0.88 0.133 48);
+  --oc-cyan-0: oklch(0.28 0.019 48);
+  --oc-cyan-1: oklch(0.34 0.038 48);
+  --oc-cyan-2: oklch(0.41 0.067 48);
+  --oc-cyan-3: oklch(0.48 0.095 48);
+  --oc-cyan-4: oklch(0.56 0.123 48);
+  --oc-cyan-5: oklch(0.63 0.142 48);
+  --oc-cyan-6: oklch(0.7 0.152 48);
+  --oc-cyan-7: oklch(0.76 0.152 48);
+  --oc-cyan-8: oklch(0.82 0.142 48);
+  --oc-cyan-9: oklch(0.88 0.133 48);
+  --fonts-main: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --color-current-marker: var(--oc-blue-6);
+  --t-bg: var(--oc-gray-0);
+  --t-surface: oklch(0.235 0.012 70);
+  --t-surface-2: var(--oc-gray-1);
+  --t-border: var(--oc-gray-2);
+  --t-border-strong: var(--oc-gray-4);
+  --t-text: var(--oc-gray-9);
+  --t-dim: var(--oc-gray-6);
+  --t-accent: var(--oc-blue-5);
+  --t-accent-soft: var(--oc-blue-1);
+  --t-on-accent: oklch(0.16 0.01 70);
+  --t-chrome: oklch(0.160 0.012 70);
+  --t-chrome-text: var(--oc-gray-8);
+  --t-rail: oklch(0.160 0.012 70);
   --t-rail-text: var(--oc-gray-7);
   --t-shadow: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.4);
 }
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-rm-mode="dark"]) {
-  --oc-gray-0: oklch(0.985 0.014 265);
-  --oc-gray-1: oklch(0.968 0.014 265);
-  --oc-gray-2: oklch(0.945 0.014 265);
-  --oc-gray-3: oklch(0.912 0.014 265);
-  --oc-gray-4: oklch(0.868 0.014 265);
-  --oc-gray-5: oklch(0.775 0.014 265);
-  --oc-gray-6: oklch(0.54 0.014 265);
-  --oc-gray-7: oklch(0.475 0.014 265);
-  --oc-gray-8: oklch(0.34 0.014 265);
-  --oc-gray-9: oklch(0.24 0.014 265);
-  --oc-blue-0: oklch(0.965 0.021 280);
-  --oc-blue-1: oklch(0.93 0.042 280);
-  --oc-blue-2: oklch(0.88 0.074 280);
-  --oc-blue-3: oklch(0.82 0.105 280);
-  --oc-blue-4: oklch(0.75 0.137 280);
-  --oc-blue-5: oklch(0.68 0.158 280);
-  --oc-blue-6: oklch(0.62 0.168 280);
-  --oc-blue-7: oklch(0.56 0.168 280);
-  --oc-blue-8: oklch(0.5 0.158 280);
-  --oc-blue-9: oklch(0.44 0.147 280);
-  --oc-indigo-0: oklch(0.965 0.021 280);
-  --oc-indigo-1: oklch(0.93 0.042 280);
-  --oc-indigo-2: oklch(0.88 0.074 280);
-  --oc-indigo-3: oklch(0.82 0.105 280);
-  --oc-indigo-4: oklch(0.75 0.137 280);
-  --oc-indigo-5: oklch(0.68 0.158 280);
-  --oc-indigo-6: oklch(0.62 0.168 280);
-  --oc-indigo-7: oklch(0.56 0.168 280);
-  --oc-indigo-8: oklch(0.5 0.158 280);
-  --oc-indigo-9: oklch(0.44 0.147 280);
-  --oc-violet-0: oklch(0.965 0.021 280);
-  --oc-violet-1: oklch(0.93 0.042 280);
-  --oc-violet-2: oklch(0.88 0.074 280);
-  --oc-violet-3: oklch(0.82 0.105 280);
-  --oc-violet-4: oklch(0.75 0.137 280);
-  --oc-violet-5: oklch(0.68 0.158 280);
-  --oc-violet-6: oklch(0.62 0.168 280);
-  --oc-violet-7: oklch(0.56 0.168 280);
-  --oc-violet-8: oklch(0.5 0.158 280);
-  --oc-violet-9: oklch(0.44 0.147 280);
-  --oc-cyan-0: oklch(0.965 0.021 280);
-  --oc-cyan-1: oklch(0.93 0.042 280);
-  --oc-cyan-2: oklch(0.88 0.074 280);
-  --oc-cyan-3: oklch(0.82 0.105 280);
-  --oc-cyan-4: oklch(0.75 0.137 280);
-  --oc-cyan-5: oklch(0.68 0.158 280);
-  --oc-cyan-6: oklch(0.62 0.168 280);
-  --oc-cyan-7: oklch(0.56 0.168 280);
-  --oc-cyan-8: oklch(0.5 0.158 280);
-  --oc-cyan-9: oklch(0.44 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-current-marker: var(--oc-blue-6);
-  --t-bg: var(--oc-gray-1);
-  --t-surface: #fff;
-  --t-surface-2: var(--oc-gray-0);
-  --t-border: var(--oc-gray-3);
-  --t-border-strong: var(--oc-gray-4);
-  --t-text: var(--oc-gray-9);
-  --t-dim: var(--oc-gray-6);
-  --t-accent: var(--oc-blue-7);
-  --t-accent-soft: var(--oc-blue-0);
-  --t-on-accent: #fff;
-  --t-chrome: oklch(0.30 0.03 265);
-  --t-chrome-text: oklch(0.92 0.01 265);
-  --t-rail: oklch(0.985 0.008 265);
-  --t-rail-text: oklch(0.44 0.02 265);
-  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
-  }
-}
-
-:root[data-rm-mode="light"] {
-  --oc-gray-0: oklch(0.985 0.014 265);
-  --oc-gray-1: oklch(0.968 0.014 265);
-  --oc-gray-2: oklch(0.945 0.014 265);
-  --oc-gray-3: oklch(0.912 0.014 265);
-  --oc-gray-4: oklch(0.868 0.014 265);
-  --oc-gray-5: oklch(0.775 0.014 265);
-  --oc-gray-6: oklch(0.54 0.014 265);
-  --oc-gray-7: oklch(0.475 0.014 265);
-  --oc-gray-8: oklch(0.34 0.014 265);
-  --oc-gray-9: oklch(0.24 0.014 265);
-  --oc-blue-0: oklch(0.965 0.021 280);
-  --oc-blue-1: oklch(0.93 0.042 280);
-  --oc-blue-2: oklch(0.88 0.074 280);
-  --oc-blue-3: oklch(0.82 0.105 280);
-  --oc-blue-4: oklch(0.75 0.137 280);
-  --oc-blue-5: oklch(0.68 0.158 280);
-  --oc-blue-6: oklch(0.62 0.168 280);
-  --oc-blue-7: oklch(0.56 0.168 280);
-  --oc-blue-8: oklch(0.5 0.158 280);
-  --oc-blue-9: oklch(0.44 0.147 280);
-  --oc-indigo-0: oklch(0.965 0.021 280);
-  --oc-indigo-1: oklch(0.93 0.042 280);
-  --oc-indigo-2: oklch(0.88 0.074 280);
-  --oc-indigo-3: oklch(0.82 0.105 280);
-  --oc-indigo-4: oklch(0.75 0.137 280);
-  --oc-indigo-5: oklch(0.68 0.158 280);
-  --oc-indigo-6: oklch(0.62 0.168 280);
-  --oc-indigo-7: oklch(0.56 0.168 280);
-  --oc-indigo-8: oklch(0.5 0.158 280);
-  --oc-indigo-9: oklch(0.44 0.147 280);
-  --oc-violet-0: oklch(0.965 0.021 280);
-  --oc-violet-1: oklch(0.93 0.042 280);
-  --oc-violet-2: oklch(0.88 0.074 280);
-  --oc-violet-3: oklch(0.82 0.105 280);
-  --oc-violet-4: oklch(0.75 0.137 280);
-  --oc-violet-5: oklch(0.68 0.158 280);
-  --oc-violet-6: oklch(0.62 0.168 280);
-  --oc-violet-7: oklch(0.56 0.168 280);
-  --oc-violet-8: oklch(0.5 0.158 280);
-  --oc-violet-9: oklch(0.44 0.147 280);
-  --oc-cyan-0: oklch(0.965 0.021 280);
-  --oc-cyan-1: oklch(0.93 0.042 280);
-  --oc-cyan-2: oklch(0.88 0.074 280);
-  --oc-cyan-3: oklch(0.82 0.105 280);
-  --oc-cyan-4: oklch(0.75 0.137 280);
-  --oc-cyan-5: oklch(0.68 0.158 280);
-  --oc-cyan-6: oklch(0.62 0.168 280);
-  --oc-cyan-7: oklch(0.56 0.168 280);
-  --oc-cyan-8: oklch(0.5 0.158 280);
-  --oc-cyan-9: oklch(0.44 0.147 280);
-  --fonts-main: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-current-marker: var(--oc-blue-6);
-  --t-bg: var(--oc-gray-1);
-  --t-surface: #fff;
-  --t-surface-2: var(--oc-gray-0);
-  --t-border: var(--oc-gray-3);
-  --t-border-strong: var(--oc-gray-4);
-  --t-text: var(--oc-gray-9);
-  --t-dim: var(--oc-gray-6);
-  --t-accent: var(--oc-blue-7);
-  --t-accent-soft: var(--oc-blue-0);
-  --t-on-accent: #fff;
-  --t-chrome: oklch(0.30 0.03 265);
-  --t-chrome-text: oklch(0.92 0.01 265);
-  --t-rail: oklch(0.985 0.008 265);
-  --t-rail-text: oklch(0.44 0.02 265);
-  --t-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.06);
-}
-
-:root { --t-radius: 6px; --t-box-radius: 10px; }
+:root { --t-radius: 5px; --t-box-radius: 8px; }
 
 /* ===== Layout shell ===== */
 body { min-inline-size: 0; }
@@ -247,60 +247,60 @@ body { min-inline-size: 0; }
 .top-menu__links a { white-space: nowrap; }
 fieldset.box legend { white-space: nowrap; }
 #header h1 { overflow: visible; }
-body { font-family: var(--fonts-main); font-size: 0.875rem; color: var(--t-text); background: var(--t-bg); -webkit-font-smoothing: antialiased; }
+body { font-family: var(--fonts-main); font-size: 0.9375rem; color: var(--t-text); background: var(--t-bg); -webkit-font-smoothing: antialiased; }
 #wrapper { background: var(--t-bg); }
 a, a:link, a:visited { color: var(--t-accent-text); text-decoration: none; }
 a:hover, a:active { color: var(--t-accent-text); text-decoration: underline; }
-h1,h2,h3,h4 { font-family: var(--fonts-main); letter-spacing: -0.008em; color: var(--t-text); }
+h1,h2,h3,h4 { font-family: "Source Serif 4", Georgia, serif; letter-spacing: 0; color: var(--t-text); }
 #content h1, #content h2, #content h3, #content h4 { color: var(--t-text); }
-#content h2 { font-size: 1.125rem; font-weight: 600; margin-block-end: 18px; }
+#content h2 { font-size: 1.25rem; font-weight: 600; margin-block-end: 20px; }
 
-nav.top-menu, #top-menu { background: var(--t-chrome); border-block-end: 1px solid var(--t-border); padding-inline: 22px; min-block-size: 34px; }
-.top-menu__links a, .top-menu__links a:link, .top-menu__links a:visited { color: var(--t-chrome-text); border-radius: 6px; padding-block: 3px; font-size: 0.8125rem; }
+nav.top-menu, #top-menu { background: var(--t-chrome); border-block-end: 1px solid var(--t-border); padding-inline: 28px; min-block-size: 34px; }
+.top-menu__links a, .top-menu__links a:link, .top-menu__links a:visited { color: var(--t-chrome-text); border-radius: 5px; padding-block: 3px; font-size: 0.8125rem; }
 .top-menu__links a:hover { background: color-mix(in oklab, var(--t-chrome-text) 12%, transparent); color: var(--t-chrome-text); text-decoration: none; }
 .top-menu__links svg.icon-svg { stroke: var(--t-chrome-text); }
 
-#header { background: var(--t-surface); border-block-end: 1px solid var(--t-border); padding: 14px 22px 12px; color: var(--t-text); }
+#header { background: var(--t-surface); border-block-end: 1px solid var(--t-border); padding: 18px 28px 16px; color: var(--t-text); }
 body.has-main-menu #header { padding-block-end: 2.35rem; }
 #header a, #header a:hover { color: var(--t-text); }
-#header h1 { font-size: 1.375rem; font-weight: 600; color: var(--t-text); letter-spacing: -0.008em; }
+#header h1 { font-size: 1.5rem; font-weight: 600; color: var(--t-text); letter-spacing: 0; }
 #header h1 .breadcrumbs { color: var(--t-dim); font-size: 0.6875rem; letter-spacing: .06em; text-transform: uppercase; }
 #quick-search { color: var(--t-dim); }
 #quick-search label a { color: var(--t-dim); font-size: 0.75rem; }
 #quick-search input[type=text] { min-inline-size: 190px; }
 
-#main-menu { inset-inline-start: 22px; }
+#main-menu { inset-inline-start: 28px; }
 #main-menu ul { background: transparent; gap: 2px; }
-#main-menu li a { color: var(--t-dim); border-radius: 6px 6px 0 0; padding-block: 6px; padding-inline: 12px; font-weight: 500; font-size: 0.8125rem; border: 0; }
+#main-menu li a { color: var(--t-dim); border-radius: 5px 5px 0 0; padding-block: 6px; padding-inline: 12px; font-weight: 500; font-size: 0.8125rem; border: 0; }
 #main-menu li a:hover { background: var(--t-surface-2); color: var(--t-text); }
 #main-menu li a.selected, #main-menu li a.selected:hover { background: transparent; color: var(--t-accent-text); box-shadow: inset 0 -2px 0 var(--t-accent); font-weight: 600; }
-#main-menu li a.new-object { background: var(--t-accent); border: 0; color: var(--t-on-accent); border-radius: 6px; font-weight: 600; }
+#main-menu li a.new-object { background: var(--t-accent); border: 0; color: var(--t-on-accent); border-radius: 5px; font-weight: 600; }
 #main-menu li a.new-object:hover { background: var(--t-accent); color: var(--t-on-accent); filter: brightness(1.08); }
-#main-menu .menu-children { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; box-shadow: var(--t-shadow); padding-block: 4px; }
+#main-menu .menu-children { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 5px; box-shadow: var(--t-shadow); padding-block: 4px; }
 
-#sidebar { background: var(--t-bg); border-inline-start: 1px solid var(--t-border); padding-inline: 18px 14px; padding-block-start: 18px; }
+#sidebar { background: var(--t-bg); border-inline-start: 1px solid var(--t-border); padding-inline: 18px 14px; padding-block-start: 20px; }
 #sidebar h3 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .08em; color: var(--t-dim); font-weight: 700; }
-#sidebar a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); border-radius: 6px; box-shadow: none; padding-inline: 8px; }
+#sidebar a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); border-radius: 5px; box-shadow: none; padding-inline: 8px; }
 #sidebar hr { background: var(--t-border); }
 
-#content { background: var(--t-surface); padding: 22px 26px; }
+#content { background: var(--t-surface); padding: 26px 30px; }
 #footer { background: var(--t-bg); border-block-start: 1px solid var(--t-border); color: var(--t-dim); padding-block: 14px; font-size: 0.75rem; }
 
 /* ===== Surfaces ===== */
 div.box, fieldset.box, #activity dl, .splitcontent > div > .box {
-  background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px;
-  padding: 18px 20px; box-shadow: 0 1px 2px oklch(0 0 0 / .35);
+  background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 8px;
+  padding: 20px 24px; box-shadow: none;
 }
 fieldset.box legend { color: var(--t-dim); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .06em; }
 div.box h3, .box h3 { margin-block-start: 0; font-size: 0.9375rem; }
 
 /* ===== Tables ===== */
-table.list, .table-list { border: 1px solid var(--t-border); border-radius: 10px; overflow: hidden; border-collapse: separate; border-spacing: 0; background: var(--t-surface); }
-table.list th, .table-list-header { background: var(--t-surface-2); color: var(--t-dim); border-block-end: 1px solid var(--t-border); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; padding: 8px 10px; position: sticky; inset-block-start: 0; z-index: 5; }
-table.list td { border-block-start: 1px solid var(--t-border); padding-block: 10px; color: var(--t-text); }
+table.list, .table-list { border: 1px solid var(--t-border); border-radius: 8px; overflow: hidden; border-collapse: separate; border-spacing: 0; background: var(--t-surface); }
+table.list th, .table-list-header { background: var(--t-surface-2); color: var(--t-dim); border-block-end: 1px solid var(--t-border); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; padding: 9px 11px; position: sticky; inset-block-start: 0; z-index: 5; }
+table.list td { border-block-start: 1px solid var(--t-border); padding-block: 11px; color: var(--t-text); }
 table.list tbody tr:hover, table.list tbody tr.odd:hover, table.list tbody tr.even:hover { background: var(--t-accent-soft); }
 table.list tbody tr.odd { background: transparent; }
-table.list tbody tr.even { background: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+table.list tbody tr.even { background: color-mix(in oklab, var(--oc-gray-1) 55%, transparent); }
 table.list td.id a { color: var(--t-dim); font-variant-numeric: tabular-nums; }
 table.list td.subject a, table.list td.name a { color: var(--t-text); font-weight: 500; }
 table.list td.subject a:hover { color: var(--t-accent-text); }
@@ -308,16 +308,16 @@ tr.issue.closed td.subject a, tr.issue.closed a { text-decoration: line-through;
 
 /* ===== Forms & buttons ===== */
 input[type=text], input[type=password], input[type=email], input[type=number], input[type=date], select, textarea {
-  background: var(--t-surface); color: var(--t-text); border: 1px solid var(--t-border-strong); border-radius: 6px;
-  padding: 6px 10px; font-family: inherit; font-size: 0.8125rem; transition: border-color .15s, box-shadow .15s;
+  background: var(--t-surface); color: var(--t-text); border: 1px solid var(--t-border-strong); border-radius: 5px;
+  padding: 7px 10px; font-family: inherit; font-size: 0.8125rem; transition: border-color .15s, box-shadow .15s;
 }
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
   outline: none; border-color: var(--t-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--t-accent) 22%, transparent);
 }
 input[type=submit], input[type=button], a.button,
 button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]) {
-  background: var(--t-accent); color: var(--t-on-accent); border: 0; border-radius: 6px;
-  padding: 6px 15px; font-family: inherit; font-weight: 600; font-size: 0.8125rem; cursor: pointer; transition: filter .15s;
+  background: var(--t-accent); color: var(--t-on-accent); border: 0; border-radius: 5px;
+  padding: 7px 16px; font-family: inherit; font-weight: 600; font-size: 0.8125rem; cursor: pointer; transition: filter .15s;
 }
 input[type=submit]:hover, a.button:hover,
 button:not(.tab-left):not(.tab-right):not(.icon-only):not(.jstSpacer):not([class*="jstb_"]):hover { filter: brightness(1.08); text-decoration: none; color: var(--t-on-accent); }
@@ -325,18 +325,18 @@ input[type=submit].secondary, button.secondary, a.button.secondary { background:
 label { color: var(--t-dim); font-weight: 600; font-size: 0.8125rem; }
 
 /* ===== Messages & chrome ===== */
-div.flash, .flash { border-radius: 6px; border: 1px solid var(--t-border); padding: 10px 14px; font-weight: 500; }
+div.flash, .flash { border-radius: 5px; border: 1px solid var(--t-border); padding: 10px 14px; font-weight: 500; }
 div.flash.notice { background: color-mix(in oklab, var(--oc-green-5) 14%, var(--t-surface)); border-color: color-mix(in oklab, var(--oc-green-5) 40%, transparent); color: var(--t-text); }
 div.flash.error { background: color-mix(in oklab, var(--oc-red-5) 14%, var(--t-surface)); border-color: color-mix(in oklab, var(--oc-red-5) 40%, transparent); color: var(--t-text); }
 p.pagination, span.pagination { color: var(--t-dim); font-size: 0.75rem; }
-.pagination a { padding: 2px 7px; border-radius: 6px; }
-.pagination .current { background: var(--t-accent); color: var(--t-on-accent); padding: 2px 7px; border-radius: 6px; }
+.pagination a { padding: 2px 7px; border-radius: 5px; }
+.pagination .current { background: var(--t-accent); color: var(--t-on-accent); padding: 2px 7px; border-radius: 5px; }
 div.tabs ul { border-block-end: 1px solid var(--t-border); }
 div.tabs ul li a.selected { background: var(--t-surface); border-color: var(--t-border); border-block-end-color: var(--t-surface); color: var(--t-accent-text); }
 
 /* ===== Issue detail ===== */
-div.issue { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px; padding: 18px 20px; }
-div.issue div.subject h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.008em; }
+div.issue { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 8px; padding: 20px 24px; }
+div.issue div.subject h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: 0; }
 div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); font-weight: 600; }
 #history .journal, div.journal { border-block-start: 1px solid var(--t-border); padding-block: 14px; }
 .badge, .tag-label-color, span.badge { border-radius: 999px; }
@@ -351,40 +351,40 @@ div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); f
 .rm-pill[data-s="rejected"] { background: color-mix(in oklab, var(--oc-red-5) 14%, var(--t-surface)); color: var(--oc-red-9); border-color: transparent; }
 
 /* ===== Global nav rail (built by theme.js) ===== */
-#rm-rail { box-sizing: border-box; position: fixed; inset-block: 0; inset-inline-start: 0; inline-size: 216px; background: var(--t-rail); border-inline-end: 1px solid var(--t-border); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; z-index: 40; transition: inline-size .18s ease; }
+#rm-rail { box-sizing: border-box; position: fixed; inset-block: 0; inset-inline-start: 0; inline-size: 220px; background: var(--t-rail); border-inline-end: 1px solid var(--t-border); display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; z-index: 40; transition: inline-size .18s ease; }
 #rm-rail .rm-rail-brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; color: var(--t-rail-text); font-weight: 700; font-size: 0.9375rem; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; }
-#rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 6px; background: var(--t-accent); flex: 0 0 auto; }
-#rm-rail a { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 6px; color: var(--t-rail-text); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; }
+#rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 3px; background: var(--t-accent); flex: 0 0 auto; }
+#rm-rail a { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 5px; color: var(--t-rail-text); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; }
 #rm-rail a:hover { background: color-mix(in oklab, var(--t-rail-text) 10%, transparent); text-decoration: none; }
 #rm-rail a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); font-weight: 600; }
 #rm-rail .rm-rail-sec { font-size: 0.625rem; text-transform: uppercase; letter-spacing: .1em; color: var(--t-dim); padding: 14px 9px 5px; white-space: nowrap; overflow: hidden; }
 #rm-rail .rm-rail-toggle { margin-block-start: auto; }
-body.rm-has-rail #wrapper { margin-inline-start: 216px; transition: margin-inline-start .18s ease; }
+body.rm-has-rail #wrapper { margin-inline-start: 220px; transition: margin-inline-start .18s ease; }
 body.rm-rail-collapsed #rm-rail { inline-size: 52px; }
 body.rm-rail-collapsed #wrapper { margin-inline-start: 52px; }
 body.rm-rail-collapsed #rm-rail .rm-rail-label, body.rm-rail-collapsed #rm-rail .rm-rail-sec { opacity: 0; }
 
 /* ===== Board mode (theme.js) ===== */
 .rm-board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 12px; overflow-x: auto; padding-block: 4px; align-items: start; }
-.rm-board-col { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 10px; padding: 10px; min-block-size: 120px; }
+.rm-board-col { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 8px; padding: 10px; min-block-size: 120px; }
 .rm-board-col > h4 { margin: 0 0 10px; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .08em; color: var(--t-dim); display: flex; justify-content: space-between; }
-.rm-card { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; padding: 10px 11px; margin-block-end: 8px; box-shadow: 0 1px 2px oklch(0 0 0 / .35); }
+.rm-card { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 5px; padding: 10px 11px; margin-block-end: 8px; box-shadow: none; }
 .rm-card .rm-card-subject { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--t-text); line-height: 1.4; margin-block-end: 8px; }
 .rm-card .rm-card-meta { display: flex; align-items: center; gap: 8px; font-size: 0.6875rem; color: var(--t-dim); }
-.rm-viewswitch { display: inline-flex; gap: 0; border: 1px solid var(--t-border-strong); border-radius: 6px; overflow: hidden; margin-inline-start: 8px; }
+.rm-viewswitch { display: inline-flex; gap: 0; border: 1px solid var(--t-border-strong); border-radius: 5px; overflow: hidden; margin-inline-start: 8px; }
 .rm-viewswitch button { background: var(--t-surface) !important; color: var(--t-dim) !important; border: 0 !important; border-radius: 0 !important; padding: 4px 11px !important; font-size: 0.75rem !important; }
 .rm-viewswitch button.on { background: var(--t-accent) !important; color: var(--t-on-accent) !important; }
 
 /* ===== Login ===== */
-#login-form { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px; box-shadow: var(--t-shadow); padding: 28px 30px; max-inline-size: 380px; margin-block-start: 8vh; }
+#login-form { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 8px; box-shadow: var(--t-shadow); padding: 28px 30px; max-inline-size: 380px; margin-block-start: 8vh; }
 #login-form table { inline-size: 100%; }
 #login-form input[type=text], #login-form input[type=password] { inline-size: 100%; box-sizing: border-box; }
 #login-form input[type=submit] { inline-size: 100%; padding-block: 9px; }
 
 /* ===== Wiki / activity ===== */
-div.wiki { line-height: 1.7; }
+div.wiki { line-height: 1.75; }
 div.wiki h1, div.wiki h2 { border-block-end: 1px solid var(--t-border); padding-block-end: 6px; }
-div.wiki pre, pre, code { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 6px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+div.wiki pre, pre, code { background: var(--t-surface-2); border: 1px solid var(--t-border); border-radius: 5px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
 /* Core lays the activity feed out with floats, which collide once the
    entries sit inside a card. Re-flow each dt as a single row. */
 #activity dl { padding: 0; }
@@ -416,11 +416,16 @@ div.task_todo.parent, div.task_done.parent, div.task_late.parent { border-radius
 .version.task_done, .project.task_done { background: var(--t-accent) !important; border-color: var(--t-accent) !important; }
 #gantt-today-line { position: absolute; inset-block: 0; inline-size: 0; border-inline-start: 2px dashed color-mix(in oklab, var(--oc-red-6) 70%, transparent); z-index: 8; }
 
-/* Umbra: low-light first, dimmed imagery */
-img, .gravatar { filter: brightness(.92); }
-::selection { background: color-mix(in oklab, var(--t-accent) 45%, transparent); }
-table.list th { letter-spacing: .08em; }
-#rm-rail a.selected { box-shadow: inset 2px 0 0 var(--t-accent); }
+/* Folio: editorial serif headings on warm paper */
+#header h1, #content h1, #content h2, #content h3, div.issue div.subject h3, div.wiki h1, div.wiki h2, div.wiki h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; }
+/* #main is flex-direction: row-reverse, so a max-width on #content shrinks the
+   flex item and the leftover space lands on the LEFT — the content floats away
+   from the edge. Cap the blocks inside instead; the column stays flush left. */
+#content > * { max-inline-size: 1240px; }
+div.wiki { font-size: 1rem; max-inline-size: 72ch; }
+div.wiki p { text-wrap: pretty; }
+table.list th { font-family: var(--fonts-main); }
+#footer { font-style: italic; }
 
 /* ===== Issue editor (theme.js lifts #update above the history and tabs it) ===== */
 #update.rm-editor { margin-block: 18px 22px; }
@@ -477,17 +482,17 @@ body.rm-rail-collapsed #rm-rail .rm-rail-sec { block-size: 1px; padding: 10px 0 
    leaves white bands behind. The -rgb variants stay literal: they are
    only used for shadows, which should stay black in both modes.
    ------------------------------------------------------------------- */
-:root { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); }
-@media (prefers-color-scheme: light) { :root:not([data-rm-mode="dark"]) { --oc-white: #ffffff; --oc-black: #000000; } }
-:root[data-rm-mode="light"] { --oc-white: #ffffff; --oc-black: #000000; }
+:root { --oc-white: #ffffff; --oc-black: #000000; }
+@media (prefers-color-scheme: dark) { :root:not([data-rm-mode="light"]) { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); } }
+:root[data-rm-mode="dark"] { --oc-white: var(--t-surface); --oc-black: var(--oc-gray-9); }
 
 /* Core's striping selectors outrank a plain tr.odd, so match their shape. */
 table.list:not(.odd-even) tbody tr:nth-child(odd), table.list tbody tr.odd { background-color: transparent; }
-table.list:not(.odd-even) tbody tr:nth-child(even), table.list tbody tr.even { background-color: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+table.list:not(.odd-even) tbody tr:nth-child(even), table.list tbody tr.even { background-color: color-mix(in oklab, var(--oc-gray-1) 55%, transparent); }
 table.list:not(.odd-even) tbody tr:nth-child(odd):hover,
 table.list:not(.odd-even) tbody tr:nth-child(even):hover,
 table.list tbody tr:hover { background-color: var(--t-accent-soft); }
-.box table.list:not(.odd-even) tbody tr:nth-child(even), .box .even { background-color: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
+.box table.list:not(.odd-even) tbody tr:nth-child(even), .box .even { background-color: color-mix(in oklab, var(--oc-gray-1) 55%, transparent); }
 
 /* -------------------------------------------------------------------
    Wiki toolbar. Its buttons carry their glyph as a background-image, so
@@ -499,9 +504,9 @@ table.list tbody tr:hover { background-color: var(--t-accent-soft); }
    background image, so in dark mode the button chrome goes transparent
    and the hover tint is a mid grey, which survives inversion unchanged.
    ------------------------------------------------------------------- */
-:root { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); }
-@media (prefers-color-scheme: light) { :root:not([data-rm-mode="dark"]) { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); } }
-:root[data-rm-mode="light"] { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); }
+:root { --t-icon-invert: 0; --t-jst-bg: var(--t-surface); --t-jst-border: var(--t-border); --t-jst-hover: var(--t-accent-soft); }
+@media (prefers-color-scheme: dark) { :root:not([data-rm-mode="light"]) { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); } }
+:root[data-rm-mode="dark"] { --t-icon-invert: 0.92; --t-jst-bg: transparent; --t-jst-border: transparent; --t-jst-hover: rgba(128,128,128,.3); }
 
 .jstElements button {
   inline-size: 26px; block-size: 26px; margin: 0; padding: 4px; opacity: 1; cursor: pointer;
@@ -633,7 +638,7 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
    columns and the issue table. Take it out of flow instead; it keeps
    the same position without stealing width from anything.
    ------------------------------------------------------------------- */
-:root { --t-pad-b: 22px; --t-pad-i: 26px; }
+:root { --t-pad-b: 26px; --t-pad-i: 30px; }
 #content { position: relative; }
 #content > .contextual { float: none; position: absolute; inset-block-start: var(--t-pad-b); inset-inline-end: var(--t-pad-i); margin: 0; z-index: 3; }
 #content > .contextual + h2, #content > .contextual + h1 { margin-block-start: 0; }
@@ -1219,32 +1224,20 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
 }
 
 /* ===================================================================
-   NAV MODE: rail
+   NAV MODE: classic
 
-   Navigation lives entirely in the left rail. Redmine's two nav bars —
-   the global #top-menu and the project #main-menu — are the same links
-   the rail already carries, so showing both duplicates every item and
-   costs two rows of vertical space on every page. They are hidden here.
+   No rail. Redmine's own navigation stays exactly where it is — the
+   global bar across the top, the project tabs beneath it. The runtime
+   in this folder never builds a rail, so the variant is decided when
+   the file is written rather than read from CSS at load time; reading a
+   custom property at DOMContentLoaded races the stylesheet.
 
-   They stay in the DOM: below 900px the rail withdraws and core clones
-   these menus into its flyout, so removing them would break mobile.
-   Hiding is therefore scoped to the widths where the rail exists.
-
-   Hiding #top-menu also hides the account dropdown, so theme.js gives
-   sign-out its own block at the foot of the rail.
+   --t-nav is declarative — it records the variant for anyone reading
+   the file. The #rm-rail reset is insurance for the one case that would
+   otherwise look broken: a rail-variant theme.js paired with this
+   stylesheet, which would leave a rail overlapping the content.
    =================================================================== */
-:root { --t-nav: rail; }
+:root { --t-nav: classic; }
 
-@media screen and (min-width: 900px) {
-  body.rm-has-rail #top-menu,
-  body.rm-has-rail #main-menu { display: none; }
-  /* the header reserves a strip for the project tabs; reclaim it */
-  body.rm-has-rail.has-main-menu #header { padding-block-end: 12px; }
-}
-
-#rm-rail .rm-rail-foot {
-  margin-block-start: auto;
-  padding-block-start: 8px;
-  border-block-start: 1px solid var(--t-border);
-}
-#rm-rail .rm-rail-toggle { margin-block-start: 0; }
+#rm-rail { display: none; }
+body.rm-has-rail #wrapper, body.rm-rail-collapsed #wrapper { margin-inline-start: 0; }

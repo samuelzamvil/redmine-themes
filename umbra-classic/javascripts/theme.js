@@ -1,5 +1,5 @@
 /**
- * Zen - a theme for Redmine
+ * Umbra Classic - a theme for Redmine
  * Copyright (C) 2026 Samuel Zamvil
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -13,7 +13,7 @@
  * licence, or https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
  */
 
-/* Redmine theme runtime — global nav rail, status pills, board view, issue editor.
+/* Redmine theme runtime — status pills, board view, issue editor.
    Pure additive: no server templates are touched. Safe to delete. */
 (function () {
   var K = { rail: 'rm.rail.collapsed', view: 'rm.issues.view', mode: 'rm.color.mode', tab: 'rm.editor.tab' };
@@ -116,7 +116,9 @@
   }
 
   ready(function () {
-    buildRail();
+    /* Classic nav: this theme keeps Redmine's own top and project menus, so no
+       rail is built. Everything below — status pills, the board view, the issue
+       editor — is unchanged. */
     decorateStatuses();
     issueViewSwitch();
     enhanceIssueEditor();

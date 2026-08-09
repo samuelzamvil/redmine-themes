@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <title>Redmine 7 theme set — preview</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Live preview of five drop-in themes for Redmine 7." />
+<meta name="description" content="Live preview of ten drop-in themes for Redmine 7 — five designs, each in a rail and a classic navigation variant." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -46,6 +46,7 @@
 <div class="bar">
   <div class="title"><b>Redmine 7 theme set</b><span class="mono" id="path">themes/atlas/</span></div>
   <div class="grp"><span class="lbl">Theme</span><div class="chips" id="themes"></div></div>
+  <div class="grp"><span class="lbl">Nav</span><div class="chips" id="navs"></div></div>
   <div class="grp"><span class="lbl">Mode</span><div class="chips" id="modes"></div></div>
   <div class="grp" style="margin-left:auto"><span class="lbl">Compare</span>
     <button type="button" class="chip" id="cmp" aria-pressed="false">All five side by side</button></div>
@@ -57,6 +58,7 @@
 
 <footer>
   <p>Each theme is a drop-in Redmine 7 folder: <span class="mono">themes/&lt;name&gt;/stylesheets/application.css</span> and <span class="mono">themes/&lt;name&gt;/javascripts/theme.js</span>. Copy the folder into your install's <span class="mono">themes/</span> directory and pick it under Administration &rsaquo; Settings &rsaquo; Display.</p>
+  <p>Every design ships in two navigation variants. <b>Rail</b> carries navigation in the left sidebar and hides Redmine's two nav bars, which would otherwise repeat the same links; sign-out moves to its own block at the foot of the rail. <b>Classic</b> keeps Redmine's own top and project menus and builds no rail. They are the same theme either way — only the navigation differs, and they are separate folders so you install whichever you want.</p>
   <p>This preview loads the unmodified Redmine 7 core stylesheet from <span class="mono">stylesheets/</span>, exactly as a real install does, so what you see is what the theme does on top of stock Redmine. <a href="https://github.com/redmine/redmine">Redmine</a> is GPL-2.0; so are these themes.</p>
 </footer>
 
@@ -69,6 +71,14 @@
     { key:'dense', name:'Dense', note:'max density' },
     { key:'folio', name:'Folio', note:'editorial' }
   ];
+  /* Five designs x two navigation variants = the ten theme folders. Kept as a
+     separate control rather than ten theme chips, because the variant is a
+     property of the navigation, not a different design — and this way switching
+     variant holds the design you are looking at. */
+  var NAVS = [
+    { key:'rail', name:'Rail' },
+    { key:'classic', name:'Classic' }
+  ];
   var PAGES = [
     ['issues','Issue list'], ['issue','Issue detail'], ['issue-edit','Issue editor'], ['issue-form','New issue'],
     ['overview','Project overview'], ['activity','Activity'], ['roadmap','Roadmap'], ['wiki','Wiki'],
@@ -79,19 +89,31 @@
   var q = new URLSearchParams(location.search);
   var state = {
     theme: q.get('theme') || 'atlas',
+    nav: q.get('nav') === 'classic' ? 'classic' : 'rail',
     page: q.get('page') || 'issues',
     mode: q.get('mode') || 'auto',
     compare: q.get('compare') === '1'
   };
 
-  function url(theme) {
-    return 'preview/shell.html?theme=' + theme + '&page=' + state.page +
+  /* A ?theme=atlas-classic link from before this control existed still works. */
+  if (/-classic$/.test(state.theme)) {
+    state.theme = state.theme.replace(/-classic$/, '');
+    state.nav = 'classic';
+  }
+
+  function dir(themeKey) {
+    return state.nav === 'classic' ? themeKey + '-classic' : themeKey;
+  }
+
+  function url(themeKey) {
+    return 'preview/shell.html?theme=' + dir(themeKey) + '&page=' + state.page +
            (state.mode === 'auto' ? '' : '&mode=' + state.mode);
   }
 
   function syncLocation() {
     var p = new URLSearchParams();
     p.set('theme', state.theme);
+    if (state.nav !== 'rail') p.set('nav', state.nav);
     p.set('page', state.page);
     if (state.mode !== 'auto') p.set('mode', state.mode);
     if (state.compare) p.set('compare', '1');
@@ -113,8 +135,9 @@
 
   var ro = null;
   function render() {
-    document.getElementById('path').textContent = 'themes/' + state.theme + '/';
+    document.getElementById('path').textContent = 'themes/' + dir(state.theme) + '/';
     chips(document.getElementById('themes'), THEMES, state.theme, function (k) { state.theme = k; render(); });
+    chips(document.getElementById('navs'), NAVS, state.nav, function (n) { state.nav = n; render(); });
     chips(document.getElementById('modes'), ['auto','light','dark'].map(function (m) { return { key:m, name:m }; }),
           state.mode, function (m) { state.mode = m; render(); });
     chips(document.getElementById('pages'), PAGES.map(function (p) { return { key:p[0], name:p[1] }; }),

@@ -1,5 +1,5 @@
 /**
- * Umbra - a theme for Redmine
+ * Umbra Classic - a theme for Redmine
  * Copyright (C) 2026 Samuel Zamvil
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -17,10 +17,10 @@
 @import url(../../../stylesheets/application.css);
 
 /* =============================================================
-   Umbra — Redmine 7 theme
+   Umbra Classic — Redmine 7 theme
    Structure per redmine.org/wiki/HowTo_create_a_custom_Redmine_theme
-   themes/umbra/stylesheets/application.css
-   themes/umbra/javascripts/theme.js
+   themes/umbra-classic/stylesheets/application.css
+   themes/umbra-classic/javascripts/theme.js
    Ships dark-first with an automatic light variant.
    Every colour below is derived from the token block; retint the whole
    theme by editing --oc-gray-* (neutrals) and --oc-blue-* (accent).
@@ -1219,32 +1219,20 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
 }
 
 /* ===================================================================
-   NAV MODE: rail
+   NAV MODE: classic
 
-   Navigation lives entirely in the left rail. Redmine's two nav bars —
-   the global #top-menu and the project #main-menu — are the same links
-   the rail already carries, so showing both duplicates every item and
-   costs two rows of vertical space on every page. They are hidden here.
+   No rail. Redmine's own navigation stays exactly where it is — the
+   global bar across the top, the project tabs beneath it. The runtime
+   in this folder never builds a rail, so the variant is decided when
+   the file is written rather than read from CSS at load time; reading a
+   custom property at DOMContentLoaded races the stylesheet.
 
-   They stay in the DOM: below 900px the rail withdraws and core clones
-   these menus into its flyout, so removing them would break mobile.
-   Hiding is therefore scoped to the widths where the rail exists.
-
-   Hiding #top-menu also hides the account dropdown, so theme.js gives
-   sign-out its own block at the foot of the rail.
+   --t-nav is declarative — it records the variant for anyone reading
+   the file. The #rm-rail reset is insurance for the one case that would
+   otherwise look broken: a rail-variant theme.js paired with this
+   stylesheet, which would leave a rail overlapping the content.
    =================================================================== */
-:root { --t-nav: rail; }
+:root { --t-nav: classic; }
 
-@media screen and (min-width: 900px) {
-  body.rm-has-rail #top-menu,
-  body.rm-has-rail #main-menu { display: none; }
-  /* the header reserves a strip for the project tabs; reclaim it */
-  body.rm-has-rail.has-main-menu #header { padding-block-end: 12px; }
-}
-
-#rm-rail .rm-rail-foot {
-  margin-block-start: auto;
-  padding-block-start: 8px;
-  border-block-start: 1px solid var(--t-border);
-}
-#rm-rail .rm-rail-toggle { margin-block-start: 0; }
+#rm-rail { display: none; }
+body.rm-has-rail #wrapper, body.rm-rail-collapsed #wrapper { margin-inline-start: 0; }

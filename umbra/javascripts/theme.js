@@ -147,6 +147,18 @@
       Array.prototype.forEach.call(main, function (a) { rail.appendChild(railLink(a)); });
     }
 
+    /* Sign out gets its own block at the foot of the rail. In the rail
+       variants Redmine's top menu is hidden, which takes the account
+       dropdown with it — so this is the only way out of the session and
+       it should not be mixed in with the navigation items above. */
+    var out = document.querySelector('#account a.logout, .top-menu__links a.logout, a.logout');
+    if (out) {
+      var foot = document.createElement('div');
+      foot.className = 'rm-rail-foot';
+      foot.appendChild(railLink(out));
+      rail.appendChild(foot);
+    }
+
     var toggle = document.createElement('a');
     toggle.href = '#';
     toggle.className = 'rm-rail-toggle';

@@ -1218,3 +1218,34 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
   --oc-orange-8: oklch(0.5 0.150 62);
   --oc-orange-9: oklch(0.44 0.140 62);
 }
+
+/* ===================================================================
+   NAV MODE: rail
+
+   Navigation lives entirely in the left rail. Redmine's two nav bars —
+   the global #top-menu and the project #main-menu — are the same links
+   the rail already carries, so showing both duplicates every item and
+   costs two rows of vertical space on every page. They are hidden here.
+
+   They stay in the DOM: below 900px the rail withdraws and core clones
+   these menus into its flyout, so removing them would break mobile.
+   Hiding is therefore scoped to the widths where the rail exists.
+
+   Hiding #top-menu also hides the account dropdown, so theme.js gives
+   sign-out its own block at the foot of the rail.
+   =================================================================== */
+:root { --t-nav: rail; }
+
+@media screen and (min-width: 900px) {
+  body.rm-has-rail #top-menu,
+  body.rm-has-rail #main-menu { display: none; }
+  /* the header reserves a strip for the project tabs; reclaim it */
+  body.rm-has-rail.has-main-menu #header { padding-block-end: 12px; }
+}
+
+#rm-rail .rm-rail-foot {
+  margin-block-start: auto;
+  padding-block-start: 8px;
+  border-block-start: 1px solid var(--t-border);
+}
+#rm-rail .rm-rail-toggle { margin-block-start: 0; }

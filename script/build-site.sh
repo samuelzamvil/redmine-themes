@@ -11,7 +11,8 @@
 #
 set -euo pipefail
 
-THEMES=(atlas zen umbra dense folio)
+THEMES=(atlas atlas-classic zen zen-classic umbra umbra-classic
+        dense dense-classic folio folio-classic)
 
 cd "$(dirname "$0")/.."
 out=${1:-_site}
