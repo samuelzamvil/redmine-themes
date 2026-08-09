@@ -249,8 +249,8 @@ fieldset.box legend { white-space: nowrap; }
 #header h1 { overflow: visible; }
 body { font-family: var(--fonts-main); font-size: 0.875rem; color: var(--t-text); background: var(--t-bg); -webkit-font-smoothing: antialiased; }
 #wrapper { background: var(--t-bg); }
-a, a:link, a:visited { color: var(--t-accent); text-decoration: none; }
-a:hover, a:active { color: var(--t-accent); text-decoration: underline; }
+a, a:link, a:visited { color: var(--t-accent-text); text-decoration: none; }
+a:hover, a:active { color: var(--t-accent-text); text-decoration: underline; }
 h1,h2,h3,h4 { font-family: var(--fonts-main); letter-spacing: -0.008em; color: var(--t-text); }
 #content h1, #content h2, #content h3, #content h4 { color: var(--t-text); }
 #content h2 { font-size: 1.125rem; font-weight: 600; margin-block-end: 18px; }
@@ -273,14 +273,14 @@ body.has-main-menu #header { padding-block-end: 2.35rem; }
 #main-menu ul { background: transparent; gap: 2px; }
 #main-menu li a { color: var(--t-dim); border-radius: 6px 6px 0 0; padding-block: 6px; padding-inline: 12px; font-weight: 500; font-size: 0.8125rem; border: 0; }
 #main-menu li a:hover { background: var(--t-surface-2); color: var(--t-text); }
-#main-menu li a.selected, #main-menu li a.selected:hover { background: transparent; color: var(--t-accent); box-shadow: inset 0 -2px 0 var(--t-accent); font-weight: 600; }
+#main-menu li a.selected, #main-menu li a.selected:hover { background: transparent; color: var(--t-accent-text); box-shadow: inset 0 -2px 0 var(--t-accent); font-weight: 600; }
 #main-menu li a.new-object { background: var(--t-accent); border: 0; color: var(--t-on-accent); border-radius: 6px; font-weight: 600; }
 #main-menu li a.new-object:hover { background: var(--t-accent); color: var(--t-on-accent); filter: brightness(1.08); }
 #main-menu .menu-children { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 6px; box-shadow: var(--t-shadow); padding-block: 4px; }
 
 #sidebar { background: var(--t-bg); border-inline-start: 1px solid var(--t-border); padding-inline: 18px 14px; padding-block-start: 18px; }
 #sidebar h3 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .08em; color: var(--t-dim); font-weight: 700; }
-#sidebar a.selected { background: var(--t-accent-soft); color: var(--t-accent); border-radius: 6px; box-shadow: none; padding-inline: 8px; }
+#sidebar a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); border-radius: 6px; box-shadow: none; padding-inline: 8px; }
 #sidebar hr { background: var(--t-border); }
 
 #content { background: var(--t-surface); padding: 22px 26px; }
@@ -303,7 +303,7 @@ table.list tbody tr.odd { background: transparent; }
 table.list tbody tr.even { background: color-mix(in oklab, var(--oc-gray-1) 40%, transparent); }
 table.list td.id a { color: var(--t-dim); font-variant-numeric: tabular-nums; }
 table.list td.subject a, table.list td.name a { color: var(--t-text); font-weight: 500; }
-table.list td.subject a:hover { color: var(--t-accent); }
+table.list td.subject a:hover { color: var(--t-accent-text); }
 tr.issue.closed td.subject a, tr.issue.closed a { text-decoration: line-through; color: var(--t-dim); }
 
 /* ===== Forms & buttons ===== */
@@ -332,7 +332,7 @@ p.pagination, span.pagination { color: var(--t-dim); font-size: 0.75rem; }
 .pagination a { padding: 2px 7px; border-radius: 6px; }
 .pagination .current { background: var(--t-accent); color: var(--t-on-accent); padding: 2px 7px; border-radius: 6px; }
 div.tabs ul { border-block-end: 1px solid var(--t-border); }
-div.tabs ul li a.selected { background: var(--t-surface); border-color: var(--t-border); border-block-end-color: var(--t-surface); color: var(--t-accent); }
+div.tabs ul li a.selected { background: var(--t-surface); border-color: var(--t-border); border-block-end-color: var(--t-surface); color: var(--t-accent-text); }
 
 /* ===== Issue detail ===== */
 div.issue { background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 10px; padding: 18px 20px; }
@@ -356,7 +356,7 @@ div.issue .attributes th, div.issue table.attributes th { color: var(--t-dim); f
 #rm-rail .rm-rail-mark { inline-size: 24px; block-size: 24px; border-radius: 6px; background: var(--t-accent); flex: 0 0 auto; }
 #rm-rail a { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 6px; color: var(--t-rail-text); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; overflow: hidden; }
 #rm-rail a:hover { background: color-mix(in oklab, var(--t-rail-text) 10%, transparent); text-decoration: none; }
-#rm-rail a.selected { background: var(--t-accent-soft); color: var(--t-accent); font-weight: 600; }
+#rm-rail a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); font-weight: 600; }
 #rm-rail .rm-rail-sec { font-size: 0.625rem; text-transform: uppercase; letter-spacing: .1em; color: var(--t-dim); padding: 14px 9px 5px; white-space: nowrap; overflow: hidden; }
 #rm-rail .rm-rail-toggle { margin-block-start: auto; }
 body.rm-has-rail #wrapper { margin-inline-start: 216px; transition: margin-inline-start .18s ease; }
@@ -428,7 +428,7 @@ table.list th { letter-spacing: .08em; }
 .rm-editor-tabs { display: flex; gap: 2px; padding: 8px 10px 0; background: var(--t-surface-2); border-block-end: 1px solid var(--t-border); }
 .rm-editor-tabs button { background: transparent !important; color: var(--t-dim) !important; border: 0 !important; border-radius: var(--t-radius) var(--t-radius) 0 0 !important; padding: 7px 14px !important; font-size: 0.8125rem !important; font-weight: 600 !important; cursor: pointer; }
 .rm-editor-tabs button:hover { background: color-mix(in oklab, var(--t-dim) 10%, transparent) !important; }
-.rm-editor-tabs button.on { background: var(--t-surface) !important; color: var(--t-accent) !important; box-shadow: inset 0 -2px 0 var(--t-accent); }
+.rm-editor-tabs button.on { background: var(--t-surface) !important; color: var(--t-accent-text) !important; box-shadow: inset 0 -2px 0 var(--t-accent); }
 .rm-editor-tabs .rm-editor-hint { margin-inline-start: auto; align-self: center; font-size: 0.6875rem; color: var(--t-dim); padding-inline-end: 4px; }
 .rm-editor fieldset { border: 0; margin: 0; padding: 16px 18px; }
 .rm-editor fieldset > legend { display: none; }
@@ -522,7 +522,7 @@ button[class*="jstb_"] { color: var(--t-text); }
 #content .jstTabs.tabs ul { position: static; display: flex; gap: 2px; inline-size: auto; block-size: auto; overflow: visible; white-space: nowrap; margin: 0; flex: 0 0 auto; }
 #content .jstTabs.tabs li { display: inline-block; float: none; block-size: auto; }
 #content .jstTabs.tabs li a { border-radius: var(--t-radius) var(--t-radius) 0 0; color: var(--t-dim); padding-block: 5px; }
-#content .jstTabs.tabs li a.selected { background: var(--t-surface); color: var(--t-accent); border-color: var(--t-border); }
+#content .jstTabs.tabs li a.selected { background: var(--t-surface); color: var(--t-accent-text); border-color: var(--t-border); }
 #content .jstTabs.tabs .jstElements { flex: 1 1 100%; block-size: auto; align-content: flex-start; display: flex; flex-wrap: wrap; align-items: center; gap: 3px; padding: 4px 0 6px; }
 #content .jstTabs.tabs .jstElements .help { flex: 0 0 auto; float: none; margin-inline-start: auto; align-self: center; white-space: nowrap; padding: 0; }
 #content .jstTabs.tabs .jstElements .help a { color: var(--t-dim); font-size: 0.75rem; }
@@ -557,10 +557,10 @@ button.icon-only:hover { background: var(--t-surface-2); }
   color: var(--t-text); font-size: 0.8125rem; font-weight: 500; text-decoration: none;
 }
 .contextual a.icon:hover, p.buttons a.icon:hover {
-  background: var(--t-accent-soft); border-color: var(--t-accent); color: var(--t-accent); text-decoration: none;
+  background: var(--t-accent-soft); border-color: var(--t-accent); color: var(--t-accent-text); text-decoration: none;
 }
 .contextual a.icon .icon-svg, p.buttons a.icon .icon-svg { stroke: var(--t-dim); }
-.contextual a.icon:hover .icon-svg, p.buttons a.icon:hover .icon-svg { stroke: var(--t-accent); }
+.contextual a.icon:hover .icon-svg, p.buttons a.icon:hover .icon-svg { stroke: var(--t-accent-text); }
 .contextual a.icon .icon-label, p.buttons a.icon .icon-label { margin-inline-start: 0; }
 
 /* The primary action in each bar reads as filled. */
@@ -580,7 +580,7 @@ button.icon-only:hover { background: var(--t-surface-2); }
 }
 .icon-only.icon-actions:hover, a.icon-only.js-contextmenu:hover { background: var(--t-surface-2); }
 .icon-only.icon-actions .icon-svg, a.icon-only.js-contextmenu .icon-svg { stroke: var(--t-dim); }
-.icon-only.icon-actions:hover .icon-svg, a.icon-only.js-contextmenu:hover .icon-svg { stroke: var(--t-accent); }
+.icon-only.icon-actions:hover .icon-svg, a.icon-only.js-contextmenu:hover .icon-svg { stroke: var(--t-accent-text); }
 table.list td.buttons { inline-size: 30px; }
 table.list td.buttons a { opacity: 0; transition: opacity .12s; }
 table.list tbody tr:hover td.buttons a, table.list td.buttons a:focus { opacity: 1; }
@@ -604,10 +604,10 @@ p.buttons { display: flex; align-items: center; gap: 6px; margin-block: 12px 0; 
 /* Lists. */
 .autoscroll { overflow-x: auto; }
 table.list tr.group td { background: var(--t-surface-2); padding: 8px 10px; font-weight: 600; }
-table.list tr.group .badge-count { background: var(--t-accent-soft); color: var(--t-accent); border-radius: 999px; padding: 1px 8px; font-size: 0.6875rem; font-weight: 700; margin-inline-start: 8px; }
+table.list tr.group .badge-count { background: var(--t-accent-soft); color: var(--t-accent-text); border-radius: 999px; padding: 1px 8px; font-size: 0.6875rem; font-weight: 700; margin-inline-start: 8px; }
 table.list tr.group .toggle-all { float: inline-end; font-size: 0.6875rem; color: var(--t-dim); }
 table.list th a { color: inherit; text-decoration: none; }
-table.list th a:hover { color: var(--t-accent); }
+table.list th a:hover { color: var(--t-accent-text); }
 
 /* Pagination is a <ul class="pages"> in the real markup. */
 span.pagination ul.pages { display: inline-flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
@@ -666,11 +666,20 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
 @media screen and (min-width: 900px) and (max-width: 1180px) {
   #rm-rail { inline-size: 56px; }
   body.rm-has-rail #wrapper { margin-inline-start: 56px; }
-  #rm-rail .rm-rail-label, #rm-rail .rm-rail-sec { opacity: 0; pointer-events: none; }
+  /* display:none, not opacity:0. An invisible label still occupies its 27-50px
+     of width inside the centred flex row, which pushes the 18px icon out past
+     the rail's left edge where overflow:hidden clips it. The manual-collapse
+     path (body.rm-rail-collapsed) already removes them from flow. */
+  #rm-rail .rm-rail-label, #rm-rail .rm-rail-sec { display: none; }
   #rm-rail .rm-rail-brand { justify-content: center; padding-inline: 0; }
   #rm-rail a { justify-content: center; }
   /* the toggle would be a lie at this width — expanding cannot fit */
   #rm-rail .rm-rail-toggle { display: none; }
+  /* A collapse flag stored at a wider viewport would otherwise apply its 52px
+     rail width here against the 56px this range reserves on #wrapper, leaving a
+     seam that cannot be undone because the toggle above is hidden. */
+  body.rm-rail-collapsed #rm-rail { inline-size: 56px; }
+  body.rm-rail-collapsed #wrapper { margin-inline-start: 56px; }
   .splitcontentleft, .splitcontentright { inline-size: 100%; flex: auto; margin-inline: 0; }
 }
 
@@ -701,7 +710,7 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
     border-radius: 0 0 var(--t-radius) var(--t-radius); box-shadow: var(--t-shadow); padding-block: 4px;
   }
   body #header #project-jump .drdn-content a { color: var(--t-text); padding: 11px 14px; display: block; }
-  body #header #project-jump .drdn-content a.selected { background: var(--t-accent-soft); color: var(--t-accent); font-weight: 600; }
+  body #header #project-jump .drdn-content a.selected { background: var(--t-accent-soft); color: var(--t-accent-text); font-weight: 600; }
 
   /* --- Flyout panel, themed rather than core's fixed navy --- */
   #wrapper .flyout-menu { background: var(--t-chrome); color: var(--t-chrome-text); inline-size: 272px; inset-inline-end: -272px; }
@@ -985,3 +994,226 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
    the worst case still clears AA. The dark ramp already passed (4.65 to
    5.12) and is unchanged.
    ------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------
+   Accent as text vs accent as fill.
+
+   --t-accent is the accent ramp's fill rung, tuned to sit BEHIND
+   --t-on-accent: filled buttons, the new-object action, the current
+   page marker. Reused as a foreground it measured 3.3-4.1:1 in dark
+   mode — and the worst case was the current-location indicator in the
+   rail, the sidebar and the project menu.
+
+   The tightest pairing is not the page surface but --t-accent-soft:
+   selected items tint their own background, so accent text sits on
+   accent tint. Against that the -7 rung still failed in light (4.26:1,
+   4.35:1 on a zebra row). The -8 rung clears both: light 5.51 on
+   accent-soft, 6.12 on white; dark 6.37 on accent-soft, 9.03 on
+   --t-surface. Because the ramps already invert per mode, one
+   definition serves both.
+
+   Fills, borders, focus rings and the current-page marker keep
+   --t-accent; only foregrounds move.
+   ------------------------------------------------------------------- */
+:root { --t-accent-text: var(--oc-blue-8); }
+
+/* Core sets min-inline-size: 2000px on .tabs ul for its scrolling tab strip.
+   The wiki toolbar shares that class, so overriding inline-size alone left a
+   latent 2000px scroll region inside the editor box. */
+#content .jstTabs.tabs ul { min-inline-size: 0; }
+
+/* -------------------------------------------------------------------
+   Semantic colour families in light mode.
+
+   The companion to the dark ramps above. Those fixed dark mode but left
+   light on raw Open Color, whose -9 rung tops out around oklch(0.50)
+   — not dark enough to carry 11px bold text over a near-white tint of
+   the same family. The status pills measured 3.94-4.42:1.
+
+   Lightening the pill background does not fix it: dropping the mix from
+   16-20% to 8% still only reaches 4.16-4.69. The foreground has to move,
+   so these ramps land -9 at oklch(0.44), matching the scale the accent
+   families already use in light mode. Scoped to the light selectors, so
+   the dark ramps are untouched.
+   ------------------------------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-rm-mode="dark"]) {
+    --oc-red-0: oklch(0.965 0.020 27);
+    --oc-red-1: oklch(0.93 0.040 27);
+    --oc-red-2: oklch(0.88 0.070 27);
+    --oc-red-3: oklch(0.82 0.100 27);
+    --oc-red-4: oklch(0.75 0.130 27);
+    --oc-red-5: oklch(0.68 0.150 27);
+    --oc-red-6: oklch(0.62 0.160 27);
+    --oc-red-7: oklch(0.56 0.160 27);
+    --oc-red-8: oklch(0.5 0.150 27);
+    --oc-red-9: oklch(0.44 0.140 27);
+
+    --oc-pink-0: oklch(0.965 0.020 355);
+    --oc-pink-1: oklch(0.93 0.040 355);
+    --oc-pink-2: oklch(0.88 0.070 355);
+    --oc-pink-3: oklch(0.82 0.100 355);
+    --oc-pink-4: oklch(0.75 0.130 355);
+    --oc-pink-5: oklch(0.68 0.150 355);
+    --oc-pink-6: oklch(0.62 0.160 355);
+    --oc-pink-7: oklch(0.56 0.160 355);
+    --oc-pink-8: oklch(0.5 0.150 355);
+    --oc-pink-9: oklch(0.44 0.140 355);
+
+    --oc-grape-0: oklch(0.965 0.020 320);
+    --oc-grape-1: oklch(0.93 0.040 320);
+    --oc-grape-2: oklch(0.88 0.070 320);
+    --oc-grape-3: oklch(0.82 0.100 320);
+    --oc-grape-4: oklch(0.75 0.130 320);
+    --oc-grape-5: oklch(0.68 0.150 320);
+    --oc-grape-6: oklch(0.62 0.160 320);
+    --oc-grape-7: oklch(0.56 0.160 320);
+    --oc-grape-8: oklch(0.5 0.150 320);
+    --oc-grape-9: oklch(0.44 0.140 320);
+
+    --oc-teal-0: oklch(0.965 0.020 175);
+    --oc-teal-1: oklch(0.93 0.040 175);
+    --oc-teal-2: oklch(0.88 0.070 175);
+    --oc-teal-3: oklch(0.82 0.100 175);
+    --oc-teal-4: oklch(0.75 0.130 175);
+    --oc-teal-5: oklch(0.68 0.150 175);
+    --oc-teal-6: oklch(0.62 0.160 175);
+    --oc-teal-7: oklch(0.56 0.160 175);
+    --oc-teal-8: oklch(0.5 0.150 175);
+    --oc-teal-9: oklch(0.44 0.140 175);
+
+    --oc-green-0: oklch(0.965 0.020 148);
+    --oc-green-1: oklch(0.93 0.040 148);
+    --oc-green-2: oklch(0.88 0.070 148);
+    --oc-green-3: oklch(0.82 0.100 148);
+    --oc-green-4: oklch(0.75 0.130 148);
+    --oc-green-5: oklch(0.68 0.150 148);
+    --oc-green-6: oklch(0.62 0.160 148);
+    --oc-green-7: oklch(0.56 0.160 148);
+    --oc-green-8: oklch(0.5 0.150 148);
+    --oc-green-9: oklch(0.44 0.140 148);
+
+    --oc-lime-0: oklch(0.965 0.020 128);
+    --oc-lime-1: oklch(0.93 0.040 128);
+    --oc-lime-2: oklch(0.88 0.070 128);
+    --oc-lime-3: oklch(0.82 0.100 128);
+    --oc-lime-4: oklch(0.75 0.130 128);
+    --oc-lime-5: oklch(0.68 0.150 128);
+    --oc-lime-6: oklch(0.62 0.160 128);
+    --oc-lime-7: oklch(0.56 0.160 128);
+    --oc-lime-8: oklch(0.5 0.150 128);
+    --oc-lime-9: oklch(0.44 0.140 128);
+
+    --oc-yellow-0: oklch(0.965 0.020 95);
+    --oc-yellow-1: oklch(0.93 0.040 95);
+    --oc-yellow-2: oklch(0.88 0.070 95);
+    --oc-yellow-3: oklch(0.82 0.100 95);
+    --oc-yellow-4: oklch(0.75 0.130 95);
+    --oc-yellow-5: oklch(0.68 0.150 95);
+    --oc-yellow-6: oklch(0.62 0.160 95);
+    --oc-yellow-7: oklch(0.56 0.160 95);
+    --oc-yellow-8: oklch(0.5 0.150 95);
+    --oc-yellow-9: oklch(0.44 0.140 95);
+
+    --oc-orange-0: oklch(0.965 0.020 62);
+    --oc-orange-1: oklch(0.93 0.040 62);
+    --oc-orange-2: oklch(0.88 0.070 62);
+    --oc-orange-3: oklch(0.82 0.100 62);
+    --oc-orange-4: oklch(0.75 0.130 62);
+    --oc-orange-5: oklch(0.68 0.150 62);
+    --oc-orange-6: oklch(0.62 0.160 62);
+    --oc-orange-7: oklch(0.56 0.160 62);
+    --oc-orange-8: oklch(0.5 0.150 62);
+    --oc-orange-9: oklch(0.44 0.140 62);
+  }
+}
+
+:root[data-rm-mode="light"] {
+  --oc-red-0: oklch(0.965 0.020 27);
+  --oc-red-1: oklch(0.93 0.040 27);
+  --oc-red-2: oklch(0.88 0.070 27);
+  --oc-red-3: oklch(0.82 0.100 27);
+  --oc-red-4: oklch(0.75 0.130 27);
+  --oc-red-5: oklch(0.68 0.150 27);
+  --oc-red-6: oklch(0.62 0.160 27);
+  --oc-red-7: oklch(0.56 0.160 27);
+  --oc-red-8: oklch(0.5 0.150 27);
+  --oc-red-9: oklch(0.44 0.140 27);
+
+  --oc-pink-0: oklch(0.965 0.020 355);
+  --oc-pink-1: oklch(0.93 0.040 355);
+  --oc-pink-2: oklch(0.88 0.070 355);
+  --oc-pink-3: oklch(0.82 0.100 355);
+  --oc-pink-4: oklch(0.75 0.130 355);
+  --oc-pink-5: oklch(0.68 0.150 355);
+  --oc-pink-6: oklch(0.62 0.160 355);
+  --oc-pink-7: oklch(0.56 0.160 355);
+  --oc-pink-8: oklch(0.5 0.150 355);
+  --oc-pink-9: oklch(0.44 0.140 355);
+
+  --oc-grape-0: oklch(0.965 0.020 320);
+  --oc-grape-1: oklch(0.93 0.040 320);
+  --oc-grape-2: oklch(0.88 0.070 320);
+  --oc-grape-3: oklch(0.82 0.100 320);
+  --oc-grape-4: oklch(0.75 0.130 320);
+  --oc-grape-5: oklch(0.68 0.150 320);
+  --oc-grape-6: oklch(0.62 0.160 320);
+  --oc-grape-7: oklch(0.56 0.160 320);
+  --oc-grape-8: oklch(0.5 0.150 320);
+  --oc-grape-9: oklch(0.44 0.140 320);
+
+  --oc-teal-0: oklch(0.965 0.020 175);
+  --oc-teal-1: oklch(0.93 0.040 175);
+  --oc-teal-2: oklch(0.88 0.070 175);
+  --oc-teal-3: oklch(0.82 0.100 175);
+  --oc-teal-4: oklch(0.75 0.130 175);
+  --oc-teal-5: oklch(0.68 0.150 175);
+  --oc-teal-6: oklch(0.62 0.160 175);
+  --oc-teal-7: oklch(0.56 0.160 175);
+  --oc-teal-8: oklch(0.5 0.150 175);
+  --oc-teal-9: oklch(0.44 0.140 175);
+
+  --oc-green-0: oklch(0.965 0.020 148);
+  --oc-green-1: oklch(0.93 0.040 148);
+  --oc-green-2: oklch(0.88 0.070 148);
+  --oc-green-3: oklch(0.82 0.100 148);
+  --oc-green-4: oklch(0.75 0.130 148);
+  --oc-green-5: oklch(0.68 0.150 148);
+  --oc-green-6: oklch(0.62 0.160 148);
+  --oc-green-7: oklch(0.56 0.160 148);
+  --oc-green-8: oklch(0.5 0.150 148);
+  --oc-green-9: oklch(0.44 0.140 148);
+
+  --oc-lime-0: oklch(0.965 0.020 128);
+  --oc-lime-1: oklch(0.93 0.040 128);
+  --oc-lime-2: oklch(0.88 0.070 128);
+  --oc-lime-3: oklch(0.82 0.100 128);
+  --oc-lime-4: oklch(0.75 0.130 128);
+  --oc-lime-5: oklch(0.68 0.150 128);
+  --oc-lime-6: oklch(0.62 0.160 128);
+  --oc-lime-7: oklch(0.56 0.160 128);
+  --oc-lime-8: oklch(0.5 0.150 128);
+  --oc-lime-9: oklch(0.44 0.140 128);
+
+  --oc-yellow-0: oklch(0.965 0.020 95);
+  --oc-yellow-1: oklch(0.93 0.040 95);
+  --oc-yellow-2: oklch(0.88 0.070 95);
+  --oc-yellow-3: oklch(0.82 0.100 95);
+  --oc-yellow-4: oklch(0.75 0.130 95);
+  --oc-yellow-5: oklch(0.68 0.150 95);
+  --oc-yellow-6: oklch(0.62 0.160 95);
+  --oc-yellow-7: oklch(0.56 0.160 95);
+  --oc-yellow-8: oklch(0.5 0.150 95);
+  --oc-yellow-9: oklch(0.44 0.140 95);
+
+  --oc-orange-0: oklch(0.965 0.020 62);
+  --oc-orange-1: oklch(0.93 0.040 62);
+  --oc-orange-2: oklch(0.88 0.070 62);
+  --oc-orange-3: oklch(0.82 0.100 62);
+  --oc-orange-4: oklch(0.75 0.130 62);
+  --oc-orange-5: oklch(0.68 0.150 62);
+  --oc-orange-6: oklch(0.62 0.160 62);
+  --oc-orange-7: oklch(0.56 0.160 62);
+  --oc-orange-8: oklch(0.5 0.150 62);
+  --oc-orange-9: oklch(0.44 0.140 62);
+}
