@@ -1,6 +1,6 @@
 # Third-party notices
 
-The five themes are original work, licensed GPL-2.0-or-later; see
+The ten themes are original work, licensed GPL-2.0-or-later; see
 [`COPYING`](COPYING). This file covers everything in the repository that is **not**
 ours, so you can tell at a glance what you are redistributing when you fork, install
 a theme, or host the preview.
@@ -106,8 +106,9 @@ point it at a self-hosted copy.
 ## The mock Redmine content
 
 The twelve preview screens in `preview/shell.html` — the "Orbital Systems" project,
-its issues, people, wiki text and commit log — are invented for the preview. Any
-resemblance to a real project or person is accidental. The markup imitates the
+its issues, people, wiki text and commit log — are invented for the preview. The
+people are placeholders by construction: John Doe is the signed-in user, and Jane,
+Sam, Chris and Alex Doe fill the other roles. The markup imitates the
 structure Redmine generates so themes can be judged against something realistic; it
 is not copied from Redmine's templates and contains no real data.
 

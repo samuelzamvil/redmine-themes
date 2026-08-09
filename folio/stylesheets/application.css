@@ -1480,3 +1480,49 @@ body #content .jstTabs.tabs {
 body #content .jstTabs.tabs .jstElements {
   height: auto; block-size: auto;
 }
+
+/* ===================================================================
+   GANTT OPTIONS ROW: CONTROLS DRAWN OVER EACH OTHER
+
+   #query_form_with_buttons holds three siblings: the fieldsets, a
+   p.contextual (the zoom links), and a p.buttons (months / month / year
+   / Apply / Clear). Core floats p.contextual to the inline end and lets
+   p.buttons flow underneath it — inline content wraps around a float, so
+   on a wide screen the two share one line harmlessly.
+
+   Earlier in this file p.buttons is given 'display: flex' to space its
+   actions, and that is what breaks it. Inline content wraps around a
+   float; a flex container instead avoids it, shrinking to the space left
+   beside it. On a phone almost nothing is left: the row collapses to
+   about 27px and its controls — the month count, the month and year
+   selects, Apply and Clear — overflow it and land on top of each other.
+
+   Fix: lay the container out as a wrapping flex row so the two rows are
+   real siblings and the float is dropped. Desktop keeps the zoom links
+   at the inline end via auto margin; under 900px they take their own
+   row. Scoped to the container, so it applies wherever this form is used
+   (gantt and the issue list alike).
+   =================================================================== */
+body #query_form_with_buttons {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+}
+body #query_form_with_buttons > #query_form_content,
+body #query_form_with_buttons > fieldset { flex: 1 1 100%; min-inline-size: 0; }
+body #query_form_with_buttons > p.buttons {
+  order: 1; flex: 1 1 auto; min-inline-size: 0;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0;
+}
+body #query_form_with_buttons > p.contextual {
+  order: 2; flex: 0 1 auto; float: none; margin: 0; margin-inline-start: auto;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+}
+/* the month count is two characters wide; core sizes it with a size attr
+   that the theme's own input width would otherwise stretch */
+body #query_form_with_buttons > p.buttons input[type="text"] { inline-size: 4rem; }
+body #query_form_with_buttons > p.buttons select { max-inline-size: 100%; }
+
+@media screen and (max-width: 899px) {
+  body #query_form_with_buttons > p.contextual {
+    order: 3; flex: 1 1 100%; margin-inline-start: 0;
+  }
+}
