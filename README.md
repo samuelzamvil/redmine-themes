@@ -28,8 +28,9 @@ Same palette, same type, same components — only where navigation lives differs
 **Rail** puts navigation in a collapsible left sidebar and hides Redmine's top and
 project bars above 900px, because the rail already carries exactly those links:
 showing both repeats every item and costs two rows of vertical space on every page.
-Sign-out moves to its own block at the foot of the rail, since hiding `#top-menu`
-also hides the account dropdown it normally lives in.
+Because hiding `#top-menu` also hides Redmine's account dropdown, the rail carries
+its own account control at the foot: your name and a person icon, opening the same
+menu cloned from `#account`, so plugin-added items come with it.
 
 **Classic** builds no rail at all and leaves Redmine's global bar and project tabs
 exactly where they are.

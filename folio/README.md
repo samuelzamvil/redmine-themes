@@ -76,10 +76,14 @@ returns you to stock Redmine behaviour with the styling intact.
 - **Global nav rail** on the left, assembled from the existing top and project
   menus. Collapsible, state persisted. Icons are cloned from the sprite each menu
   link already carries, so it uses your Redmine's real icon set.
-- **Sign out** in its own block at the foot of the rail, above the collapse toggle
-  and separated by a rule. Hiding `#top-menu` also hides the account dropdown, so
-  the rail lifts the sign-out link out of it. Found via `a.logout`; on an
-  anonymous session, where no such link exists, the block is not created.
+- **Account control** at the foot of the rail, above the collapse toggle and
+  separated by a rule: a person icon and your name, opening the account menu
+  cloned from `#account .dropdown-content` — so anything a plugin adds to that
+  menu comes along. Collapsed, the icon stands alone; the name truncates rather
+  than widening the rail. The menu is positioned from the trigger's own rect, so a
+  56px rail cannot clip it, and it closes on outside click or Escape. Hiding
+  `#top-menu` hides Redmine's own account dropdown, which is why the rail carries
+  this; on an anonymous session it is not created.
 - **Status pills** in place of plain status text in issue tables and details.
 - **Board view** toggle on issue lists, grouping rows into columns by status.
 - **Issue editor**: stock Redmine renders the edit form below the history, so

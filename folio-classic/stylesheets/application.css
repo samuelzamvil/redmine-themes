@@ -1341,3 +1341,100 @@ body .tabs-buttons svg, body button.tab-left svg, body button.tab-right svg { st
      44px target as every other row and align it to the panel, not the page */
   #wrapper .flyout-menu .flyout-menu__search { padding-block-start: 10px; }
 }
+
+/* ===================================================================
+   RAIL ACCOUNT CONTROL
+
+   Replaces the bare sign-out link at the foot of the rail with the same
+   control the classic variants get from Redmine's own top bar: the user
+   behind a person icon, opening the account menu.
+
+   Expanded it reads icon + name; collapsed — either by the toggle or
+   automatically in the 900-1180 range — the icon alone. The name never
+   widens the rail: it truncates. The menu itself is fixed-positioned
+   from JS, so it opens clear of the rail in either state instead of
+   being clipped to 56px.
+   =================================================================== */
+#rm-rail .rm-rail-account {
+  display: flex; align-items: center; gap: 10px;
+  inline-size: 100%; padding: 7px 9px;
+  border: 0; border-radius: var(--t-radius);
+  background: transparent; color: var(--t-rail-text);
+  font: inherit; font-size: 0.8125rem; font-weight: 500;
+  text-align: start; cursor: pointer;
+}
+#rm-rail .rm-rail-account:hover { background: color-mix(in oklab, var(--t-rail-text) 10%, transparent); }
+#rm-rail .rm-rail-account .rm-rail-label { flex: 1 1 auto; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#rm-rail .rm-rail-account .rm-rail-caret { flex: 0 0 auto; inline-size: 14px; block-size: 14px; opacity: .65; transition: transform .15s ease; }
+#rm-rail .rm-rail-account[aria-expanded="true"] .rm-rail-caret { transform: rotate(180deg); }
+
+body.rm-rail-collapsed #rm-rail .rm-rail-account { justify-content: center; padding-inline: 0; }
+body.rm-rail-collapsed #rm-rail .rm-rail-account .rm-rail-caret { display: none; }
+
+@media screen and (min-width: 900px) and (max-width: 1180px) {
+  #rm-rail .rm-rail-account { justify-content: center; padding-inline: 0; }
+  #rm-rail .rm-rail-account .rm-rail-caret { display: none; }
+}
+
+.rm-rail-menu {
+  position: fixed; z-index: 80;
+  min-inline-size: 208px; max-inline-size: 264px;
+  background: var(--t-surface); border: 1px solid var(--t-border);
+  border-radius: var(--t-radius); box-shadow: var(--t-shadow); padding: 6px;
+}
+.rm-rail-menu[hidden] { display: none; }
+.rm-rail-menu-head {
+  display: flex; flex-direction: column; gap: 1px;
+  padding: 6px 8px 8px; margin-block-end: 4px;
+  border-block-end: 1px solid var(--t-border);
+}
+.rm-rail-menu-name { font-size: 0.8125rem; font-weight: 600; color: var(--t-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rm-rail-menu-login { font-size: 0.6875rem; color: var(--t-dim); }
+.rm-rail-menu a {
+  display: block; padding: 8px; border-radius: var(--t-radius);
+  color: var(--t-text); font-size: 0.8125rem; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.rm-rail-menu a:hover { background: var(--t-accent-soft); color: var(--t-accent-text); text-decoration: none; }
+
+/* the rail is withdrawn below 900px, so its menu goes with it */
+@media screen and (max-width: 899px) { .rm-rail-menu { display: none; } }
+
+/* ===================================================================
+   ONE ACTION BAR OUT OF FLOW, NOT ALL OF THEM
+
+   .contextual is taken out of flow earlier in this file so its width
+   cannot shrink the page (see the float note above). But Redmine renders
+   more than one .contextual on some pages — the issue action menu
+   repeats below the history — and absolutely positioning every one
+   stacked them all at the same coordinates, which is the duplicate row
+   of Edit / Unwatch / Copy sitting on the flash banner after a save.
+
+   Only the page's own action bar is lifted: the first child of #content,
+   or the one immediately after a flash message. Any later .contextual
+   stays where Redmine put it, laid out as a flex row rather than a float
+   so it still cannot shrink its siblings.
+   =================================================================== */
+#content > .contextual {
+  position: static; float: none;
+  inset-block-start: auto; inset-inline-end: auto;
+  display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px;
+  inline-size: auto; margin-block: 14px 0;
+}
+#content > .contextual:first-child,
+#content > div.flash + .contextual {
+  position: absolute; margin: 0; z-index: 3;
+  inset-inline-end: var(--t-pad-i);
+}
+#content > .contextual:first-child { inset-block-start: var(--t-pad-b); }
+#content > div.flash + .contextual { inset-block-start: calc(var(--t-pad-b) + 46px); }
+
+@media screen and (max-width: 899px) {
+  /* on a narrow screen every action bar gets its own full-width row */
+  body #content > .contextual,
+  body #content > .contextual:first-child,
+  body #content > div.flash + .contextual {
+    position: static; inset-block-start: auto; inset-inline-end: auto;
+    inline-size: 100%; margin-block: 0 12px;
+  }
+}

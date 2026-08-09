@@ -47,7 +47,8 @@
     search: '<circle cx="9" cy="9" r="5"/><path d="M12.8 12.8 17 17"/>',
     megaphone: '<path d="M4.5 8v4l8.5 3.6V4.4z"/><path d="M4.5 8H3.2v4h1.3"/>',
     left: '<path d="M11.5 5.5 7 10l4.5 4.5"/>',
-    right: '<path d="M8.5 5.5 13 10l-4.5 4.5"/>'
+    right: '<path d="M8.5 5.5 13 10l-4.5 4.5"/>',
+    caret: '<path d="M6 12l4-4 4 4"/>'
   };
 
   /* Redmine puts a stable class on every menu link — map it to a glyph. */
@@ -147,17 +148,7 @@
       Array.prototype.forEach.call(main, function (a) { rail.appendChild(railLink(a)); });
     }
 
-    /* Sign out gets its own block at the foot of the rail. In the rail
-       variants Redmine's top menu is hidden, which takes the account
-       dropdown with it — so this is the only way out of the session and
-       it should not be mixed in with the navigation items above. */
-    var out = document.querySelector('#account a.logout, .top-menu__links a.logout, a.logout');
-    if (out) {
-      var foot = document.createElement('div');
-      foot.className = 'rm-rail-foot';
-      foot.appendChild(railLink(out));
-      rail.appendChild(foot);
-    }
+    accountBlock(rail);
 
     var toggle = document.createElement('a');
     toggle.href = '#';
@@ -181,6 +172,97 @@
       toggle.replaceChild(wrapGlyph('right'), toggle.firstChild);
       toggle.title = 'Expand sidebar';
     }
+  }
+
+  /* ---------------------------------------------------------------
+     Account control. The rail variants hide Redmine's top menu, which
+     takes the account dropdown with it — so the rail carries the same
+     control rather than a bare sign-out link: the user behind a person
+     icon, opening the same items Redmine renders into #account (My
+     account, Administration, Sign out), cloned rather than reinvented
+     so a plugin adding an item gets it here for free.
+
+     Expanded it is icon + name; collapsed, the icon alone. The menu is
+     positioned fixed from the trigger's own rect rather than nested in
+     the rail, so a 56px collapsed rail cannot clip it, and the name
+     truncates with an ellipsis rather than widening the rail.
+     --------------------------------------------------------------- */
+  function accountBlock(rail) {
+    var acct = document.getElementById('account');
+    var items = acct ? acct.querySelectorAll('.dropdown-content a') : [];
+    if (!items.length) {
+      var lone = document.querySelector('a.logout');
+      items = lone ? [lone] : [];
+    }
+    if (!items.length) return;
+
+    /* Sequential, not a comma list: querySelector returns the first match in
+       DOM order, and the flyout copy of the user link sits above #account —
+       which is how the login ended up here instead of the display name. */
+    var nameEl = document.querySelector('#account .user-name')
+              || document.querySelector('#account .dropdown-trigger[title]')
+              || document.querySelector('#loggedas a.user')
+              || document.querySelector('.flyout-menu__avatar a.user');
+    var loginEl = document.querySelector('#account .user-login');
+    var name = ((nameEl && nameEl.textContent) || 'Account').trim();
+
+    var foot = document.createElement('div');
+    foot.className = 'rm-rail-foot';
+
+    var trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'rm-rail-account';
+    trigger.title = name;
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.appendChild(wrapGlyph('user'));
+    trigger.appendChild(label(name));
+    var caret = wrapGlyph('caret');
+    caret.classList.add('rm-rail-caret');
+    trigger.appendChild(caret);
+    foot.appendChild(trigger);
+    rail.appendChild(foot);
+
+    var menu = document.createElement('div');
+    menu.className = 'rm-rail-menu';
+    menu.hidden = true;
+    var head = document.createElement('div');
+    head.className = 'rm-rail-menu-head';
+    head.innerHTML = '<span class="rm-rail-menu-name">' + esc(name) + '</span>' +
+      (loginEl ? '<span class="rm-rail-menu-login">' + esc(loginEl.textContent.trim()) + '</span>' : '');
+    menu.appendChild(head);
+    Array.prototype.forEach.call(items, function (a) {
+      var c = document.createElement('a');
+      c.href = a.getAttribute('href') || '#';
+      c.textContent = a.textContent.trim();
+      if (typeof a.className === 'string' && a.className) c.className = a.className;
+      menu.appendChild(c);
+    });
+    document.body.appendChild(menu);
+
+    function place() {
+      var r = trigger.getBoundingClientRect();
+      menu.style.insetBlockEnd = Math.round(window.innerHeight - r.top + 6) + 'px';
+      if (document.documentElement.getAttribute('dir') === 'rtl') {
+        menu.style.right = Math.round(window.innerWidth - r.right) + 'px';
+        menu.style.left = 'auto';
+      } else {
+        menu.style.left = Math.round(r.left) + 'px';
+        menu.style.right = 'auto';
+      }
+    }
+    function open(on) {
+      menu.hidden = !on;
+      trigger.setAttribute('aria-expanded', String(on));
+      if (on) place();
+    }
+
+    trigger.addEventListener('click', function (e) { e.preventDefault(); open(menu.hidden); });
+    document.addEventListener('click', function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && !trigger.contains(e.target)) open(false);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') open(false); });
+    window.addEventListener('resize', function () { if (!menu.hidden) place(); });
   }
 
   function wrapGlyph(key) {
