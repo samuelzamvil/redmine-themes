@@ -1446,3 +1446,33 @@ body.rm-rail-collapsed #rm-rail .rm-rail-account .rm-rail-caret { display: none;
     inline-size: 100%; margin-block: 0 12px;
   }
 }
+
+/* ===================================================================
+   WIKI TOOLBAR DRAWN OVER THE TEXTAREA
+
+   The toolbar is given its own row inside .jstTabs.tabs (flex-wrap +
+   flex: 1 1 100%) so it grows instead of clipping when it wraps. That
+   row only fits if the container can grow, and the container was only
+   told to grow via 'block-size: auto'.
+
+   Core writes the physical 'height: 42px'. Logical and physical
+   properties share one computed value, so the winner is decided by the
+   normal cascade — and in Redmine 7 core's stylesheet is injected after
+   the theme in the 'application' slot. A logical declaration therefore
+   cannot beat a physical one from core on specificity alone at these
+   weights: the container stayed 42px, the wrapped toolbar row overflowed
+   it, and 'overflow: visible' let it paint over the textarea below.
+
+   The mock never showed this because it has no core stylesheet, so
+   'block-size: auto' was unopposed.
+
+   Both spellings are set here, on the same body-prefixed selector the
+   rest of the toolbar overrides use.
+   =================================================================== */
+body #content .jstTabs.tabs {
+  height: auto; min-height: 0; max-height: none;
+  block-size: auto; min-block-size: 0; max-block-size: none;
+}
+body #content .jstTabs.tabs .jstElements {
+  height: auto; block-size: auto;
+}
