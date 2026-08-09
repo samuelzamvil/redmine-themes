@@ -101,14 +101,14 @@ would rather not clone:
 | Asset | What it is |
 | --- | --- |
 | `atlas.zip` … `folio-classic.zip` | one theme, ready to drop into `themes/` |
-| `redmine-themes-all.zip` | all ten themes |
+| `all-themes.zip` | all ten themes |
 | `redmine-mock-site.zip` | the fake Redmine, for previewing themes offline |
 
 The theme archives unpack straight into an install:
 
 ```
 unzip atlas.zip -d /path/to/redmine/themes/              # one theme
-unzip redmine-themes-all.zip -d /path/to/redmine/themes/ # all ten
+unzip all-themes.zip -d /path/to/redmine/themes/ # all ten
 ```
 
 Installing all ten is safe — each is a separate entry in the theme picker, and

@@ -27,12 +27,15 @@ for theme in "${THEMES[@]}"; do
   cp COPYING "$stage/$theme/"
 done
 
-# One archive per theme, plus one holding all of them. Both unpack with the theme
-# folder at the archive root, straight into a Redmine themes/ directory.
+# One archive per theme, plus all-themes.zip holding every one. That bundle is named
+# to sort first in a release asset list — GitHub orders assets alphabetically, and
+# under its old name it sat eighth of twelve, between folio and umbra, where people
+# read it as missing. All archives unpack with the theme folder at the archive root,
+# straight into a Redmine themes/ directory.
 for theme in "${THEMES[@]}"; do
   (cd "$stage" && zip -qr "$OLDPWD/$out/$theme.zip" "$theme")
 done
-(cd "$stage" && zip -qr "$OLDPWD/$out/redmine-themes-all.zip" "${THEMES[@]}")
+(cd "$stage" && zip -qr "$OLDPWD/$out/all-themes.zip" "${THEMES[@]}")
 
 # The mock Redmine, as a site anyone can host.
 script/build-site.sh "$stage/redmine-mock-site"
