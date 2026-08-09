@@ -2,13 +2,19 @@
  * Redmine - project management software
  * Copyright (C) 2006-  Jean-Philippe Lang
  * This code is released under the GNU General Public License.
+ *
+ * ADAPTED FOR THE STATIC PREVIEW: Redmine serves assets from the server root
+ * through Propshaft, so this file references them as url(/name). A static site
+ * on a subpath cannot resolve those, and a 404 on the open-color import silently
+ * empties every --oc-* token. All root-absolute URLs below are therefore made
+ * relative. Nothing else is changed.
  */
 
-@import url('/open-color.css');
+@import url(open-color.css);
 
 @font-face {
   font-family: "Noto Sans";
-  src: url("/NotoSans-Regular.woff2") format("woff2");
+  src: url("../fonts/NotoSans-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -16,7 +22,7 @@
 
 @font-face {
   font-family: "Noto Sans";
-  src: url("/NotoSans-Bold.woff2") format("woff2");
+  src: url("../fonts/NotoSans-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -24,7 +30,7 @@
 
 @font-face {
   font-family: "Noto Sans";
-  src: url("/NotoSans-Italic.woff2") format("woff2");
+  src: url("../fonts/NotoSans-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -32,7 +38,7 @@
 
 @font-face {
   font-family: "Noto Sans";
-  src: url("/NotoSans-BoldItalic.woff2") format("woff2");
+  src: url("../fonts/NotoSans-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -520,9 +526,9 @@ div + .drdn-items {border-block-start: 1px solid var(--oc-gray-4);}
   margin:0 !important;
   vertical-align:middle;
   color:var(--oc-gray-7);
-  background:var(--oc-white) url(/chevron-down.svg) no-repeat 98% 50%;
+  background:var(--oc-white) url(../images/chevron-down.svg) no-repeat 98% 50%;
 }
-#project-jump .drdn.expanded .drdn-trigger {background-image:url(/arrow_up.png);}
+#project-jump .drdn.expanded .drdn-trigger {background-image:url(../images/arrow_up.png);}
 #project-jump .drdn-content {inline-size: 280px;}
 #project-jump .drdn-items>* {color:var(--oc-gray-7) !important;}
 #project-jump .drdn-items>a:hover {background-color: var(--oc-blue-7); color:var(--oc-white) !important;}
@@ -593,8 +599,8 @@ table.issues td.block_column {
 table.issues td.block_column>span {font-weight: bold; display: block; margin-block-end: 4px;}
 table.issues td.block_column>pre {white-space:normal;}
 
-tr.idnt :is(td.subject, td.name) {background: url(/chevron-right-idnt.svg) no-repeat 2px center;}
-[dir="rtl"] tr.idnt :is(td.subject, td.name) {background: url(/chevron-left-idnt.svg) no-repeat right 2px center;}
+tr.idnt :is(td.subject, td.name) {background: url(../images/chevron-right-idnt.svg) no-repeat 2px center;}
+[dir="rtl"] tr.idnt :is(td.subject, td.name) {background: url(../images/chevron-left-idnt.svg) no-repeat right 2px center;}
 tr.idnt-1 :is(td.subject, td.name) {padding-inline-start: 24px; background-position: 4px center;}
 tr.idnt-2 :is(td.subject, td.name) {padding-inline-start: 40px; background-position: 20px center;}
 tr.idnt-3 :is(td.subject, td.name) {padding-inline-start: 56px; background-position: 36px center;}
@@ -833,7 +839,7 @@ select {
   -o-appearance: none;
   appearance: none;
   background-color: var(--oc-white);
-  background-image: url(/chevron-down.svg);
+  background-image: url(../images/chevron-down.svg);
   background-repeat: no-repeat;
   background-position: calc(100% - 2px) 50%;
   padding-inline-end: 20px;
@@ -1442,7 +1448,7 @@ p.other-formats { text-align: end; font-size:0.9em; color: var(--oc-gray-6); }
 .other-formats span + span:before { content: "| "; }
 
 em.info {font-style:normal;display:block;font-size:90%;color:var(--oc-gray-6);}
-em.info.error {padding-inline-start: 20px; background: url(/exclamation.png) no-repeat left 50%;}
+em.info.error {padding-inline-start: 20px; background: url(../images/exclamation.png) no-repeat left 50%;}
 [dir="rtl"] em.info.error {background-position: right 50%;}
 
 textarea.text_cf {inline-size: 95%; resize: vertical;}
@@ -1456,13 +1462,13 @@ input#principal_search, input#user_search {inline-size: 90%}
 .roles-selection label {display: inline-block; inline-size: 210px;}
 
 input.autocomplete {
-  background: var(--oc-white) url(/search.svg) no-repeat 2px 50%; padding-inline-start: 20px !important;
+  background: var(--oc-white) url(../images/search.svg) no-repeat 2px 50%; padding-inline-start: 20px !important;
 }
 [dir="rtl"] input.autocomplete {
   background-position: right 2px top 50%;
 }
 input.autocomplete.ajax-loading {
-  background-image: url(/loading.gif);
+  background-image: url(../images/loading.gif);
 }
 
 .role-visibility {padding-inline-start: 2em;}
@@ -1922,7 +1928,7 @@ div.wiki .external {
   background-position: left 60%;
   background-repeat: no-repeat;
   padding-inline-start: 12px;
-  background-image: url(/external.png);
+  background-image: url(../images/external.png);
 }
 
 html[dir="rtl"] div.wiki .external {
@@ -2273,7 +2279,7 @@ span.icon-checked:has(:not(a svg.icon-svg)) svg.icon-svg {
   stroke: var(--oc-green-8);
 }
 
-.sort-handle.ajax-loading { background-image: url(/loading.gif); }
+.sort-handle.ajax-loading { background-image: url(../images/loading.gif); }
 tr.ui-sortable-helper { border:1px solid var(--oc-gray-4); }
 svg.svg-loader {
   animation: spin 1s linear infinite;
@@ -2345,7 +2351,7 @@ color: var(--oc-gray-7); text-shadow: 1px 1px 0 var(--oc-white);
 
 .repository-graph {inline-size: 75%; margin-block-end: 2em;}
 
-img.filecontent.image {background-image: url(/transparent.png);}
+img.filecontent.image {background-image: url(../images/transparent.png);}
 
 /* Avatar styles */
 .avatar {

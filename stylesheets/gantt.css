@@ -2,6 +2,12 @@
  * Redmine - project management software
  * Copyright (C) 2006-  Jean-Philippe Lang
  * This code is released under the GNU General Public License.
+ *
+ * ADAPTED FOR THE STATIC PREVIEW: Redmine serves assets from the server root
+ * through Propshaft, so this file references them as url(/name). A static site
+ * on a subpath cannot resolve those, and a 404 on the open-color import silently
+ * empties every --oc-* token. All root-absolute URLs below are therefore made
+ * relative. Nothing else is changed.
  */
 
 .gantt_subjects div > span.expander {
@@ -147,17 +153,17 @@ td.gantt_watcher_users_column div.issue_watcher_users ul li:not(:last-child)::af
 }
 
 .task_late {
-  background: var(--oc-red-5) url(/task_late.png);
+  background: var(--oc-red-5) url(../images/task_late.png);
   border: 1px solid var(--oc-red-5);
 }
 
 .task_done {
-  background: var(--oc-green-7) url(/task_done.png);
+  background: var(--oc-green-7) url(../images/task_done.png);
   border: 1px solid var(--oc-green-7);
 }
 
 .task_todo {
-  background: var(--oc-gray-5) url(/task_todo.png);
+  background: var(--oc-gray-5) url(../images/task_todo.png);
   border: 1px solid var(--oc-gray-5);
 }
 
@@ -174,7 +180,7 @@ td.gantt_watcher_users_column div.issue_watcher_users ul li:not(:last-child)::af
 
 .task.parent.marker.starting {
   position: absolute;
-  background: url(/task_parent_end.png) no-repeat 0 0;
+  background: url(../images/task_parent_end.png) no-repeat 0 0;
   inline-size: 8px;
   block-size: 16px;
   margin-inline-start: -4px;
@@ -184,7 +190,7 @@ td.gantt_watcher_users_column div.issue_watcher_users ul li:not(:last-child)::af
 
 .task.parent.marker.ending {
   position: absolute;
-  background: url(/task_parent_end.png) no-repeat 0 0;
+  background: url(../images/task_parent_end.png) no-repeat 0 0;
   inline-size: 8px;
   block-size: 16px;
   margin-inline-start: -4px;
@@ -193,28 +199,28 @@ td.gantt_watcher_users_column div.issue_watcher_users ul li:not(:last-child)::af
 }
 
 .version.task_late {
-  background: var(--oc-red-5) url(/milestone_late.png);
+  background: var(--oc-red-5) url(../images/milestone_late.png);
   border: 1px solid var(--oc-red-5);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .version.task_done {
-  background: var(--oc-green-7) url(/milestone_done.png);
+  background: var(--oc-green-7) url(../images/milestone_done.png);
   border: 1px solid var(--oc-green-7);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .version.task_todo {
-  background: var(--oc-white) url(/milestone_todo.png);
+  background: var(--oc-white) url(../images/milestone_todo.png);
   border: 1px solid var(--oc-white);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .version.marker {
-  background-image: url(/version_marker.png);
+  background-image: url(../images/version_marker.png);
   background-repeat: no-repeat;
   border: 0;
   margin-inline-start: -4px;
@@ -222,28 +228,28 @@ td.gantt_watcher_users_column div.issue_watcher_users ul li:not(:last-child)::af
 }
 
 .project.task_late {
-  background: var(--oc-red-5) url(/milestone_late.png);
+  background: var(--oc-red-5) url(../images/milestone_late.png);
   border: 1px solid var(--oc-red-5);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .project.task_done {
-  background: var(--oc-green-7) url(/milestone_done.png);
+  background: var(--oc-green-7) url(../images/milestone_done.png);
   border: 1px solid var(--oc-green-7);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .project.task_todo {
-  background: var(--oc-white) url(/milestone_todo.png);
+  background: var(--oc-white) url(../images/milestone_todo.png);
   border: 1px solid var(--oc-white);
   block-size: 2px;
   margin-block-start: 3px;
 }
 
 .project.marker {
-  background-image: url(/project_marker.png);
+  background-image: url(../images/project_marker.png);
   background-repeat: no-repeat;
   border: 0;
   margin-inline-start: -4px;

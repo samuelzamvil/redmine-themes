@@ -33,7 +33,7 @@
   --oc-gray-3: oklch(0.912 0.008 250);
   --oc-gray-4: oklch(0.868 0.008 250);
   --oc-gray-5: oklch(0.775 0.008 250);
-  --oc-gray-6: oklch(0.655 0.008 250);
+  --oc-gray-6: oklch(0.54 0.008 250);
   --oc-gray-7: oklch(0.475 0.008 250);
   --oc-gray-8: oklch(0.34 0.008 250);
   --oc-gray-9: oklch(0.24 0.008 250);
@@ -645,3 +645,350 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
 #content > .contextual { float: none; position: absolute; inset-block-start: var(--t-pad-b); inset-inline-end: var(--t-pad-i); margin: 0; z-index: 3; }
 #content > .contextual + h2, #content > .contextual + h1 { margin-block-start: 0; }
 #content > div.flash + .contextual { inset-block-start: calc(var(--t-pad-b) + 46px); }
+
+/* ===================================================================
+   RESPONSIVE
+
+   Redmine already ships a mobile system: below 900px core hides the top
+   menu, the project menu and the sidebar and moves all three into a
+   .flyout-menu opened by .mobile-toggle-button. These themes get out of
+   its way rather than compete — the nav rail is a desktop affordance and
+   is withdrawn entirely.
+
+   SPECIFICITY NOTE. Redmine substitutes this file for core's
+   application.css in the 'application' slot, so the load order is
+
+       <theme>/application.css  ->  dropdown.css  ->  responsive.css
+
+   Every rule here therefore loses a specificity tie with responsive.css.
+   Mobile overrides are prefixed with body/html to outrank it; without
+   that prefix core's hard-coded blue and 40px rows silently win.
+
+   Three ranges:
+     < 900px   core's flyout owns navigation; rail withdrawn
+     900-1180  rail auto-collapses to icons so content keeps its width
+     > 1180px  rail expanded
+   =================================================================== */
+
+@media screen and (min-width: 900px) and (max-width: 1180px) {
+  #rm-rail { inline-size: 56px; }
+  body.rm-has-rail #wrapper { margin-inline-start: 56px; }
+  #rm-rail .rm-rail-label, #rm-rail .rm-rail-sec { opacity: 0; pointer-events: none; }
+  #rm-rail .rm-rail-brand { justify-content: center; padding-inline: 0; }
+  #rm-rail a { justify-content: center; }
+  /* the toggle would be a lie at this width — expanding cannot fit */
+  #rm-rail .rm-rail-toggle { display: none; }
+  .splitcontentleft, .splitcontentright { inline-size: 100%; flex: auto; margin-inline: 0; }
+}
+
+@media screen and (max-width: 899px) {
+  /* Core resets body's 900px min-width on mobile, but these themes also put a
+     min-width on #wrapper to keep the desktop chrome from collapsing. It has to
+     be released here or the whole page overflows horizontally. */
+  body #wrapper { min-inline-size: 0; }
+
+  /* --- Rail withdrawn; core's flyout takes over --- */
+  #rm-rail { display: none; }
+  body.rm-has-rail #wrapper, body.rm-rail-collapsed #wrapper { margin-inline-start: 0; }
+
+  /* --- Header. Core fixes it at 64px and hard-codes #628db6; use the
+         theme's own chrome so the mobile bar matches its desktop top menu. --- */
+  body #header { background: var(--t-chrome); border-block-end: 1px solid var(--t-border); }
+  body.has-main-menu #header { padding-block-end: 0; }
+  body #header a.mobile-toggle-button {
+    color: var(--t-chrome-text); inline-size: 64px;
+    border-inline-start-color: color-mix(in oklab, var(--t-chrome-text) 22%, transparent);
+  }
+  body #header #project-jump .drdn-trigger {
+    color: var(--t-chrome-text); font-family: var(--fonts-main);
+    font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.01em;
+  }
+  body #header #project-jump .drdn-content {
+    background: var(--t-surface); border: 1px solid var(--t-border);
+    border-radius: 0 0 var(--t-radius) var(--t-radius); box-shadow: var(--t-shadow); padding-block: 4px;
+  }
+  body #header #project-jump .drdn-content a { color: var(--t-text); padding: 11px 14px; display: block; }
+  body #header #project-jump .drdn-content a.selected { background: var(--t-accent-soft); color: var(--t-accent); font-weight: 600; }
+
+  /* --- Flyout panel, themed rather than core's fixed navy --- */
+  #wrapper .flyout-menu { background: var(--t-chrome); color: var(--t-chrome-text); inline-size: 272px; inset-inline-end: -272px; }
+  html.flyout-is-active #wrapper, html.flyout-is-active #header { inset-inline-end: 272px; }
+  #wrapper .flyout-menu a, #wrapper .flyout-menu .user { color: var(--t-chrome-text); }
+  #wrapper .flyout-menu .icon svg, #wrapper .flyout-menu .icon-only svg, #wrapper .flyout-menu .icon-svg { stroke: var(--t-chrome-text); }
+  #wrapper .flyout-menu h3 {
+    background: color-mix(in oklab, var(--t-chrome-text) 10%, transparent);
+    color: color-mix(in oklab, var(--t-chrome-text) 72%, transparent);
+    border-block-color: color-mix(in oklab, var(--t-chrome-text) 16%, transparent);
+    block-size: auto; padding-block: 7px; line-height: 1.2; font-weight: 700;
+  }
+  /* 44px rows: core uses 40, below a comfortable touch target */
+  #wrapper .flyout-menu ul li a, #wrapper .flyout-menu ul li:first-child a {
+    block-size: 44px; line-height: 44px;
+    display: flex; align-items: center; gap: 10px;
+    border-block-start-color: color-mix(in oklab, var(--t-chrome-text) 12%, transparent);
+  }
+  #wrapper .flyout-menu ul li a.selected { background: color-mix(in oklab, var(--t-accent) 22%, transparent); font-weight: 600; }
+  #wrapper .flyout-menu ul li a:active { background: color-mix(in oklab, var(--t-chrome-text) 12%, transparent); }
+  #wrapper .flyout-menu__search input[type='text'] {
+    background: var(--t-surface); color: var(--t-text); border: 1px solid var(--t-border);
+    block-size: 40px; border-radius: var(--t-radius);
+  }
+  #wrapper .flyout-menu__avatar { border-block-start-color: color-mix(in oklab, var(--t-chrome-text) 12%, transparent); align-items: center; }
+  #wrapper .flyout-menu__avatar .gravatar.g40 { inline-size: 40px; block-size: 40px; }
+  #wrapper .flyout-menu__sidebar h3 { margin-inline-start: 0; }
+  #wrapper .flyout-menu__sidebar a.selected { background: color-mix(in oklab, var(--t-accent) 22%, transparent); border-radius: 0; }
+
+  /* --- Content --- */
+  body div#content { padding-block: 16px; }
+  body #footer { padding-inline: 16px; }
+
+  /* The contextual is taken out of flow on desktop so it cannot shrink the
+     page. On a narrow screen core's full-width row is better — restore it. */
+  body #content > .contextual { position: static; float: none; inline-size: 100%; display: flex; flex-wrap: wrap; gap: 6px; margin-block-end: 12px; }
+  body #content > .contextual a.icon, body #content > .contextual .dropdown { margin: 0; padding: 9px 12px; }
+  body #content > div.flash + .contextual { inset-block-start: auto; }
+
+  /* Sticky headers would slide under the fixed 64px header. */
+  body table.list th { position: static; }
+
+  body .autoscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Board columns become a swipeable row. */
+  .rm-board { grid-auto-columns: 82vw; gap: 10px; }
+  .rm-editor-tabs { flex-wrap: wrap; }
+  .rm-editor-actions { position: sticky; inset-block-end: 0; }
+
+  body #filters-table .filter { gap: 6px; }
+  body #filters-table .filter .field { flex: 1 1 100%; inline-size: 100%; }
+  body #filters-table .filter .operator select, body #filters-table .filter .values select { inline-size: 100%; }
+
+  /* Touch targets. 1rem on inputs also stops iOS zooming on focus. */
+  body input[type=text], body input[type=password], body input[type=email],
+  body input[type=number], body input[type=date], body select, body textarea {
+    min-block-size: 40px; font-size: 1rem;
+  }
+  body input[type=submit], body a.button, body .contextual a.icon { min-block-size: 40px; }
+}
+
+@media screen and (max-width: 599px) {
+  body div#content { padding-inline: 12px; }
+  body #login-form { inline-size: 100%; margin-block-start: 1.5em; padding: 22px 20px; }
+  .rm-board { grid-auto-columns: 88vw; }
+  .rm-viewswitch { margin-inline-start: 0; }
+  body #content h2 { font-size: 1.0625rem; }
+}
+
+/* -------------------------------------------------------------------
+   Semantic colour families in dark mode.
+
+   The token block at the top of this file remaps the gray ramp and the
+   accent families (blue/indigo/violet/cyan) for dark mode, but Open
+   Color's semantic families were left at their light values — pale
+   pastel -0/-1 tints and dark saturated -9 foregrounds, both of which
+   are meant for a white page.
+
+   On a dark surface that inverts the intent: core's diff highlighting
+   (.diff_in on --oc-green-1, .diff_out on --oc-red-1) became near-white
+   text on pale pastel, and the status pills put a dark saturated -9
+   foreground on a dark background. Both measured close to 1:1.
+
+   Same treatment as the other ramps: keep each family's hue, invert the
+   lightness scale, so -0/-1 are dark tints and -9 is a light readable
+   foreground. Scoped to the dark selectors only, so light mode keeps
+   Open Color's own values.
+   ------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-rm-mode="light"]) {
+    --oc-red-0: oklch(0.28 0.021 27);
+    --oc-red-1: oklch(0.34 0.042 27);
+    --oc-red-2: oklch(0.41 0.074 27);
+    --oc-red-3: oklch(0.48 0.105 27);
+    --oc-red-4: oklch(0.56 0.137 27);
+    --oc-red-5: oklch(0.63 0.158 27);
+    --oc-red-6: oklch(0.7 0.168 27);
+    --oc-red-7: oklch(0.76 0.168 27);
+    --oc-red-8: oklch(0.82 0.158 27);
+    --oc-red-9: oklch(0.88 0.147 27);
+
+    --oc-pink-0: oklch(0.28 0.020 355);
+    --oc-pink-1: oklch(0.34 0.040 355);
+    --oc-pink-2: oklch(0.41 0.070 355);
+    --oc-pink-3: oklch(0.48 0.100 355);
+    --oc-pink-4: oklch(0.56 0.130 355);
+    --oc-pink-5: oklch(0.63 0.150 355);
+    --oc-pink-6: oklch(0.7 0.160 355);
+    --oc-pink-7: oklch(0.76 0.160 355);
+    --oc-pink-8: oklch(0.82 0.150 355);
+    --oc-pink-9: oklch(0.88 0.140 355);
+
+    --oc-grape-0: oklch(0.28 0.020 320);
+    --oc-grape-1: oklch(0.34 0.040 320);
+    --oc-grape-2: oklch(0.41 0.070 320);
+    --oc-grape-3: oklch(0.48 0.100 320);
+    --oc-grape-4: oklch(0.56 0.130 320);
+    --oc-grape-5: oklch(0.63 0.150 320);
+    --oc-grape-6: oklch(0.7 0.160 320);
+    --oc-grape-7: oklch(0.76 0.160 320);
+    --oc-grape-8: oklch(0.82 0.150 320);
+    --oc-grape-9: oklch(0.88 0.140 320);
+
+    --oc-teal-0: oklch(0.28 0.019 175);
+    --oc-teal-1: oklch(0.34 0.038 175);
+    --oc-teal-2: oklch(0.41 0.067 175);
+    --oc-teal-3: oklch(0.48 0.095 175);
+    --oc-teal-4: oklch(0.56 0.123 175);
+    --oc-teal-5: oklch(0.63 0.142 175);
+    --oc-teal-6: oklch(0.7 0.152 175);
+    --oc-teal-7: oklch(0.76 0.152 175);
+    --oc-teal-8: oklch(0.82 0.142 175);
+    --oc-teal-9: oklch(0.88 0.133 175);
+
+    --oc-green-0: oklch(0.28 0.019 148);
+    --oc-green-1: oklch(0.34 0.038 148);
+    --oc-green-2: oklch(0.41 0.067 148);
+    --oc-green-3: oklch(0.48 0.095 148);
+    --oc-green-4: oklch(0.56 0.123 148);
+    --oc-green-5: oklch(0.63 0.142 148);
+    --oc-green-6: oklch(0.7 0.152 148);
+    --oc-green-7: oklch(0.76 0.152 148);
+    --oc-green-8: oklch(0.82 0.142 148);
+    --oc-green-9: oklch(0.88 0.133 148);
+
+    --oc-lime-0: oklch(0.28 0.019 128);
+    --oc-lime-1: oklch(0.34 0.038 128);
+    --oc-lime-2: oklch(0.41 0.067 128);
+    --oc-lime-3: oklch(0.48 0.095 128);
+    --oc-lime-4: oklch(0.56 0.123 128);
+    --oc-lime-5: oklch(0.63 0.142 128);
+    --oc-lime-6: oklch(0.7 0.152 128);
+    --oc-lime-7: oklch(0.76 0.152 128);
+    --oc-lime-8: oklch(0.82 0.142 128);
+    --oc-lime-9: oklch(0.88 0.133 128);
+
+    --oc-yellow-0: oklch(0.28 0.018 95);
+    --oc-yellow-1: oklch(0.34 0.036 95);
+    --oc-yellow-2: oklch(0.41 0.063 95);
+    --oc-yellow-3: oklch(0.48 0.090 95);
+    --oc-yellow-4: oklch(0.56 0.117 95);
+    --oc-yellow-5: oklch(0.63 0.135 95);
+    --oc-yellow-6: oklch(0.7 0.144 95);
+    --oc-yellow-7: oklch(0.76 0.144 95);
+    --oc-yellow-8: oklch(0.82 0.135 95);
+    --oc-yellow-9: oklch(0.88 0.126 95);
+
+    --oc-orange-0: oklch(0.28 0.021 62);
+    --oc-orange-1: oklch(0.34 0.042 62);
+    --oc-orange-2: oklch(0.41 0.074 62);
+    --oc-orange-3: oklch(0.48 0.105 62);
+    --oc-orange-4: oklch(0.56 0.137 62);
+    --oc-orange-5: oklch(0.63 0.158 62);
+    --oc-orange-6: oklch(0.7 0.168 62);
+    --oc-orange-7: oklch(0.76 0.168 62);
+    --oc-orange-8: oklch(0.82 0.158 62);
+    --oc-orange-9: oklch(0.88 0.147 62);
+  }
+}
+
+:root[data-rm-mode="dark"] {
+  --oc-red-0: oklch(0.28 0.021 27);
+  --oc-red-1: oklch(0.34 0.042 27);
+  --oc-red-2: oklch(0.41 0.074 27);
+  --oc-red-3: oklch(0.48 0.105 27);
+  --oc-red-4: oklch(0.56 0.137 27);
+  --oc-red-5: oklch(0.63 0.158 27);
+  --oc-red-6: oklch(0.7 0.168 27);
+  --oc-red-7: oklch(0.76 0.168 27);
+  --oc-red-8: oklch(0.82 0.158 27);
+  --oc-red-9: oklch(0.88 0.147 27);
+
+  --oc-pink-0: oklch(0.28 0.020 355);
+  --oc-pink-1: oklch(0.34 0.040 355);
+  --oc-pink-2: oklch(0.41 0.070 355);
+  --oc-pink-3: oklch(0.48 0.100 355);
+  --oc-pink-4: oklch(0.56 0.130 355);
+  --oc-pink-5: oklch(0.63 0.150 355);
+  --oc-pink-6: oklch(0.7 0.160 355);
+  --oc-pink-7: oklch(0.76 0.160 355);
+  --oc-pink-8: oklch(0.82 0.150 355);
+  --oc-pink-9: oklch(0.88 0.140 355);
+
+  --oc-grape-0: oklch(0.28 0.020 320);
+  --oc-grape-1: oklch(0.34 0.040 320);
+  --oc-grape-2: oklch(0.41 0.070 320);
+  --oc-grape-3: oklch(0.48 0.100 320);
+  --oc-grape-4: oklch(0.56 0.130 320);
+  --oc-grape-5: oklch(0.63 0.150 320);
+  --oc-grape-6: oklch(0.7 0.160 320);
+  --oc-grape-7: oklch(0.76 0.160 320);
+  --oc-grape-8: oklch(0.82 0.150 320);
+  --oc-grape-9: oklch(0.88 0.140 320);
+
+  --oc-teal-0: oklch(0.28 0.019 175);
+  --oc-teal-1: oklch(0.34 0.038 175);
+  --oc-teal-2: oklch(0.41 0.067 175);
+  --oc-teal-3: oklch(0.48 0.095 175);
+  --oc-teal-4: oklch(0.56 0.123 175);
+  --oc-teal-5: oklch(0.63 0.142 175);
+  --oc-teal-6: oklch(0.7 0.152 175);
+  --oc-teal-7: oklch(0.76 0.152 175);
+  --oc-teal-8: oklch(0.82 0.142 175);
+  --oc-teal-9: oklch(0.88 0.133 175);
+
+  --oc-green-0: oklch(0.28 0.019 148);
+  --oc-green-1: oklch(0.34 0.038 148);
+  --oc-green-2: oklch(0.41 0.067 148);
+  --oc-green-3: oklch(0.48 0.095 148);
+  --oc-green-4: oklch(0.56 0.123 148);
+  --oc-green-5: oklch(0.63 0.142 148);
+  --oc-green-6: oklch(0.7 0.152 148);
+  --oc-green-7: oklch(0.76 0.152 148);
+  --oc-green-8: oklch(0.82 0.142 148);
+  --oc-green-9: oklch(0.88 0.133 148);
+
+  --oc-lime-0: oklch(0.28 0.019 128);
+  --oc-lime-1: oklch(0.34 0.038 128);
+  --oc-lime-2: oklch(0.41 0.067 128);
+  --oc-lime-3: oklch(0.48 0.095 128);
+  --oc-lime-4: oklch(0.56 0.123 128);
+  --oc-lime-5: oklch(0.63 0.142 128);
+  --oc-lime-6: oklch(0.7 0.152 128);
+  --oc-lime-7: oklch(0.76 0.152 128);
+  --oc-lime-8: oklch(0.82 0.142 128);
+  --oc-lime-9: oklch(0.88 0.133 128);
+
+  --oc-yellow-0: oklch(0.28 0.018 95);
+  --oc-yellow-1: oklch(0.34 0.036 95);
+  --oc-yellow-2: oklch(0.41 0.063 95);
+  --oc-yellow-3: oklch(0.48 0.090 95);
+  --oc-yellow-4: oklch(0.56 0.117 95);
+  --oc-yellow-5: oklch(0.63 0.135 95);
+  --oc-yellow-6: oklch(0.7 0.144 95);
+  --oc-yellow-7: oklch(0.76 0.144 95);
+  --oc-yellow-8: oklch(0.82 0.135 95);
+  --oc-yellow-9: oklch(0.88 0.126 95);
+
+  --oc-orange-0: oklch(0.28 0.021 62);
+  --oc-orange-1: oklch(0.34 0.042 62);
+  --oc-orange-2: oklch(0.41 0.074 62);
+  --oc-orange-3: oklch(0.48 0.105 62);
+  --oc-orange-4: oklch(0.56 0.137 62);
+  --oc-orange-5: oklch(0.63 0.158 62);
+  --oc-orange-6: oklch(0.7 0.168 62);
+  --oc-orange-7: oklch(0.76 0.168 62);
+  --oc-orange-8: oklch(0.82 0.158 62);
+  --oc-orange-9: oklch(0.88 0.147 62);
+}
+
+/* -------------------------------------------------------------------
+   Dim text tier.
+
+   --t-dim resolves to --oc-gray-6, which carries most of the secondary
+   text in these themes: column headers, sidebar headings, issue-number
+   links, pagination counts, field labels, the footer. The light ramp
+   put it at oklch(0.655), which is 3.17:1 on white and 2.92:1 on Dense's
+   zebra rows — under WCAG AA, and none of it is large text.
+
+   Lowered to oklch(0.54): 5.06:1 on white, 4.66:1 on the zebra row, so
+   the worst case still clears AA. The dark ramp already passed (4.65 to
+   5.12) and is unchanged.
+   ------------------------------------------------------------------- */

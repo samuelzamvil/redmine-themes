@@ -26,8 +26,10 @@ cp COPYING THIRD-PARTY-NOTICES.md "$out/"
 # stylesheets/jstoolbar.css; icons.svg is Redmine's sprite, referenced by the
 # preview's sprite_icon markup. Both are Tabler artwork under the MIT licence,
 # which requires its notice to travel with them — so doc/licenses/ ships too.
+# images/ holds the raster and chevron assets the core stylesheets reference; their
+# root-absolute Propshaft URLs are rewritten to point here.
 cp icons.svg "$out/"
-cp -r preview stylesheets jstoolbar doc "$out/"
+cp -r preview stylesheets jstoolbar images doc "$out/"
 
 for theme in "${THEMES[@]}"; do
   for required in stylesheets/application.css javascripts/theme.js; do

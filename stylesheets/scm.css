@@ -2,6 +2,12 @@
  * Redmine - project management software
  * Copyright (C) 2006-  Jean-Philippe Lang
  * This code is released under the GNU General Public License.
+ *
+ * ADAPTED FOR THE STATIC PREVIEW: Redmine serves assets from the server root
+ * through Propshaft, so this file references them as url(/name). A static site
+ * on a subpath cannot resolve those, and a 404 on the open-color import silently
+ * empties every --oc-* token. All root-absolute URLs below are therefore made
+ * relative. Nothing else is changed.
  */
 
 table.entries a {
@@ -26,8 +32,8 @@ li.change {
     padding-inline-start: 20px;
     margin: 0;
 }
-li.change.folder.change-A { background-image: url(/folder_open_add.png); }
-li.change.folder.change-M { background-image: url(/folder_open_orange.png); }
+li.change.folder.change-A { background-image: url(../images/folder_open_add.png); }
+li.change.folder.change-M { background-image: url(../images/folder_open_orange.png); }
 
 li.change.change-A svg.icon-svg {
     fill: var(--oc-green-7);

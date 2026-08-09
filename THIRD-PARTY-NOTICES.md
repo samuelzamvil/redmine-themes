@@ -42,15 +42,43 @@ against.
 
 | Path | Component | Copyright | Licence | Notice |
 | --- | --- | --- | --- | --- |
-| `stylesheets/application.css`<br>`stylesheets/context_menu.css`<br>`stylesheets/dropdown.css`<br>`stylesheets/gantt.css`<br>`stylesheets/responsive.css`<br>`stylesheets/scm.css` | Redmine `app/assets/stylesheets/` — **unmodified**, byte-identical to the checkout | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
-| `stylesheets/jstoolbar.css` | Redmine `app/assets/stylesheets/jstoolbar.css` — **modified**; every change is itemised in the file's own header | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
+| `stylesheets/context_menu.css`<br>`stylesheets/dropdown.css`<br>`stylesheets/responsive.css` | Redmine `app/assets/stylesheets/` — **unmodified**, byte-identical to the checkout | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
+| `stylesheets/application.css`<br>`stylesheets/gantt.css`<br>`stylesheets/scm.css`<br>`stylesheets/jstoolbar.css` | Redmine `app/assets/stylesheets/` — **modified**. Redmine serves assets from the server root via Propshaft, so these reference them as `url(/name)`, which cannot resolve on a static site served from a subpath. All such URLs are made relative; each file's own header records the deviation, and `jstoolbar.css` additionally itemises seven dropped rules. Verified: apart from those URLs, the rule bodies are identical to the checkout | Jean-Philippe Lang | GPL-2.0-or-later | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`COPYING`](COPYING) |
 | `icons.svg` | Redmine `app/assets/images/icons.svg` — the icon sprite, 117 symbols. Reserialized only: self-closing tags expanded, so all 387 path geometries and every symbol id match the checkout. The sprite file is Redmine's; the glyph artwork in it is Tabler's, so both notices apply | Jean-Philippe Lang (file), Paweł Kuna (artwork) | GPL-2.0-or-later / MIT | [`doc/licenses/redmine.txt`](doc/licenses/redmine.txt), [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
 | `jstoolbar/*.svg` (19 files) | Redmine `app/assets/images/jstoolbar/` — [Tabler Icons](https://tabler.io/icons) as shipped by Redmine. Reserialized only: whitespace collapsed and self-closing tags expanded, path geometry matches the checkout 19/19 | Paweł Kuna | MIT | [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
 | `stylesheets/open-color.css` | Redmine `app/assets/stylesheets/open-color.css` — [Open Color](https://github.com/yeun/open-color) v1.9.1 as vendored by Redmine, unmodified | heeyeun | MIT | [`doc/licenses/open-color.txt`](doc/licenses/open-color.txt) |
+| `images/*.svg` (4 files) | Redmine `app/assets/images/` — Tabler chevrons and the search glyph. Reserialized only; geometry matches the checkout | Paweł Kuna | MIT | [`doc/licenses/tabler-icons.txt`](doc/licenses/tabler-icons.txt) |
+| `images/*.png`, `images/loading.gif` (16 files) | Redmine `app/assets/images/` — byte-identical to the checkout. See [Icon artwork](#icon-artwork-attribution-required) below; attribution is **required** | Mark James, Yusuke Kamiyamane, Jean-Philippe Lang | CC-BY-2.5 / CC-BY-3.0 / GPL-2.0-or-later | [`doc/licenses/silk-icons.txt`](doc/licenses/silk-icons.txt), [`doc/licenses/fugue-icons.txt`](doc/licenses/fugue-icons.txt), [`COPYING`](COPYING) |
 
-Both MIT licences require their notice to accompany the files they cover, so
+The MIT licences require their notice to accompany the files they cover, so
 `doc/licenses/` ships in the preview bundle and in every release archive containing
 those files.
+
+## Icon artwork — attribution required
+
+The raster images are the one component here under a licence that asks for **credit**
+rather than just a bundled notice. Redmine draws its icon artwork from two
+Creative Commons sets, and credits them in `doc/README_FOR_APP`; those credits are
+reproduced here, verbatim in substance:
+
+- **Silk Icons** by Mark James
+  (<https://github.com/markjames/famfamfam-silk-icons>), licensed under the
+  [Creative Commons Attribution 2.5](https://creativecommons.org/licenses/by/2.5/)
+  License — see [`doc/licenses/silk-icons.txt`](doc/licenses/silk-icons.txt).
+- **Fugue Icons** by Yusuke Kamiyamane (<https://p.yusukekamiyamane.com/>), licensed
+  under the
+  [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)
+  License — see [`doc/licenses/fugue-icons.txt`](doc/licenses/fugue-icons.txt).
+
+**What we could and could not establish.** `images/exclamation.png` is
+pixel-for-pixel identical to Silk's `exclamation.png`, so at least one file is
+certainly Silk's and CC-BY-2.5 attribution is owed. For the rest we could not map
+each file to a set with confidence: `arrow_up.png` shares a name with a Silk icon but
+is 9×9 against Silk's 16×16, so it is a different image, and the remaining PNGs — the
+8×8 gantt bars and milestone, version and project markers — look like Redmine's own
+work but carry no metadata to prove it. Rather than guess per file, both sets are
+credited above and both licence texts ship. If you can attribute a file precisely,
+please open an issue and it will be corrected.
 
 ## Fonts, fetched at runtime, not bundled
 
@@ -69,7 +97,7 @@ about the network request and so you can self-host if you would rather not make 
 | Archivo | Dense | OFL-1.1 |
 | Source Sans 3, Source Serif 4 | Folio | OFL-1.1 |
 | JetBrains Mono | the preview's own chrome | OFL-1.1 |
-| Noto Sans | referenced by the vendored `stylesheets/application.css`, **not** bundled — the request 404s in the preview and the browser falls back | OFL-1.1 |
+| Noto Sans | Redmine's own body font, `@font-face`-declared in the vendored `stylesheets/application.css` as `../fonts/NotoSans-*.woff2`. **Not bundled** — the four files are 872 KB and every theme overrides the body font, so it would never render. Those four requests 404 in the preview, harmlessly | OFL-1.1 |
 
 To cut the dependency, delete the first `@import` from a theme's
 `stylesheets/application.css` and the theme falls back to the system font stack, or

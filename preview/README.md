@@ -80,8 +80,10 @@ The mock screens and the preview app are copyright 2026 Samuel Zamvil, also
 GPL-2.0-or-later, so you are free to adapt this harness for your own theme work.
 
 This harness vendors third-party files, each under its own licence — Redmine's core
-stylesheets (GPL-2.0-or-later), Open Color and the Tabler toolbar icons (both MIT) —
-and it requests two web fonts from Google Fonts at runtime.
+stylesheets, sprite and images (GPL-2.0-or-later), Open Color and the Tabler icons
+(both MIT), and icon artwork under Creative Commons **Attribution** terms crediting
+Mark James (Silk) and Yusuke Kamiyamane (Fugue). It also requests two web fonts from
+Google Fonts at runtime.
 
 All of it is disclosed in `THIRD-PARTY-NOTICES.md`, with the licence texts in
 `doc/licenses/`. Both are in this bundle.

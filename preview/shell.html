@@ -4,15 +4,19 @@
 <meta charset="utf-8" />
 <title>Redmine theme preview</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../stylesheets/open-color.css" media="all" />
-<link rel="stylesheet" href="../stylesheets/application.css" media="all" />
+<!-- Redmine's stylesheet_link_tag substitutes the theme's application.css for
+     core's, so the theme sits in the 'application' slot — before dropdown and
+     responsive — and pulls core in via its own @import. Getting this order
+     wrong lets core's base rules re-override responsive.css and the mobile
+     layout collapses. -->
+<link id="theme-css" rel="stylesheet" href="" media="all" />
 <link rel="stylesheet" href="../stylesheets/dropdown.css" media="all" />
+<link rel="stylesheet" href="../stylesheets/responsive.css" media="all" />
+<!-- page-specific, added through yield :header_tags -->
 <link rel="stylesheet" href="../stylesheets/context_menu.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/gantt.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/scm.css" media="all" />
 <link rel="stylesheet" href="../stylesheets/jstoolbar.css" media="all" />
-<link rel="stylesheet" href="../stylesheets/responsive.css" media="all" />
-<link id="theme-css" rel="stylesheet" href="" media="all" />
 <style>
   /* preview-only: stand-ins for Redmine's SVG sprite + gravatars */
   .gravatar { display:inline-block; width:22px; height:22px; border-radius:50%; background:var(--oc-gray-4); vertical-align:middle; }
@@ -22,6 +26,31 @@
 </head>
 <body class="has-main-menu">
 <div id="wrapper">
+
+<div class="flyout-menu js-flyout-menu">
+  <div class="flyout-menu__search">
+    <form onsubmit="return false">
+      <label for="flyout-search" class="search-magnifier search-magnifier--flyout"><i data-icon="search"></i></label>
+      <input type="text" name="q" id="flyout-search" class="small js-search-input" placeholder="Search" />
+    </form>
+  </div>
+
+  <div class="flyout-menu__avatar">
+    <a href="#"><span class="gravatar g40"></span></a>
+    <a class="user active" href="#">jrivas</a>
+  </div>
+
+  <h3>Project</h3>
+  <span class="js-project-menu"></span>
+
+  <h3>General</h3>
+  <span class="js-general-menu"></span>
+
+  <span class="js-sidebar flyout-menu__sidebar"></span>
+
+  <h3>Profile</h3>
+  <span class="js-profile-menu"></span>
+</div>
 
 <nav class="top-menu" id="top-menu">
   <div class="general-menu">
@@ -37,13 +66,34 @@
   <div class="profile-menu">
     <div id="account" class="dropdown">
       <a href="#" class="dropdown-trigger"><span class="gravatar"></span></a>
+      <div class="dropdown-content">
+        <div class="user-info">
+          <span class="user-name">Jamie Rivas</span>
+          <span class="user-login">@jrivas</span>
+        </div>
+        <div class="dropdown-divider"></div>
+        <ul>
+          <li><a href="#" class="my-account">My account</a></li>
+          <li><a href="#" class="administration">Administration</a></li>
+          <li><a href="#" class="logout">Sign out</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
 
 <div id="header">
+
+  <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
+
   <div id="quick-search">
-    <form><label for="q"><a href="#">Search</a>:</label> <input type="text" id="q" name="q" class="small" size="20" /></form>
+    <form onsubmit="return false"><label for="q"><a href="#">Search</a>:</label> <input type="text" id="q" name="q" class="small" size="20" /></form>
+    <div id="project-jump" class="drdn">
+      <div class="drdn-trigger">Flight Console</div>
+      <div class="drdn-content hidden">
+        <div class="drdn-items"><a class="project selected" href="#">Flight Console</a><a class="project" href="#">Ground Station Firmware</a><a class="project" href="#">Telemetry Archive</a></div>
+      </div>
+    </div>
   </div>
   <h1>
     <span class="breadcrumbs"><a href="#">Orbital Systems</a></span>
@@ -65,7 +115,10 @@
 </div>
 
 <div id="main" class="collapsiblesidebar">
-  <div id="sidebar"><div id="sidebar-wrapper"></div></div>
+  <div id="sidebar">
+    <div id="sidebar-switch-panel"><a id="sidebar-switch-button" href="#"><i data-icon="chevrons-right"></i></a></div>
+    <div id="sidebar-wrapper"></div>
+  </div>
   <div id="content"></div>
 </div>
 
@@ -665,6 +718,7 @@
   if (page === 'gantt') buildGantt();
 
   expandIcons(document.getElementById('content'));
+  expandIcons(document.body);
 
   var sb = tpl('template[data-sidebar="' + page + '"]');
   if (!sb && (page === 'issue' || page === 'issue-edit' || page === 'issue-form' || page === 'roadmap')) sb = tpl('template[data-sidebar="issues"]');
@@ -696,6 +750,43 @@
     if (mode) u.searchParams.set('mode', mode);
     location.href = u.toString();
   });
+
+  /* Redmine's application.js moves the menus into the flyout on mobile and
+     toggles .flyout-is-active on <html>. Same contract here. */
+  (function flyout() {
+    function moveTo(sel, target) {
+      var src = document.querySelector(sel), dst = document.querySelector(target);
+      if (!src || !dst) return;
+      dst.appendChild(src.cloneNode(true));
+    }
+    moveTo('#main-menu > ul', '.js-project-menu');
+    moveTo('#top-menu .top-menu__links ul', '.js-general-menu');
+
+    var sb = document.getElementById('sidebar-wrapper');
+    var host = document.querySelector('.js-sidebar');
+    if (sb && host) host.appendChild(sb.cloneNode(true));
+
+    var profile = document.querySelector('.js-profile-menu');
+    if (profile) profile.innerHTML = '<ul><li><a href="#">My account</a></li><li><a href="#">Administration</a></li><li><a href="#">Sign out</a></li></ul>';
+
+    var btn = document.querySelector('.js-flyout-menu-toggle-button');
+    if (btn) btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.documentElement.classList.toggle('flyout-is-active');
+    });
+    /* tapping the dimmed page closes it, as in core */
+    var main = document.getElementById('main');
+    if (main) main.addEventListener('click', function () {
+      if (document.documentElement.classList.contains('flyout-is-active')) {
+        document.documentElement.classList.remove('flyout-is-active');
+      }
+    });
+    var jump = document.querySelector('#project-jump .drdn-trigger');
+    if (jump) jump.addEventListener('click', function () {
+      document.getElementById('project-jump').classList.toggle('expanded');
+      document.querySelector('#project-jump .drdn-content').classList.toggle('hidden');
+    });
+  })();
 
   var s = document.createElement('script');
   s.src = '../themes/' + theme + '/javascripts/theme.js';

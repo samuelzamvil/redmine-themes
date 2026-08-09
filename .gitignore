@@ -1,6 +1,9 @@
 .DS_Store
 *.log
 
+# Local tooling, not project content.
+/.serena/
+
 # Assembled by script/build-site.sh and script/build-release.sh; never committed.
 /_site/
 /_release/
