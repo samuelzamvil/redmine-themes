@@ -342,7 +342,7 @@
         <div id="all_attributes">
           <p><label for="e_tracker">Tracker <span class="required">*</span></label> <select id="e_tracker"><option selected="selected">Bug</option><option>Feature</option><option>Support</option></select></p>
           <p><label for="e_subject">Subject <span class="required">*</span></label> <input type="text" id="e_subject" value="Downlink buffer overruns during high-rate passes" /></p>
-          <p><label for="e_description">Description</label> <textarea id="e_description" class="wiki-edit" rows="8">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped.</textarea></p>
+          <p><label for="e_description">Description</label> <span id="issue_description_and_toolbar" style="display:none"><textarea id="e_description" class="wiki-edit" rows="8">On passes above 40 Mbit/s the ingest buffer fills faster than the writer drains it, and the tail of the pass is dropped.</textarea></span> <a href="#" class="icon icon-edit" onclick="this.style.display='none';document.getElementById('issue_description_and_toolbar').style.display='';return false"><span><i data-icon="edit" data-label="Edit"></i></span></a></p>
           <div id="attributes" class="attributes">
             <div class="splitcontent">
               <div class="splitcontentleft">

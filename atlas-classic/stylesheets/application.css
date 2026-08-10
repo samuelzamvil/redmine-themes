@@ -1618,3 +1618,33 @@ body #content > .contextual + p.subtitle { clear: none; margin-block-start: 0; }
     float: none; inline-size: 100%; margin: 0 0 12px 0;
   }
 }
+
+/* ===================================================================
+   ONE LABEL COLUMN FOR THE WHOLE ISSUE EDITOR
+
+   The editor lays out two groups of rows: the top ones (Tracker,
+   Subject, Description) are plain '#all_attributes > p', and everything
+   below (Status, Priority, Assignee, Category, Target version) sits
+   inside .splitcontent. They were given different label widths — 140px
+   above, 108px inside .splitcontent — so the two groups started their
+   fields at different x and the form read as two mismatched columns.
+
+   They align on the NARROWER width. Widening .splitcontent's labels to
+   140px instead was tried and is wrong: its grid is two columns of about
+   320px, and a 140px label leaves too little for the field, so every row
+   in it wrapped its control onto a second line.
+   =================================================================== */
+body .rm-editor .tabular p > label,
+body .rm-editor fieldset > p > label,
+body .rm-editor .splitcontent p > label { flex: 0 0 108px; inline-size: 108px; }
+
+/* Inside .splitcontent the fields had 'max-inline-size: none' and no shrink
+   floor, so at laptop widths a long <select> kept its intrinsic width and
+   pushed itself onto a second line under its label. Let them shrink. */
+body .rm-editor .splitcontent p > select,
+body .rm-editor .splitcontent p > input[type=text],
+body .rm-editor .splitcontent p > input[type=date],
+body .rm-editor .splitcontent p > input[type=number] {
+  flex: 1 1 0; min-inline-size: 0; max-inline-size: none;
+}
+body .rm-editor .splitcontent p { flex-wrap: nowrap; }
