@@ -1572,3 +1572,53 @@ body #content .jstTabs.tabs li.tab-elements .jstElements {
   inline-size: 100%; vertical-align: baseline;
 }
 body #content .jstTabs.tabs li.tab-elements .jstElements.hidden { display: none; }
+
+/* ===================================================================
+   FLASH ICON, AND THE ACTION BAR ON THE TITLE ROW
+
+   Two faults visible together after saving an issue.
+
+   1. The tick was drawn outside the banner. Core reserves room for it
+      with 'padding-inline: 30px 4px' on the banner and then pulls the
+      icon back into that reserve with 'margin-inline: -26px 4px'. This
+      theme restyles the banner padding to '10px 14px', which removes the
+      reserve but not the pull, so the icon landed left of the box. The
+      banner is now a flex row with a real gap and the pull is zeroed —
+      no reserve to depend on.
+
+   2. Edit / Unwatch / Copy overlapped the banner and sat above the
+      title. The bar was positioned absolutely and offset by a hardcoded
+      'calc(var(--t-pad-b) + 46px)' — a guess at the banner's height that
+      is wrong as soon as the banner wraps or the font metrics differ.
+
+      Redmine's own order is flash, then .contextual, then the h2. A
+      float is what that markup wants: the title flows up beside the bar,
+      which is the alignment with 'Task #399' that was missing, and a
+      float cannot overlap the banner block above it at any height. The
+      original reason for taking it out of flow — that its width must not
+      shrink the page — a float satisfies just as well.
+   =================================================================== */
+body div.flash {
+  display: flex; align-items: center; gap: 8px;
+  padding-block: 10px; padding-inline: 14px;
+}
+body div.flash svg.icon-svg { margin-inline: 0; flex: 0 0 auto; }
+
+body #content > .contextual:first-child,
+body #content > div.flash + .contextual {
+  position: static; float: inline-end; clear: none;
+  inset-block-start: auto; inset-inline-end: auto;
+  margin: 0 0 0 12px; max-inline-size: 100%;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+}
+/* the heading after the bar must flow beside the float, not below it */
+body #content > .contextual + h2,
+body #content > .contextual + h3,
+body #content > .contextual + p.subtitle { clear: none; margin-block-start: 0; }
+
+@media screen and (max-width: 899px) {
+  body #content > .contextual:first-child,
+  body #content > div.flash + .contextual {
+    float: none; inline-size: 100%; margin: 0 0 12px 0;
+  }
+}
