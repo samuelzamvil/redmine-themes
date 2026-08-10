@@ -449,13 +449,19 @@ div.box, fieldset.box { margin-block-end: 10px; }
    matching negative margin on the label. Reset both, then lay the row out as
    flex so trailing text like "hours" stays on the same line as its field. */
 .rm-editor .tabular p, .rm-editor fieldset > p { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding-inline-start: 0; margin-block: 12px; }
-.rm-editor .tabular p > label, .rm-editor fieldset > p > label { float: none; flex: 0 0 140px; inline-size: 140px; margin-inline: 0; padding: 0; text-align: start; line-height: 1.35; }
+/* One width for every label in the editor. The top rows (Tracker, Subject,
+   Description) and the .splitcontent rows below them used to differ — 140px
+   against 108px — which started their fields at different x and read as two
+   mismatched columns. They align on the NARROWER width: .splitcontent's grid is
+   two columns of about 320px, and a 140px label leaves too little for the field,
+   so every row in it wrapped its control onto a second line. */
+.rm-editor .tabular p > label, .rm-editor fieldset > p > label,
+.rm-editor .splitcontent p > label { float: none; flex: 0 0 108px; inline-size: 108px; margin-inline: 0; padding: 0; text-align: start; line-height: 1.35; }
 .rm-editor .tabular p > input[type=text], .rm-editor .tabular p > input[type=date],
 .rm-editor .tabular p > input[type=number], .rm-editor .tabular p > select { flex: 1 1 auto; min-inline-size: 0; max-inline-size: 400px; box-sizing: border-box; }
 .rm-editor .tabular p > textarea { flex: 1 1 320px; inline-size: auto; min-inline-size: 0; max-inline-size: none; box-sizing: border-box; }
 .rm-editor .splitcontent { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
 .rm-editor .splitcontentleft, .rm-editor .splitcontentright { float: none; inline-size: auto; }
-.rm-editor .splitcontent p > label { flex: 0 0 108px; inline-size: 108px; }
 .rm-editor .splitcontent p > select, .rm-editor .splitcontent p > input { max-inline-size: none; }
 .rm-editor #attributes { margin-block-start: 6px; padding-block-start: 14px; border-block-start: 1px solid var(--t-border); }
 .rm-editor .required { color: var(--oc-red-7); }
@@ -642,9 +648,10 @@ p.other-formats { color: var(--t-dim); font-size: 0.75rem; margin-block-start: 1
    ------------------------------------------------------------------- */
 :root { --t-pad-b: 12px; --t-pad-i: 14px; }
 #content { position: relative; }
-#content > .contextual { float: none; position: absolute; inset-block-start: var(--t-pad-b); inset-inline-end: var(--t-pad-i); margin: 0; z-index: 3; }
+/* The bar is floated to the inline end further down this file (see the block on
+   the flash icon and the title row); the measurement above is why it must never
+   be laid out in normal flow at full width. */
 #content > .contextual + h2, #content > .contextual + h1 { margin-block-start: 0; }
-#content > div.flash + .contextual { inset-block-start: calc(var(--t-pad-b) + 46px); }
 
 /* ===================================================================
    RESPONSIVE
@@ -1417,40 +1424,24 @@ body.rm-rail-collapsed #rm-rail .rm-rail-account .rm-rail-caret { display: none;
 /* ===================================================================
    ONE ACTION BAR OUT OF FLOW, NOT ALL OF THEM
 
-   .contextual is taken out of flow earlier in this file so its width
-   cannot shrink the page (see the float note above). But Redmine renders
-   more than one .contextual on some pages — the issue action menu
-   repeats below the history — and absolutely positioning every one
-   stacked them all at the same coordinates, which is the duplicate row
-   of Edit / Unwatch / Copy sitting on the flash banner after a save.
+   Redmine renders more than one .contextual on some pages — the issue
+   action menu repeats below the history. Only the page's own action bar
+   belongs on the title row: the first child of #content, or the one
+   immediately after a flash message. Those two are floated by the block
+   on the flash icon and the title row, further down.
 
-   Only the page's own action bar is lifted: the first child of #content,
-   or the one immediately after a flash message. Any later .contextual
-   stays where Redmine put it, laid out as a flex row rather than a float
-   so it still cannot shrink its siblings.
+   This rule is for every OTHER .contextual: it stays where Redmine put
+   it, laid out as a flex row rather than a float, so it still cannot
+   shrink its siblings.
    =================================================================== */
 #content > .contextual {
   position: static; float: none;
-  inset-block-start: auto; inset-inline-end: auto;
   display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px;
   inline-size: auto; margin-block: 14px 0;
 }
-#content > .contextual:first-child,
-#content > div.flash + .contextual {
-  position: absolute; margin: 0; z-index: 3;
-  inset-inline-end: var(--t-pad-i);
-}
-#content > .contextual:first-child { inset-block-start: var(--t-pad-b); }
-#content > div.flash + .contextual { inset-block-start: calc(var(--t-pad-b) + 46px); }
 
 @media screen and (max-width: 899px) {
-  /* on a narrow screen every action bar gets its own full-width row */
-  body #content > .contextual,
-  body #content > .contextual:first-child,
-  body #content > div.flash + .contextual {
-    position: static; inset-block-start: auto; inset-inline-end: auto;
-    inline-size: 100%; margin-block: 0 12px;
-  }
+  body #content > .contextual { inline-size: 100%; margin-block: 0 12px; }
 }
 
 /* ===================================================================
@@ -1608,9 +1599,21 @@ body #content .jstTabs.tabs li.tab-elements .jstElements.hidden { display: none;
       Redmine's own order is flash, then .contextual, then the h2. A
       float is what that markup wants: the title flows up beside the bar,
       which is the alignment with 'Task #399' that was missing, and a
-      float cannot overlap the banner block above it at any height. The
-      original reason for taking it out of flow — that its width must not
-      shrink the page — a float satisfies just as well.
+      float cannot overlap the banner block above it at any height.
+
+      On the width note further up this file: that measurement stands, and
+      a float CAN shrink a BFC-establishing sibling. Measured here on the
+      project overview (splitcontent, overflow-x:auto) and the issue list
+      (autoscroll), at 1280 and 1000, it does not — the sibling's top
+      always lands below the float's bottom, so the two never share a
+      band. That holds even with the bar cloned out to 65px, and when the
+      heading's margin is removed to force the issue.
+
+      But displacing the sibling and narrowing it are both legal ways for
+      a browser to keep it clear of a float, and nothing in the markup
+      forces the first. The 'clear' below makes the displacement explicit
+      rather than left to the layout engine, so the 412px-instead-of-592px
+      shrink recorded up there cannot come back through this float.
    =================================================================== */
 body div.flash {
   display: flex; align-items: center; gap: 8px;
@@ -1637,24 +1640,6 @@ body #content > .contextual + p.subtitle { clear: none; margin-block-start: 0; }
   }
 }
 
-/* ===================================================================
-   ONE LABEL COLUMN FOR THE WHOLE ISSUE EDITOR
-
-   The editor lays out two groups of rows: the top ones (Tracker,
-   Subject, Description) are plain '#all_attributes > p', and everything
-   below (Status, Priority, Assignee, Category, Target version) sits
-   inside .splitcontent. They were given different label widths — 140px
-   above, 108px inside .splitcontent — so the two groups started their
-   fields at different x and the form read as two mismatched columns.
-
-   They align on the NARROWER width. Widening .splitcontent's labels to
-   140px instead was tried and is wrong: its grid is two columns of about
-   320px, and a 140px label leaves too little for the field, so every row
-   in it wrapped its control onto a second line.
-   =================================================================== */
-body .rm-editor .tabular p > label,
-body .rm-editor fieldset > p > label,
-body .rm-editor .splitcontent p > label { flex: 0 0 108px; inline-size: 108px; }
 
 /* Inside .splitcontent the fields had 'max-inline-size: none' and no shrink
    floor, so at laptop widths a long <select> kept its intrinsic width and
@@ -1666,3 +1651,11 @@ body .rm-editor .splitcontent p > input[type=number] {
   flex: 1 1 0; min-inline-size: 0; max-inline-size: none;
 }
 body .rm-editor .splitcontent p { flex-wrap: nowrap; }
+
+/* The two siblings named in the width note: keep them below the floated
+   bar rather than beside it, so neither can ever be narrowed by it. Where
+   the bar is short — the issue list, where the table starts 285px lower —
+   this changes nothing. */
+body #content > .splitcontent,
+body #content > .autoscroll,
+body #content > .splitcontent + .autoscroll { clear: inline-end; }

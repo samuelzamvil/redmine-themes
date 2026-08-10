@@ -75,6 +75,11 @@ works here should load unchanged in an install.
 The screens are hand-written mock markup, not Redmine's output. It is close, but a
 rule targeting markup the mock does not contain simply will not show up, and
 `theme.js` behaviour that depends on real Redmine DOM or real data will not run.
+
+Those gaps are catalogued rather than guessed at: `AUDIT.md` in the repository
+lists, per screen, the markup and states the mock does not reproduce, plus the
+theme selectors that never match anything here.
+
 Treat a good result here as encouraging, not as a pass — test on a real install
 before shipping.
 

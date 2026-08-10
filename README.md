@@ -152,6 +152,7 @@ index.html                         the preview app (picker, compare, deep links)
 preview/shell.html                 the mocked Redmine screens it renders
 preview/README.md                  how to use the mock on your own theme
 stylesheets/                       unmodified Redmine 7 core CSS, for the preview only
+AUDIT.md                           what the preview does not reproduce, per screen
 script/build-site.sh               assembles the site; used by Pages and the bundle
 script/build-release.sh            builds the release archives
 .github/workflows/pages.yml        publishes the preview to GitHub Pages
