@@ -1444,6 +1444,11 @@ body.rm-rail-collapsed #rm-rail .rm-rail-account .rm-rail-caret { display: none;
 /* ===================================================================
    WIKI TOOLBAR DRAWN OVER THE TEXTAREA
 
+   SUPERSEDED — this diagnosed the wrong element. The real cause is the
+   jstoolbar DOM shape, handled in the block further down this file; the
+   rules here are kept because the height-vs-block-size cascade they
+   describe is a genuine hazard, not because they fix the overlap.
+
    The toolbar is given its own row inside .jstTabs.tabs (flex-wrap +
    flex: 1 1 100%) so it grows instead of clipping when it wraps. That
    row only fits if the container can grow, and the container was only
@@ -1516,3 +1521,56 @@ body #query_form_with_buttons > p.buttons select { max-inline-size: 100%; }
     order: 3; flex: 1 1 100%; margin-inline-start: 0;
   }
 }
+
+/* ===================================================================
+   WIKI TOOLBAR, WRITTEN AGAINST THE REAL JSTOOLBAR DOM
+
+   Earlier rules in this file assumed .jstElements was a sibling of the
+   tab <ul>. It is not. jstoolbar.js builds three <li> inside that <ul> —
+   Edit, Preview, and a third <li class="tab-elements"> that CONTAINS the
+   toolbar:
+
+     .jstTabs.tabs > ul > li            (Edit)
+                       > li            (Preview)
+                       > li.tab-elements > .jstElements > button…
+
+   So 'flex: 1 1 100%' on .jstElements was sizing a block inside an <li>
+   rather than giving the toolbar its own row, the <ul> overflowed its
+   container, and the toolbar's last row landed on the textarea. The mock
+   hand-wrote the flatter markup, which is why this only ever appeared on
+   a real install.
+
+   The wrapping row is therefore the <ul>, and the full-width item is
+   li.tab-elements. Core's fixed 42px li height and its li:before strut
+   are dropped on that one <li> so the toolbar can grow to as many rows
+   as it needs.
+   =================================================================== */
+body #content .jstTabs.tabs {
+  display: block; padding: 0; overflow: visible;
+  height: auto; min-height: 0; max-height: none;
+  block-size: auto; min-block-size: 0; max-block-size: none;
+}
+body #content .jstTabs.tabs ul {
+  display: flex; flex-wrap: wrap; align-items: flex-end;
+  gap: 2px; margin: 0; padding: 0;
+  inline-size: 100%; min-inline-size: 0;
+  height: auto; block-size: auto; overflow: visible;
+}
+body #content .jstTabs.tabs li {
+  display: block; float: none; list-style: none;
+  height: auto; block-size: auto;
+}
+body #content .jstTabs.tabs li.tab-elements {
+  flex: 1 1 100%; min-inline-size: 0;
+  height: auto; block-size: auto;
+}
+/* core pads every tab li with a full-height inline strut; on the toolbar
+   li that only adds a phantom 42px row */
+body #content .jstTabs.tabs li.tab-elements::before { content: none; display: none; }
+
+body #content .jstTabs.tabs li.tab-elements .jstElements {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 3px;
+  height: auto; block-size: auto; padding: 4px 0 6px;
+  inline-size: 100%; vertical-align: baseline;
+}
+body #content .jstTabs.tabs li.tab-elements .jstElements.hidden { display: none; }
